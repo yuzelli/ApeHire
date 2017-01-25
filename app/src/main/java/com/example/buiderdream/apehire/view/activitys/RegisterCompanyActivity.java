@@ -9,7 +9,7 @@ import com.example.buiderdream.apehire.app.BaseActivity;
 /**
  * 注册公司信息界面
  */
-public class RegisterCompany extends BaseActivity {
+public class RegisterCompanyActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
