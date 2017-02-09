@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
-import com.example.buiderdream.apehire.constants.ConstantUtil;
+import com.example.buiderdream.apehire.constants.ConstantUtils;
 
 import java.util.Random;
 
@@ -70,8 +70,8 @@ public class SplashActivity extends BaseActivity {
         set.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                // handler.sendEmptyMessageDelayed(ConstantUtil.START_ACTIVITY, 3000);
-                handler.sendEmptyMessage(ConstantUtil.GUIDE_START_ACTIVITY);
+                // handler.sendEmptyMessageDelayed(ConstantUtils.START_ACTIVITY, 3000);
+                handler.sendEmptyMessage(ConstantUtils.GUIDE_START_ACTIVITY);
             }
         });
     }
@@ -81,7 +81,7 @@ public class SplashActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-                case ConstantUtil.GUIDE_START_ACTIVITY:
+                case ConstantUtils.GUIDE_START_ACTIVITY:
                     if (!firstUse) {
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     } else {

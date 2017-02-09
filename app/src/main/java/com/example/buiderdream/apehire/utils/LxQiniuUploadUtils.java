@@ -1,6 +1,6 @@
 package com.example.buiderdream.apehire.utils;
 
-import com.example.buiderdream.apehire.constants.ConstantUtil;
+import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
@@ -27,9 +27,9 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class LxQiniuUploadUtils {
     //七牛后台的key
-    private static String AccessKey = ConstantUtil.QN_ACCESSKEY;
+    private static String AccessKey = ConstantUtils.QN_ACCESSKEY;
     //七牛后台的secret
-    private static String SecretKey = ConstantUtil.QN_SECRETKEY;
+    private static String SecretKey = ConstantUtils.QN_SECRETKEY;
 
     private static final String MAC_NAME = "HmacSHA1";
     private static final String ENCODING = "UTF-8";
