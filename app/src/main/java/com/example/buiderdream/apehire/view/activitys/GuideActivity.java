@@ -3,7 +3,6 @@ package com.example.buiderdream.apehire.view.activitys;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.adapter.GuideViewAdapter;
-import com.example.buiderdream.apehire.app.BaseActivity;
+import com.example.buiderdream.apehire.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

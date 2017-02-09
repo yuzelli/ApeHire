@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.activitys.MainActivity" />
-        <activity android:name=".app.BaseActivity" />
+        <activity android:name=".base.BaseActivity" />
         <activity android:name=".view.activitys.LoginActivity" />
         <activity android:name=".view.activitys.RegisterActivity" />
         <activity android:name=".view.activitys.SplashActivity">

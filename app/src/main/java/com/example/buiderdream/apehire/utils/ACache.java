@@ -37,6 +37,7 @@ import com.google.gson.JsonObject;
 
 /**
  *文件缓存
+ * @author 李秉龙
  */
 public class ACache {
     public static final int TIME_HOUR = 60 * 60;

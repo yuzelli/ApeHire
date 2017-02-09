@@ -10,7 +10,6 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
-import com.example.buiderdream.apehire.app.BaseActivity;
 import com.example.buiderdream.apehire.view.fragment.BossMineFragment;
 import com.example.buiderdream.apehire.view.fragment.HireFragment;
 import com.example.buiderdream.apehire.view.fragment.MessageFragment;

@@ -1,10 +1,9 @@
 package com.example.buiderdream.apehire.view.activitys;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.buiderdream.apehire.R;
-import com.example.buiderdream.apehire.app.BaseActivity;
+import com.example.buiderdream.apehire.base.BaseActivity;
 
 /**
  * 注册公司信息界面

@@ -14,7 +14,7 @@ import android.os.SystemClock;
 import android.widget.ImageView;
 
 import com.example.buiderdream.apehire.R;
-import com.example.buiderdream.apehire.app.BaseActivity;
+import com.example.buiderdream.apehire.base.BaseActivity;
 import com.example.buiderdream.apehire.constants.ConstantUtil;
 
 import java.util.Random;

@@ -1,10 +1,11 @@
-package com.example.buiderdream.apehire.app;
+package com.example.buiderdream.apehire.base;
 
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.buiderdream.apehire.R;
+import com.example.buiderdream.apehire.utils.ActivityCollectorUtil;
 
 /**
  *Created by Administrator on 2016/12/3.
@@ -17,5 +18,11 @@ public class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+        ActivityCollectorUtil.addActivity(this);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollectorUtil.removeActivity(this);
     }
 }
