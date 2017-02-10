@@ -17,12 +17,12 @@ public class MessageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         if (messageFragmentView==null){
-            messageFragmentView = inflater.inflate(R.layout.fragment_hire, container,false);
+            messageFragmentView = inflater.inflate(R.layout.fragment_message, container,false);
         }
         if (messageFragmentView!=null){
             return messageFragmentView;
         }
-        return inflater.inflate(R.layout.fragment_hire, null);
+        return inflater.inflate(R.layout.fragment_message, null);
     }
 
     @Override
