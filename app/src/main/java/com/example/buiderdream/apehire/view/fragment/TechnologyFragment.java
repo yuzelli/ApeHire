@@ -8,12 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.buiderdream.apehire.R;
+import com.example.buiderdream.apehire.base.BaseFragment;
 
 /**
  * Created by Administrator on 2016/12/4.
  */
 
-public class TechnologyFragment extends Fragment {
+public class TechnologyFragment extends BaseFragment {
     private View technologyFragmentView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
