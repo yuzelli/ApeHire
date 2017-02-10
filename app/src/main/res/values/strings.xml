@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ApeHire</string>
+
+    <string name="imgContentDescription">图片</string>
 </resources>
