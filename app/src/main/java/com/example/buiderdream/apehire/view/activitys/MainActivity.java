@@ -52,7 +52,7 @@ public class MainActivity extends FragmentActivity {
 
         //得到fragment的个数
         int count = userFragmentArray.length;
-        if (false){
+        if (true){
             for(int i = 0; i < count; i++){
                 //为每一个Tab按钮设置图标、文字和内容
                 TabHost.TabSpec tabSpec = tabHost.newTabSpec(tabtTextViewArray[i]).setIndicator(getTabItemView(i));

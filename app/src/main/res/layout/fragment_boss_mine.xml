@@ -2,6 +2,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#cdcdcd">
+    >
+    <RelativeLayout
+        android:id="@+id/fl_pager"
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
 
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_vp_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_boss_banner"
+            android:gravity="bottom"
+            android:paddingBottom="30dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:shadowColor="#FF000000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="3"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_font" />
+
+        <LinearLayout
+            android:id="@+id/ll_Point"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="horizontal"/>
+    </RelativeLayout>
 </RelativeLayout>

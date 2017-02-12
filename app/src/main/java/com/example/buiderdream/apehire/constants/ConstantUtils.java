@@ -5,6 +5,9 @@ package com.example.buiderdream.apehire.constants;
  */
 
 public class ConstantUtils {
+    //闪屏页
+    public static final int BOSSMINEFRAGMENT_GET_BEFORE_DATA = 0x00001000;
+
     public static final int GUIDE_START_ACTIVITY =1000;
     //七牛
     public static final String QN_ACCESSKEY = "1lz3oyLnZAMG3r0o6hsRUY_U45E58nb9-Q2mCzp8";
