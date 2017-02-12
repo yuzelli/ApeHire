@@ -1,27 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/psts_tab"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        app:pstsShouldExpand="true"
+        android:layout_below="@+id/rl_top"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/v_centerLine"
-        android:background="#cdcdcd">
+        android:layout_below="@+id/psts_tab"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="#cdcdcd"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
        <com.example.buiderdream.apehire.widgets.RoundImageView
            android:id="@+id/img_userHeader"
-           android:layout_width="100dp"
-           android:layout_height="100dp"
-           android:layout_centerHorizontal="true"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:layout_centerVertical="true"
+           android:layout_marginStart="20dp"
            android:scaleType="fitXY"
-           android:background="#ff0000"
-           android:src="@mipmap/ic_launcher"/>
+           android:src="@drawable/icon_head_200px"/>
+
+        <TextView
+            android:id="@+id/tv_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black"
+            android:layout_alignTop="@+id/img_userHeader"
+            android:layout_toEndOf="@+id/img_userHeader"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:text="雨泽"
+             />
+        <TextView
+            android:id="@+id/tv_education"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black"
+            android:layout_alignBottom="@+id/img_userHeader"
+            android:layout_toEndOf="@+id/img_userHeader"
+            android:layout_marginBottom="5dp"
+            android:textSize="18sp"
+            android:text="本科"
+            />
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:textSize="20sp"
+            android:background="@drawable/bg_tv_shape_20"
+            android:text="编辑"
+            />
     </RelativeLayout>
-    <View
-        android:id="@+id/v_centerLine"
-        android:layout_width="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_height="0dp"/>
+
 
 </RelativeLayout>

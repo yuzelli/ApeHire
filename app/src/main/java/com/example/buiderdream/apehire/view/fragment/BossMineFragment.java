@@ -11,7 +11,8 @@ import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseFragment;
 
 /**
- * Created by Administrator on 2016/12/4.
+ * Created by bingling_li on 2016/12/4.
+ * 公司的个人中心
  */
 
 public class BossMineFragment extends BaseFragment {

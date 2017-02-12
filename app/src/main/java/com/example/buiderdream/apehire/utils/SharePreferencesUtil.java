@@ -12,7 +12,6 @@ import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 
 /**
- * Created by Administrator on 2016/12/15.
  * 使用SharePreferences保存对象
  * @author 李秉龙
  */

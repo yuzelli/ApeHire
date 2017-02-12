@@ -1,7 +1,6 @@
 package com.example.buiderdream.apehire.utils;
 
 /**
- * Created by Administrator on 2016/12/4.
  * 为万能适配器提供viewHolder
  * @author 李秉龙
  */

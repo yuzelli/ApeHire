@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/12/4.
  * 万能适配器
  * @author 李秉龙
  */

@@ -22,7 +22,6 @@ import java.util.List;
 public class NetworkUtils {
     /**
      * 判断网络是否可用
-     *
      * @param context 上下文
      */
     public static boolean isNetAvailable(Context context) {
