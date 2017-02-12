@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_ivory"
     >
     <RelativeLayout
         android:id="@+id/fl_pager"
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_profile">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_picture"
@@ -40,4 +43,63 @@
             android:gravity="center"
             android:orientation="horizontal"/>
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_profile"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_above="@+id/psts_tab"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="@string/imgContentDescription"
+            android:layout_marginStart="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_head_200px"
+            android:id="@+id/img_companyHead" />
+
+        <TextView
+            android:id="@+id/tv_companyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/main_size"
+            android:text="阿里巴巴"
+            android:layout_alignTop="@+id/img_companyHead"
+            android:layout_toEndOf="@+id/img_companyHead"
+            android:layout_marginStart="10dp" />
+        <TextView
+            android:id="@+id/tv_companyAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/order_size"
+            android:text="北京上地五道口"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/img_companyHead"
+            android:layout_marginStart="10dp" />
+        <TextView
+            android:id="@+id/tv_companyScale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/order_size"
+            android:text="阿里巴巴"
+            android:layout_alignBottom="@+id/img_companyHead"
+            android:layout_toEndOf="@+id/img_companyHead"
+            android:layout_marginStart="10dp" />
+    </RelativeLayout>
+
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/psts_tab"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        app:pstsShouldExpand="true"
+        android:layout_centerVertical="true" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/psts_tab"/>
 </RelativeLayout>

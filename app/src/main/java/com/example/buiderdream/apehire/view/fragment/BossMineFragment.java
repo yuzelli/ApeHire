@@ -35,7 +35,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     private View bossMineFragmentView;
     private ViewPager vp_picture;   //图片轮播
     private TextView tv_vp_title;   //图片轮播的简介
-    private LinearLayout ll_Point;
+    private LinearLayout ll_Point;   //图片轮播下标点
     private BannerAdapter adapter;   //图片轮播adapter
     private ArrayList<ImageView> bannerImageDates;   //图片轮播的图片
     private int currentIndex = 300;   //图片下标
