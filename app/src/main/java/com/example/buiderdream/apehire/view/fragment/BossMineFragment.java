@@ -22,6 +22,9 @@ import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.adapter.BannerAdapter;
 import com.example.buiderdream.apehire.adapter.MineFragmentAdapter;
 import com.example.buiderdream.apehire.base.BaseFragment;
+import com.example.buiderdream.apehire.utils.DensityUtils;
+import com.example.buiderdream.apehire.view.activitys.BossEditActivity;
+import com.example.buiderdream.apehire.view.activitys.UserEditActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import java.util.ArrayList;
@@ -36,6 +39,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     private View bossMineFragmentView;
     private ViewPager vp_picture;   //图片轮播
     private LinearLayout ll_Point;   //图片轮播下标点
+    private TextView tv_edit;
     private BannerAdapter adapter;   //图片轮播adapter
     private ArrayList<ImageView> bannerImageDates;   //图片轮播的图片
     private int currentIndex = 300;   //图片下标
@@ -67,10 +71,11 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
 
     private void initView() {
         vp_picture = (ViewPager) bossMineFragmentView.findViewById(R.id.vp_picture);
-
+        tv_edit = (TextView) bossMineFragmentView.findViewById(R.id.tv_edit);
         ll_Point = (LinearLayout) bossMineFragmentView.findViewById(R.id.ll_Point);
         psts_tab = (PagerSlidingTabStrip) bossMineFragmentView.findViewById(R.id.psts_tab);
         vp_fragment  = (ViewPager) bossMineFragmentView.findViewById(R.id.vp_fragment);
+        tv_edit.setOnClickListener(this);
         initBossFragment();
     }
 
@@ -105,8 +110,8 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     private void updataBanner() {
         bannerImageDates = new ArrayList<>();
         DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.icon_loading_64px)
-                .showImageOnFail(R.mipmap.icon_error_64px)
+                .showImageOnLoading(R.mipmap.ic_loading)
+                .showImageOnFail(R.mipmap.ic_loading)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
@@ -165,7 +170,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
 
         for (int i = 0; i < 5; i++) {
             LinearLayout.LayoutParams pointParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    DensityUtils.dp2px(activity,10), DensityUtils.dp2px(activity,10));
             if (i < 1) {
                 pointParams.setMargins(0, 0, 0, 0);
             } else {
@@ -212,7 +217,9 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
+            case R.id.tv_edit:
+                BossEditActivity.actionStart(activity);
+                break;
         }
     }
 

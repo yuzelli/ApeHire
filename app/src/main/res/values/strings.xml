@@ -6,4 +6,15 @@
     <string name="userCollTitle_Technology">收藏的技术</string>
     <string name="companyDescribe">公司介绍</string>
     <string name="companyHire">公司职位</string>
+    <string name="userInfo">个人信息</string>
+    <string name="HeadImg">头像</string>
+    <string name="RealName">真实姓名</string>
+    <string name="Sex">性别</string>
+    <string name="Age">年龄</string>
+    <string name="Education">学历</string>
+    <string name="Graduate">毕业学校</string>
+    <string name="Salary">薪资</string>
+    <string name="Experience">项目经验</string>
+    <string name="Superiority">我的优势</string>
+    <string name="upload">上传</string>
 </resources>
