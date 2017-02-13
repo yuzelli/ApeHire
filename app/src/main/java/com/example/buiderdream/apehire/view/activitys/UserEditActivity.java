@@ -2,6 +2,7 @@ package com.example.buiderdream.apehire.view.activitys;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
+
+import java.io.File;
 
 public class UserEditActivity extends BaseActivity  implements View.OnClickListener{
     private ImageView img_headImg;  //头像
@@ -34,6 +37,16 @@ public class UserEditActivity extends BaseActivity  implements View.OnClickListe
     private RelativeLayout rl_salary;   //薪资布局模块
     private RelativeLayout rl_experience;   //项目经验布局模块
     private RelativeLayout rl_superiority;   //我的优势布局模块
+
+    /**
+     * 定义三种状态
+     */
+    private static final int HEAD_PORTRAIT_PIC = 1;//相册
+    private static final int HEAD_PORTRAIT_CAM = 2;//相机
+    private static final int HEAD_PORTRAIT_CUT = 3;//图片裁剪
+    private File photoFile;
+    private Bitmap photoBitmap;
+    private String userHeadImgUrl;   // 图片地址
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +98,8 @@ public class UserEditActivity extends BaseActivity  implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.btn_upload:
+                break;
             case R.id.rl_headImg:
                 break;
             case R.id.rl_realName:
