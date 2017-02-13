@@ -32,9 +32,9 @@
         <activity android:name=".view.activitys.CompanyInfoActivity" />
         <activity android:name=".view.activitys.JobActivity" />
         <activity android:name=".view.activitys.RegisterCompanyActivity" />
-        <activity android:name=".view.activitys.EditPersonalInfoActivity" />
         <activity android:name=".view.activitys.ReleaseJobActivity" />
-        <activity android:name=".view.activitys.UserEditActivity"></activity>
+        <activity android:name=".view.activitys.UserEditActivity" />
+        <activity android:name=".view.activitys.BossEditActivity"></activity>
     </application>
 
 </manifest>

@@ -14,5 +14,24 @@
         <attr name="borderInsideColor" format="color" />
         <attr name="borderOutsideColor" format="color" />
     </declare-styleable>
-
+    <!--个人信息text样式-->
+    <style name="PersonalInfoTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/order_size</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <!--个人信息右箭头样式-->
+    <style name="PersonalInfoRightArrowStyle">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:src">@mipmap/ic_right_arrow</item>
+    </style>
 </resources>
