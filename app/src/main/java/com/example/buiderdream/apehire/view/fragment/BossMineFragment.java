@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,18 +14,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.adapter.BannerAdapter;
+import com.example.buiderdream.apehire.adapter.MineFragmentAdapter;
 import com.example.buiderdream.apehire.base.BaseFragment;
-import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bingling_li on 2016/12/4.
@@ -34,7 +35,6 @@ import java.util.ArrayList;
 public class BossMineFragment extends BaseFragment implements View.OnClickListener,View.OnTouchListener, ViewPager.OnPageChangeListener {
     private View bossMineFragmentView;
     private ViewPager vp_picture;   //图片轮播
-    private TextView tv_vp_title;   //图片轮播的简介
     private LinearLayout ll_Point;   //图片轮播下标点
     private BannerAdapter adapter;   //图片轮播adapter
     private ArrayList<ImageView> bannerImageDates;   //图片轮播的图片
@@ -42,7 +42,8 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     private long lastTime;           //上一次图片滚动时间
     private Activity activity;
     private BossMineHandler handler;
-
+    private PagerSlidingTabStrip psts_tab;   //选项卡
+    private ViewPager vp_fragment;           //选项卡对应的Fragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,8 +67,26 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
 
     private void initView() {
         vp_picture = (ViewPager) bossMineFragmentView.findViewById(R.id.vp_picture);
-        tv_vp_title = (TextView) bossMineFragmentView.findViewById(R.id.tv_vp_title);
+
         ll_Point = (LinearLayout) bossMineFragmentView.findViewById(R.id.ll_Point);
+        psts_tab = (PagerSlidingTabStrip) bossMineFragmentView.findViewById(R.id.psts_tab);
+        vp_fragment  = (ViewPager) bossMineFragmentView.findViewById(R.id.vp_fragment);
+        initBossFragment();
+    }
+
+    /**
+     * 初始化页面布局
+     */
+    private void initBossFragment() {
+        List<String> titleList = new ArrayList();
+        titleList.add(getResources().getString(R.string.companyDescribe));
+        titleList.add(getResources().getString(R.string.companyHire));
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new CompanyDescribeFragment());
+        fragmentList.add(new CompanyHireFragment());
+        MineFragmentAdapter adapter = new MineFragmentAdapter(getChildFragmentManager(),titleList,fragmentList);
+        vp_fragment.setAdapter(adapter);
+        psts_tab.setViewPager(vp_fragment);
     }
 
     @Override
@@ -215,7 +234,6 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
 
             }
         });
-        tv_vp_title.setText("ssssssssssssssssssss");
     }
 
     @Override

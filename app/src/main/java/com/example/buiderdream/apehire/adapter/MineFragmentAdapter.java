@@ -11,11 +11,11 @@ import java.util.List;
  * 用户个人中心的收藏适配器
  */
 
-public class UserCollectionAdapter extends FragmentPagerAdapter {
+public class MineFragmentAdapter extends FragmentPagerAdapter {
     private List<String> titleList;
     private List<Fragment> fragmentList;
 
-    public UserCollectionAdapter(FragmentManager fm, List<String> titleList, List<Fragment> fragmentList) {
+    public MineFragmentAdapter(FragmentManager fm, List<String> titleList, List<Fragment> fragmentList) {
         super(fm);
         this.titleList = titleList;
         this.fragmentList = fragmentList;

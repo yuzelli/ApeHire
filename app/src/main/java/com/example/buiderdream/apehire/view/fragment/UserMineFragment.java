@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.buiderdream.apehire.R;
-import com.example.buiderdream.apehire.adapter.UserCollectionAdapter;
+import com.example.buiderdream.apehire.adapter.MineFragmentAdapter;
 import com.example.buiderdream.apehire.base.BaseFragment;
 import com.example.buiderdream.apehire.view.activitys.UserEditActivity;
 import com.example.buiderdream.apehire.widgets.RoundImageView;
@@ -80,7 +80,7 @@ public class UserMineFragment extends BaseFragment implements View.OnClickListen
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new CollectionHireFragment());
         fragmentList.add(new CollectionTechnologyFragment());
-        UserCollectionAdapter adapter = new UserCollectionAdapter(getActivity().getSupportFragmentManager(),titleList,fragmentList);
+        MineFragmentAdapter adapter = new MineFragmentAdapter(getChildFragmentManager(),titleList,fragmentList);
         vp_fragment.setAdapter(adapter);
         psts_tab.setViewPager(vp_fragment);
     }
