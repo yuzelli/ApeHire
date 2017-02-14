@@ -11,6 +11,7 @@ import com.example.buiderdream.apehire.base.BaseFragment;
 
 /**
  * Created by 51644 on 2017/2/13.
+ * 公司介绍
  */
 
 public class CompanyDescribeFragment extends BaseFragment {

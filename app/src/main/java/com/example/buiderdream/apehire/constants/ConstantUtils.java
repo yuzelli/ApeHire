@@ -12,4 +12,7 @@ public class ConstantUtils {
     //七牛
     public static final String QN_ACCESSKEY = "1lz3oyLnZAMG3r0o6hsRUY_U45E58nb9-Q2mCzp8";
     public static final String QN_SECRETKEY = "1no9Tx1bAHSOC0g3xABHhsYXPbRKX_v3o_uGI0Nv";
+    public static final String QN_IMG_ADDRESS = "http://ojterpx44.bkt.clouddn.com/";
+    //用户头像存放文件名
+    public static final String AVATAR_FILE_PATH = "/userHeadImg.jpg";
 }
