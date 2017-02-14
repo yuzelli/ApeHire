@@ -17,4 +17,8 @@
     <string name="Experience">项目经验</string>
     <string name="Superiority">我的优势</string>
     <string name="upload">上传</string>
+    <string name="Photograph">拍照上传</string>
+    <string name="Album">相册选择</string>
+    <string name="DefaultAvatar">默认头像</string>
+    <string name="Cancel">取消</string>
 </resources>

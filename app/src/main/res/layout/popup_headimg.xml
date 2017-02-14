@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+
+    android:background="@color/background_ivory">
+
+    <LinearLayout
+        android:id="@+id/ll_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_photograph"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_photograph"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/imgContentDescription"
+                android:src="@mipmap/ic_photograph" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_photograph"
+                android:layout_centerHorizontal="true"
+                android:text="@string/Photograph" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_album"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_album"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/imgContentDescription"
+                android:src="@mipmap/ic_album" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_album"
+                android:layout_centerHorizontal="true"
+                android:text="@string/Album" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_default_avatar"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_default_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/imgContentDescription"
+                android:src="@mipmap/ic_default_avatar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_default_avatar"
+                android:layout_centerHorizontal="true"
+                android:text="@string/DefaultAvatar" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/ll_photo"
+        android:background="@color/darkgray" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/v_line"
+        android:gravity="center"
+        android:text="@string/Cancel"
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/main_size" />
+
+
+</RelativeLayout>

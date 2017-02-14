@@ -3,20 +3,38 @@ package com.example.buiderdream.apehire.view.activitys;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
+import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.utils.ImageUtils;
+import com.example.buiderdream.apehire.utils.LxQiniuUploadUtils;
+import com.qiniu.android.http.ResponseInfo;
 
 import java.io.File;
 
-public class UserEditActivity extends BaseActivity  implements View.OnClickListener{
+/**
+ * 编辑用户信息
+ *
+ * @author 李秉龙
+ */
+public class UserEditActivity extends BaseActivity implements View.OnClickListener {
     private ImageView img_headImg;  //头像
     private TextView tv_trueName;   //真实姓名
     private TextView tv_sex;   //性别
@@ -48,10 +66,13 @@ public class UserEditActivity extends BaseActivity  implements View.OnClickListe
     private Bitmap photoBitmap;
     private String userHeadImgUrl;   // 图片地址
 
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_edit);
+        context = this;
         initView();
     }
 
@@ -66,7 +87,7 @@ public class UserEditActivity extends BaseActivity  implements View.OnClickListe
         tv_experience = (TextView) this.findViewById(R.id.tv_experience);
         tv_salary = (TextView) this.findViewById(R.id.tv_salary);
         tv_superiority = (TextView) this.findViewById(R.id.tv_superiority);
-        btn_upload = (Button) this.findViewById(R.id.btn_upload );
+        btn_upload = (Button) this.findViewById(R.id.btn_upload);
 
         rl_headImg = (RelativeLayout) this.findViewById(R.id.rl_headImg);
         rl_realName = (RelativeLayout) this.findViewById(R.id.rl_realName);
@@ -89,18 +110,121 @@ public class UserEditActivity extends BaseActivity  implements View.OnClickListe
         rl_superiority.setOnClickListener(this);
     }
 
-    public static void actionStart(Context context){
-        Intent intent = new Intent(context,UserEditActivity.class);
+    /**
+     * 显示选择头像的对话框
+     */
+    private void showHeadImgDialog() {
+        View contentView = LayoutInflater.from(UserEditActivity.this).inflate(R.layout.popup_headimg, null);
+        final PopupWindow mPopWindow = new PopupWindow(contentView);
+        mPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        mPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        mPopWindow.setContentView(contentView);//设置包含视图
+        // 控制popupwindow点击屏幕其他地方消失
+        RelativeLayout rl_photograph = (RelativeLayout) contentView.findViewById(R.id.rl_photograph);
+        RelativeLayout rl_album = (RelativeLayout) contentView.findViewById(R.id.rl_album);
+        RelativeLayout rl_default_avatar = (RelativeLayout) contentView.findViewById(R.id.rl_default_avatar);
+        TextView tv_cancel = (TextView) contentView.findViewById(R.id.tv_cancel);
+        rl_photograph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPhotoGraph();
+            }
+        });
+        rl_album.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPhotoAlbum();
+            }
+        });
+        rl_default_avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                opendefaultList();
+            }
+        });
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopWindow.dismiss();
+            }
+        });
+        View rootview = LayoutInflater.from(UserEditActivity.this).inflate(R.layout.activity_user_edit, null);
+        mPopWindow.setBackgroundDrawable(this.getResources().getDrawable(
+                R.drawable.bg_popupwindow));// 设置背景图片，不能在布局中设置，要通过代码来设置
+        mPopWindow.setOutsideTouchable(true);// 触摸popupwindow外部，popupwindow消失。这个要求你的popupwindow要有背景图片才可以成功，如上
+        mPopWindow.setAnimationStyle(R.style.contextPopupAnim);//设置动画
+        mPopWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);//设置模式，和Activity的一样，覆盖，调整大小。
+        mPopWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
+    }
+
+
+    //打开相册方法
+    private void openPhotoAlbum() {
+        Intent picIntent = new Intent(Intent.ACTION_PICK, null);
+        picIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(picIntent, HEAD_PORTRAIT_PIC);
+    }
+
+    //打开相机方法
+    private void openPhotoGraph() {
+        String state = Environment.getExternalStorageState();
+        if (state.equals(Environment.MEDIA_MOUNTED)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            File file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            photoFile = new File(file, System.currentTimeMillis() + "");
+
+            Uri photoUri = Uri.fromFile(photoFile);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+            intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+            startActivityForResult(intent, HEAD_PORTRAIT_CAM);
+        } else {
+
+            Toast.makeText(this, "请确认已经插入SD卡", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 打开默认头像
+     */
+    private void opendefaultList() {
+    }
+
+    /**
+     * 打开系统图片裁剪功能
+     *
+     * @param uri
+     */
+    private void startPhotoZoom(Uri uri) {
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", true);
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", 300);
+        intent.putExtra("outputY", 300);
+        intent.putExtra("scale", true); //黑边
+        intent.putExtra("scaleUpIfNeeded", true); //黑边
+        intent.putExtra("return-data", true);
+        intent.putExtra("noFaceDetection", true);
+        startActivityForResult(intent, HEAD_PORTRAIT_CUT);
+    }
+
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, UserEditActivity.class);
         context.startActivity(intent);
     }
 
     //-----------------------------接口回调---------------------------------
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_upload:
                 break;
             case R.id.rl_headImg:
+                showHeadImgDialog();
                 break;
             case R.id.rl_realName:
                 break;
@@ -123,4 +247,59 @@ public class UserEditActivity extends BaseActivity  implements View.OnClickListe
         }
 
     }
+
+    //回调函数
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case HEAD_PORTRAIT_CAM:
+                    startPhotoZoom(Uri.fromFile(photoFile));
+                    break;
+                case HEAD_PORTRAIT_PIC:
+                    if (data == null || data.getData() == null) {
+                        return;
+                    }
+                    startPhotoZoom(data.getData());
+                    break;
+                case HEAD_PORTRAIT_CUT:
+                    if (data != null) {
+                        photoBitmap = data.getParcelableExtra("data");
+                        img_headImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        img_headImg.setImageBitmap(photoBitmap);
+                        try {
+                            File SDCardRoot = Environment.getExternalStorageDirectory();
+                            if (ImageUtils.saveBitmap2file(photoBitmap)) {
+
+                                String photoPath = SDCardRoot + ConstantUtils.AVATAR_FILE_PATH;
+                                //doUploadPicture(photoPath);
+                                //  final String StouserHeadImgName =  userInfo.getU_phone() +"_"+ System.currentTimeMillis();
+                                final String StouserHeadImgName = "13133443006" + "_" + System.currentTimeMillis();
+
+                                LxQiniuUploadUtils.uploadPic("yuzelloroom", photoPath, StouserHeadImgName, new LxQiniuUploadUtils.UploadCallBack() {
+                                    @Override
+                                    public void sucess(String url) {
+                                        Toast.makeText(context, url, Toast.LENGTH_SHORT).show();
+                                        userHeadImgUrl = ConstantUtils.QN_IMG_ADDRESS + StouserHeadImgName;
+                                    }
+
+                                    @Override
+                                    public void fail(String key, ResponseInfo info) {
+                                        Toast.makeText(context, "shibeile", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    break;
+            }
+        }
+
+    }
+
+
 }

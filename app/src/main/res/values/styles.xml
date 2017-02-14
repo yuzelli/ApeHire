@@ -34,4 +34,10 @@
         <item name="android:layout_marginEnd">5dp</item>
         <item name="android:src">@mipmap/ic_right_arrow</item>
     </style>
+
+    <!--点击头像-->
+    <style name="contextPopupAnim" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/context_popup_enter</item>
+        <item name="android:windowExitAnimation">@anim/context_popup_exit</item>
+    </style>
 </resources>

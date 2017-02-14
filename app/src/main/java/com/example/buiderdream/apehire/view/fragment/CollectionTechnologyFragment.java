@@ -11,6 +11,7 @@ import com.example.buiderdream.apehire.base.BaseFragment;
 
 /**
  * Created by binglong_li on 2017/2/12.
+ * 收藏的技术
  */
 
 public class CollectionTechnologyFragment extends BaseFragment{
