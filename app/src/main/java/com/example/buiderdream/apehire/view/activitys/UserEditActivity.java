@@ -6,17 +6,21 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.support.v7.widget.AppCompatSpinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,29 +32,34 @@ import com.example.buiderdream.apehire.utils.LxQiniuUploadUtils;
 import com.qiniu.android.http.ResponseInfo;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 编辑用户信息
  *
  * @author 李秉龙
  */
-public class UserEditActivity extends BaseActivity implements View.OnClickListener {
+public class UserEditActivity extends BaseActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener{
     private ImageView img_headImg;  //头像
     private TextView tv_trueName;   //真实姓名
-    private TextView tv_sex;   //性别
+    private RadioGroup rg_sex;  //性别单选组
+    private RadioButton radio_man;  //男
+    private RadioButton radio_woman;  //女
     private TextView tv_age;   //年龄
-    private TextView tv_education;   //学历
+    private AppCompatSpinner spinner_education;  //学历
     private TextView tv_graduate;   //毕业学校
     private TextView tv_salary;   //薪资
     private TextView tv_experience;   //项目经验
     private TextView tv_superiority;   //我的优势
     private Button btn_upload;   //上传
 
+
     private RelativeLayout rl_headImg;   //头像布局模块
     private RelativeLayout rl_realName;   //头真实姓名布局模块
-    private RelativeLayout rl_sex;   //性别布局模块
+
     private RelativeLayout rl_age;   //年龄布局模块
-    private RelativeLayout rl_education;   //学历布局模块
+
     private RelativeLayout rl_graduate;   //毕业学校布局模块
     private RelativeLayout rl_salary;   //薪资布局模块
     private RelativeLayout rl_experience;   //项目经验布局模块
@@ -74,14 +83,19 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_user_edit);
         context = this;
         initView();
+        updataView();
     }
+
+
 
     private void initView() {
         img_headImg = (ImageView) this.findViewById(R.id.img_headImg);
         tv_trueName = (TextView) this.findViewById(R.id.tv_trueName);
-        tv_sex = (TextView) this.findViewById(R.id.tv_sex);
+        rg_sex = (RadioGroup) this.findViewById(R.id.rg_sex);
+        radio_man = (RadioButton) this.findViewById(R.id.radio_man);
+        radio_woman = (RadioButton) this.findViewById(R.id.radio_woman);
+        spinner_education  = (AppCompatSpinner) this.findViewById(R.id.spinner_education);
         tv_age = (TextView) this.findViewById(R.id.tv_age);
-        tv_education = (TextView) this.findViewById(R.id.tv_education);
         tv_graduate = (TextView) this.findViewById(R.id.tv_graduate);
         tv_salary = (TextView) this.findViewById(R.id.tv_salary);
         tv_experience = (TextView) this.findViewById(R.id.tv_experience);
@@ -91,23 +105,54 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
 
         rl_headImg = (RelativeLayout) this.findViewById(R.id.rl_headImg);
         rl_realName = (RelativeLayout) this.findViewById(R.id.rl_realName);
-        rl_sex = (RelativeLayout) this.findViewById(R.id.rl_sex);
         rl_age = (RelativeLayout) this.findViewById(R.id.rl_age);
-        rl_education = (RelativeLayout) this.findViewById(R.id.rl_education);
         rl_graduate = (RelativeLayout) this.findViewById(R.id.rl_graduate);
         rl_salary = (RelativeLayout) this.findViewById(R.id.rl_salary);
         rl_experience = (RelativeLayout) this.findViewById(R.id.rl_experience);
         rl_superiority = (RelativeLayout) this.findViewById(R.id.rl_superiority);
 
+
         rl_headImg.setOnClickListener(this);
         rl_realName.setOnClickListener(this);
-        rl_sex.setOnClickListener(this);
+        rg_sex.setOnCheckedChangeListener(this);
         rl_age.setOnClickListener(this);
-        rl_education.setOnClickListener(this);
         rl_graduate.setOnClickListener(this);
         rl_salary.setOnClickListener(this);
         rl_experience.setOnClickListener(this);
         rl_superiority.setOnClickListener(this);
+    }
+
+    /**
+     *
+     */
+    private void updataView() {
+        if (false){
+            rg_sex.check(radio_man.getId());
+        }else {
+            rg_sex.check(radio_woman.getId());
+        }
+        final List<String> educationList = new ArrayList<>();
+
+        educationList.add("大专");
+        educationList.add("本科");
+        educationList.add("硕士");
+        educationList.add("博士");
+
+        ArrayAdapter<String> adapter =new ArrayAdapter<String>(UserEditActivity.this, android.R.layout.simple_spinner_dropdown_item, educationList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_education.setAdapter(adapter);
+        spinner_education.setSelection(3);
+        spinner_education.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(context,educationList.get(position),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     /**
@@ -248,6 +293,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
 
     }
 
+
     //回调函数
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -302,4 +348,13 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
     }
 
 
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        if (checkedId==radio_man.getId()){
+            Toast.makeText(context,"man",Toast.LENGTH_SHORT).show();
+        }
+        if (checkedId==radio_woman.getId()){
+            Toast.makeText(context,"woman",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
