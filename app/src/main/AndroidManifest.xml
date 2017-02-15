@@ -34,7 +34,8 @@
         <activity android:name=".view.activitys.RegisterCompanyActivity" />
         <activity android:name=".view.activitys.ReleaseJobActivity" />
         <activity android:name=".view.activitys.UserEditActivity" />
-        <activity android:name=".view.activitys.BossEditActivity"></activity>
+        <activity android:name=".view.activitys.BossEditActivity" />
+        <activity android:name=".view.activitys.InputInfoActivity"></activity>
     </application>
 
 </manifest>

@@ -5,10 +5,17 @@ package com.example.buiderdream.apehire.constants;
  */
 
 public class ConstantUtils {
-    //闪屏页
-    public static final int BOSSMINEFRAGMENT_GET_BEFORE_DATA = 0x00001000;
 
-    public static final int GUIDE_START_ACTIVITY =1000;
+    //public static final int BOSSMINEFRAGMENT_GET_BEFORE_DATA = ;
+
+    //-------------------handler------------------
+    //闪屏页
+    public static final int GUIDE_START_ACTIVITY =0x00001000;
+
+    //--------------------startActivityForResultCode-------------------------
+    //编辑用户信息
+    public static final int EDIT_USER_INFO_ACTIVITY_CODE =1000;
+    public static final int EDIT_USER_INFO_ACTIVITY_RESULT_CODE =1001;
     //七牛
     public static final String QN_ACCESSKEY = "1lz3oyLnZAMG3r0o6hsRUY_U45E58nb9-Q2mCzp8";
     public static final String QN_SECRETKEY = "1no9Tx1bAHSOC0g3xABHhsYXPbRKX_v3o_uGI0Nv";

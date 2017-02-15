@@ -20,16 +20,17 @@
     <string name="Photograph">拍照上传</string>
     <string name="Album">相册选择</string>
     <string name="DefaultAvatar">默认头像</string>
+    <string name="Confirm">确定</string>
     <string name="Cancel">取消</string>
     <string name="man">男</string>
     <string name="weman">女</string>
 
-    <string-array name = "education_array">
-        <item >不限</item>
-        <item >专科</item>
-        <item >本科</item>
-        <item >硕士</item>
-        <item >博士</item>
+    <string-array name="education_array">
+        <item>不限</item>
+        <item>专科</item>
+        <item>本科</item>
+        <item>硕士</item>
+        <item>博士</item>
     </string-array>
 
 </resources>

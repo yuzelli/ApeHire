@@ -83,11 +83,13 @@
             <RelativeLayout
                 android:id="@+id/rl_realName"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                >
 
                 <TextView
                     style="@style/PersonalInfoTextStyle"
-                    android:text="@string/RealName" />
+                    android:text="@string/RealName"
+                    />
 
                 <TextView
                     android:id="@+id/tv_trueName"
@@ -249,21 +251,13 @@
                     style="@style/PersonalInfoTextStyle"
                     android:text="@string/Salary" />
 
-                <TextView
-                    android:id="@+id/tv_salary"
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spinner_salary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/img_RA7"
-                    android:text="8000+"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/order_size" />
-
-                <ImageView
-                    android:id="@+id/img_RA7"
-                    style="@style/PersonalInfoRightArrowStyle"
-                    android:contentDescription="@string/imgContentDescription" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp" />
 
                 <View
                     android:layout_width="match_parent"

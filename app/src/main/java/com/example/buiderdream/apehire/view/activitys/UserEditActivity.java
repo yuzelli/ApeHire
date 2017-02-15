@@ -32,6 +32,7 @@ import com.example.buiderdream.apehire.utils.LxQiniuUploadUtils;
 import com.qiniu.android.http.ResponseInfo;
 
 import java.io.File;
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,16 +41,17 @@ import java.util.List;
  *
  * @author 李秉龙
  */
-public class UserEditActivity extends BaseActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener{
+public class UserEditActivity extends BaseActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private ImageView img_headImg;  //头像
+    private ImageView img_back;  //后退建
     private TextView tv_trueName;   //真实姓名
     private RadioGroup rg_sex;  //性别单选组
     private RadioButton radio_man;  //男
     private RadioButton radio_woman;  //女
     private TextView tv_age;   //年龄
     private AppCompatSpinner spinner_education;  //学历
+    private AppCompatSpinner spinner_salary;  //薪资
     private TextView tv_graduate;   //毕业学校
-    private TextView tv_salary;   //薪资
     private TextView tv_experience;   //项目经验
     private TextView tv_superiority;   //我的优势
     private Button btn_upload;   //上传
@@ -57,11 +59,8 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
 
     private RelativeLayout rl_headImg;   //头像布局模块
     private RelativeLayout rl_realName;   //头真实姓名布局模块
-
     private RelativeLayout rl_age;   //年龄布局模块
-
     private RelativeLayout rl_graduate;   //毕业学校布局模块
-    private RelativeLayout rl_salary;   //薪资布局模块
     private RelativeLayout rl_experience;   //项目经验布局模块
     private RelativeLayout rl_superiority;   //我的优势布局模块
 
@@ -87,19 +86,18 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
     }
 
 
-
     private void initView() {
         img_headImg = (ImageView) this.findViewById(R.id.img_headImg);
+        img_back = (ImageView) this.findViewById(R.id.img_back);
         tv_trueName = (TextView) this.findViewById(R.id.tv_trueName);
         rg_sex = (RadioGroup) this.findViewById(R.id.rg_sex);
         radio_man = (RadioButton) this.findViewById(R.id.radio_man);
         radio_woman = (RadioButton) this.findViewById(R.id.radio_woman);
-        spinner_education  = (AppCompatSpinner) this.findViewById(R.id.spinner_education);
+        spinner_education = (AppCompatSpinner) this.findViewById(R.id.spinner_education);
+        spinner_salary = (AppCompatSpinner) this.findViewById(R.id.spinner_salary);
         tv_age = (TextView) this.findViewById(R.id.tv_age);
         tv_graduate = (TextView) this.findViewById(R.id.tv_graduate);
-        tv_salary = (TextView) this.findViewById(R.id.tv_salary);
         tv_experience = (TextView) this.findViewById(R.id.tv_experience);
-        tv_salary = (TextView) this.findViewById(R.id.tv_salary);
         tv_superiority = (TextView) this.findViewById(R.id.tv_superiority);
         btn_upload = (Button) this.findViewById(R.id.btn_upload);
 
@@ -107,17 +105,16 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         rl_realName = (RelativeLayout) this.findViewById(R.id.rl_realName);
         rl_age = (RelativeLayout) this.findViewById(R.id.rl_age);
         rl_graduate = (RelativeLayout) this.findViewById(R.id.rl_graduate);
-        rl_salary = (RelativeLayout) this.findViewById(R.id.rl_salary);
         rl_experience = (RelativeLayout) this.findViewById(R.id.rl_experience);
         rl_superiority = (RelativeLayout) this.findViewById(R.id.rl_superiority);
 
 
         rl_headImg.setOnClickListener(this);
+        img_back.setOnClickListener(this);
         rl_realName.setOnClickListener(this);
         rg_sex.setOnCheckedChangeListener(this);
         rl_age.setOnClickListener(this);
         rl_graduate.setOnClickListener(this);
-        rl_salary.setOnClickListener(this);
         rl_experience.setOnClickListener(this);
         rl_superiority.setOnClickListener(this);
     }
@@ -126,26 +123,46 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
      *
      */
     private void updataView() {
-        if (false){
+        if (false) {
             rg_sex.check(radio_man.getId());
-        }else {
+        } else {
             rg_sex.check(radio_woman.getId());
         }
         final List<String> educationList = new ArrayList<>();
-
         educationList.add("大专");
         educationList.add("本科");
         educationList.add("硕士");
         educationList.add("博士");
 
-        ArrayAdapter<String> adapter =new ArrayAdapter<String>(UserEditActivity.this, android.R.layout.simple_spinner_dropdown_item, educationList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(UserEditActivity.this, android.R.layout.simple_spinner_dropdown_item, educationList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_education.setAdapter(adapter);
         spinner_education.setSelection(3);
         spinner_education.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(context,educationList.get(position),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, educationList.get(position), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        final List<String> salaryList = new ArrayList<>();
+        salaryList.add("4k-8");
+        salaryList.add("8k-10k");
+        salaryList.add("10k-15k");
+        salaryList.add("15k-20k");
+        salaryList.add("20k+");
+        ArrayAdapter<String> salaryAdapter = new ArrayAdapter<String>(UserEditActivity.this, android.R.layout.simple_spinner_dropdown_item, salaryList);
+        salaryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_salary.setAdapter(salaryAdapter);
+        spinner_salary.setSelection(3);
+        spinner_salary.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(context, salaryList.get(position), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -154,6 +171,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
             }
         });
     }
+
 
     /**
      * 显示选择头像的对话框
@@ -262,35 +280,51 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         context.startActivity(intent);
     }
 
+
     //-----------------------------接口回调---------------------------------
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_upload:
+
+            case R.id.img_back:
+                finish();
                 break;
             case R.id.rl_headImg:
                 showHeadImgDialog();
                 break;
             case R.id.rl_realName:
-                break;
-            case R.id.rl_sex:
+                updateUserInfo(0);
                 break;
             case R.id.rl_age:
+                updateUserInfo(1);
                 break;
-            case R.id.rl_education:
-                break;
+
             case R.id.rl_graduate:
-                break;
-            case R.id.rl_salary:
+                updateUserInfo(2);
                 break;
             case R.id.rl_experience:
+                updateUserInfo(3);
                 break;
             case R.id.rl_superiority:
+                updateUserInfo(4);
+                break;
+            case R.id.btn_upload:
                 break;
             default:
                 break;
         }
 
+    }
+
+    /**
+     * 在InputInfoAC中修改个人信息
+     *
+     * @param i 0：真实姓名；1 年龄； 2 毕业学校 ；3 薪资水平 ；4 项目经验  ； 5 我的优势
+     */
+    private void updateUserInfo(int i) {
+        Intent intent = new Intent(UserEditActivity.this, InputInfoActivity.class);
+        intent.putExtra("editType", i);
+        startActivityForResult(intent, ConstantUtils.EDIT_USER_INFO_ACTIVITY_CODE);
     }
 
 
@@ -340,21 +374,46 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
                             e.printStackTrace();
                         }
                     }
-
                     break;
             }
         }
-
+        if (requestCode == ConstantUtils.EDIT_USER_INFO_ACTIVITY_CODE && resultCode == ConstantUtils.EDIT_USER_INFO_ACTIVITY_RESULT_CODE) {
+            String result = data.getStringExtra("result");
+            int editType = data.getIntExtra("editType", -1);
+            if (editType != -1) {
+                switch (editType) {
+                    case 0:
+                        tv_trueName.setText(result);
+                        break;
+                    case 1:
+                        tv_age.setText(result);
+                        break;
+                    case 2:
+                        tv_graduate.setText(result);
+                        break;
+                    case 3:
+                        tv_experience.setText(result);
+                        break;
+                    case 4:
+                        tv_superiority.setText(result);
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                Toast.makeText(context, "修改失败！", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        if (checkedId==radio_man.getId()){
-            Toast.makeText(context,"man",Toast.LENGTH_SHORT).show();
+        if (checkedId == radio_man.getId()) {
+            Toast.makeText(context, "man", Toast.LENGTH_SHORT).show();
         }
-        if (checkedId==radio_woman.getId()){
-            Toast.makeText(context,"woman",Toast.LENGTH_SHORT).show();
+        if (checkedId == radio_woman.getId()) {
+            Toast.makeText(context, "woman", Toast.LENGTH_SHORT).show();
         }
     }
 }

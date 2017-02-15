@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.buiderdream.apehire.R;
+import com.example.buiderdream.apehire.base.BaseActivity;
 
 /**
  * 编辑公司信息
  * @author 李秉龙
  */
-public class BossEditActivity extends AppCompatActivity {
+public class BossEditActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
