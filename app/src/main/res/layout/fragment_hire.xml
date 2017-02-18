@@ -2,6 +2,69 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0000ff">
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="职  位"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/title_job"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/jobSelectLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleLayout">
+
+        <TextView
+            android:text="城市筛选"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/job_city"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:padding="5dp"/>
+
+        <TextView
+            android:text="职位筛选"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/job_type"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:padding="5dp"/>
+
+        <TextView
+            android:text="薪资筛选"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/job_charge"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:padding="5dp"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/jobListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/jobSelectLayout"
+        android:scrollbars="none"/>
+
 
 </RelativeLayout>

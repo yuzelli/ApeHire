@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="@string/imgContentDescription"
+            android:layout_marginStart="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_head_200px"
+            android:id="@+id/job_item_img" />
+
+        <TextView
+            android:id="@+id/job_item_companyAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/order_size"
+            android:text="北京上地五道口"
+            android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/job_item_jobName" />
+
+        <TextView
+            android:id="@+id/job_item_companyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/order_size"
+            android:text="阿里巴巴"
+            android:layout_alignBottom="@+id/job_item_img"
+            android:layout_alignStart="@+id/job_item_companyAddress" />
+
+        <TextView
+            android:text="10K~12K"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/job_item_jobCharge"
+            android:textColor="@color/hotpink"
+            android:textSize="22sp"
+            android:layout_alignBaseline="@+id/job_item_companyAddress"
+            android:layout_marginRight="10dp"
+            android:layout_alignBottom="@+id/job_item_companyAddress"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/job_item_jobName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/main_size"
+            android:text="Android开发工程师"
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@+id/job_item_img"
+            android:layout_toEndOf="@+id/job_item_img" />
+
+    </RelativeLayout>
+</LinearLayout>
