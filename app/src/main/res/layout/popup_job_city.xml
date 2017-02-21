@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <TextView
+        android:text="选择城市："
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        />
+
+   <GridView
+       android:id="@+id/job_city_grid"
+       android:layout_width="match_parent"
+       android:numColumns="3"
+       android:layout_height="wrap_content"
+       android:textAlignment="center"
+       android:listSelector="@color/lightcyan"
+       android:layout_marginBottom="10dp">
+
+   </GridView>
+</LinearLayout>
