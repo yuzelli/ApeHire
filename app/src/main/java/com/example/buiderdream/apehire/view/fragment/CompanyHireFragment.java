@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseFragment;
@@ -16,6 +18,8 @@ import com.example.buiderdream.apehire.base.BaseFragment;
 
 public class CompanyHireFragment extends BaseFragment {
     private View compangyHireFragmentView;
+    private ListView lv_hire;
+    private Button btn_releaseHire;
 
     @Nullable
     @Override
@@ -32,6 +36,12 @@ public class CompanyHireFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initView();
+    }
+
+    private void initView() {
+        lv_hire= (ListView) compangyHireFragmentView.findViewById(R.id.lv_hire);
+        btn_releaseHire = (Button) compangyHireFragmentView.findViewById(R.id.btn_releaseHire);
     }
 
     @Override

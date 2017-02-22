@@ -118,6 +118,7 @@ public class ViewHolder
     {
         ImageView view = getView(viewId);
         view.setImageBitmap(bm);
+
         return this;
     }
 

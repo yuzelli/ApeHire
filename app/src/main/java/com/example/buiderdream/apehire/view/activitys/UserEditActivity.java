@@ -49,6 +49,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
     private RadioButton radio_man;  //男
     private RadioButton radio_woman;  //女
     private TextView tv_age;   //年龄
+    private TextView tv_phoneNumber;   //手机号
     private AppCompatSpinner spinner_education;  //学历
     private AppCompatSpinner spinner_salary;  //薪资
     private TextView tv_graduate;   //毕业学校
@@ -97,6 +98,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         spinner_salary = (AppCompatSpinner) this.findViewById(R.id.spinner_salary);
         tv_age = (TextView) this.findViewById(R.id.tv_age);
         tv_graduate = (TextView) this.findViewById(R.id.tv_graduate);
+        tv_phoneNumber = (TextView) this.findViewById(R.id.tv_phoneNumber);
         tv_experience = (TextView) this.findViewById(R.id.tv_experience);
         tv_superiority = (TextView) this.findViewById(R.id.tv_superiority);
         btn_upload = (Button) this.findViewById(R.id.btn_upload);
@@ -150,7 +152,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
             }
         });
         final List<String> salaryList = new ArrayList<>();
-        salaryList.add("4k-8");
+        salaryList.add("4k-8k");
         salaryList.add("8k-10k");
         salaryList.add("10k-15k");
         salaryList.add("15k-20k");
@@ -279,6 +281,16 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         Intent intent = new Intent(context, UserEditActivity.class);
         context.startActivity(intent);
     }
+    /**
+     * 在InputInfoAC中修改个人信息
+     *
+     * @param i 0：真实姓名；1 年龄； 2 毕业学校 ；3 薪资水平 ；4 项目经验  ； 5 我的优势
+     */
+    private void updateUserInfo(int i) {
+        Intent intent = new Intent(UserEditActivity.this, InputInfoActivity.class);
+        intent.putExtra("editType", i);
+        startActivityForResult(intent, ConstantUtils.EDIT_USER_INFO_ACTIVITY_CODE);
+    }
 
 
     //-----------------------------接口回调---------------------------------
@@ -316,16 +328,6 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-    /**
-     * 在InputInfoAC中修改个人信息
-     *
-     * @param i 0：真实姓名；1 年龄； 2 毕业学校 ；3 薪资水平 ；4 项目经验  ； 5 我的优势
-     */
-    private void updateUserInfo(int i) {
-        Intent intent = new Intent(UserEditActivity.this, InputInfoActivity.class);
-        intent.putExtra("editType", i);
-        startActivityForResult(intent, ConstantUtils.EDIT_USER_INFO_ACTIVITY_CODE);
-    }
 
 
     //回调函数

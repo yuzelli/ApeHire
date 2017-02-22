@@ -24,6 +24,13 @@
     <string name="Cancel">取消</string>
     <string name="man">男</string>
     <string name="weman">女</string>
+    <string name="ReleaseHire">发布新的职位</string>
+    <string name="PhoneNumber">注册手机号</string>
+    <string name="BossInfo">公司信息</string>
+    <string name="CompanyName">公司名称</string>
+    <string name="Address">地址</string>
+    <string name="Scale">规模</string>
+    <string name="Describe">公司介绍</string>
 
     <string-array name="education_array">
         <item>不限</item>
