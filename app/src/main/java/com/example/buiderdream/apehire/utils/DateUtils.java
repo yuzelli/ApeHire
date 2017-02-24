@@ -8,7 +8,7 @@ import java.util.Calendar;
  * @author 李秉龙
  */
 
-public class DateUtils {
+public class    DateUtils {
 
     /**
      * 转化时间输入时间与当前时间的间隔
