@@ -232,6 +232,7 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
             case R.id.rl_describe:
                 break;
             case R.id.rl_CompanyShow:
+                CompanyShowImgActivity.actionStart(context);
                 break;
             case R.id.btn_upload:
                 break;

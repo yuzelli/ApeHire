@@ -28,7 +28,11 @@
         <activity android:name=".view.activitys.LoginActivity" />
         <activity android:name=".view.activitys.RegisterActivity" />
         <activity android:name=".view.activitys.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".view.activitys.GuideActivity" />
         <activity android:name=".view.activitys.CompanyInfoActivity" />
@@ -36,17 +40,12 @@
         <activity android:name=".view.activitys.RegisterCompanyActivity" />
         <activity android:name=".view.activitys.ReleaseJobActivity" />
         <activity android:name=".view.activitys.UserEditActivity" />
-        <activity android:name=".view.activitys.BossEditActivity"/>
+        <activity android:name=".view.activitys.BossEditActivity" />
 
         <activity android:name=".view.activitys.InputInfoActivity" />
-        <activity android:name=".view.activitys.PerfectRegCompActivity"></activity>
-        <activity android:name=".view.activitys.CompanyShowImgActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".view.activitys.PerfectRegCompActivity" />
+        <activity android:name=".view.activitys.CompanyShowImgActivity" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".view.activitys.ProcessActivity"></activity>
     </application>
 

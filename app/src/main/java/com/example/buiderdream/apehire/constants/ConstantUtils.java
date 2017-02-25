@@ -21,6 +21,8 @@ public class ConstantUtils {
     public static final int LOGIN_GET_DATA = 0x00001001;
     public static final int LOGIN_GET_DATA_FAILURE = 0x00001002;
     public static final int REGISTER_GET_DATA = 0x00001003;
+    public static final int COMPANYSHOWIMG_GET_DATA = 0x00001004;
+    public static final int COMPANYSHOWIMGSERVLET_GET_DATA = 0x00001005;
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息
     public static final int EDIT_USER_INFO_ACTIVITY_CODE = 1000;

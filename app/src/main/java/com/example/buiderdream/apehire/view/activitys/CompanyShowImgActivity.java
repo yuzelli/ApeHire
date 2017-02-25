@@ -11,6 +11,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,13 +27,23 @@ import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
+import com.example.buiderdream.apehire.bean.CompanyInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.LxQiniuUploadUtils;
+import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
+import com.google.gson.Gson;
 import com.qiniu.android.http.ResponseInfo;
 
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.Request;
 
 public class CompanyShowImgActivity extends BaseActivity {
 
@@ -62,8 +74,10 @@ public class CompanyShowImgActivity extends BaseActivity {
 
     private ArrayList<String> picPaths;   // 图片本机地址
     private ArrayList<String> qiniuPicPaths;   // 图片七牛地址
+    private int finishUpload = 0;
 
     private Context context;
+    private CompanyShowImgHandler handler;
 
 
 
@@ -85,6 +99,7 @@ public class CompanyShowImgActivity extends BaseActivity {
         buttonPublish = (Button) findViewById(R.id.btn_upload);
 
         context = this;
+        handler = new CompanyShowImgHandler();
         //发布内容
         buttonPublish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,12 +183,14 @@ public class CompanyShowImgActivity extends BaseActivity {
             }
         });
         picPaths = new ArrayList<>();
+        qiniuPicPaths = new ArrayList<>();
     }
 
     /**
-     * 网七牛上传图片
+     * 往七牛上传图片
      */
     private void uploadPics() {
+        finishUpload = picPaths.size();
         for (int i = 0 ; i < picPaths.size();i++){
             final String picName = picPaths.get(i);
             LxQiniuUploadUtils.uploadPic("yuzelloroom", picPaths.get(i), picPaths.get(i), new LxQiniuUploadUtils.UploadCallBack() {
@@ -182,6 +199,8 @@ public class CompanyShowImgActivity extends BaseActivity {
                     Toast.makeText(context, url, Toast.LENGTH_SHORT).show();
                     String userHeadImgUrl = ConstantUtils.QN_IMG_ADDRESS + picName;
                     qiniuPicPaths.add(userHeadImgUrl);
+
+                    handler.sendEmptyMessage(ConstantUtils.COMPANYSHOWIMG_GET_DATA);
                 }
 
                 @Override
@@ -366,25 +385,66 @@ public class CompanyShowImgActivity extends BaseActivity {
         builder.create().show();
     }
 
-    /*
-     * 开启上传图片的线程
-     * 第一个参数是文件完整路径（包括文件名）
-     * 第二个参数是要放在服务器哪个文件夹下
+    class CompanyShowImgHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case ConstantUtils.COMPANYSHOWIMG_GET_DATA:
+                    finishUpload --;
+                    if (finishUpload==0){
+//                        提交后台
+                        uploadServlet();
+                    }
+                    break;
+                case ConstantUtils.COMPANYSHOWIMGSERVLET_GET_DATA:
+                    finishUpload --;
+                    if (finishUpload==0){
+                        Toast.makeText(context,"上传成功！",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, CompanyShowImgActivity.class);
+        context.startActivity(intent);
+    }
+    /**
+     *上传图片到后台
      */
-    private void upload_SSP_Pic(final String path,final String dirname) {}
+    private void uploadServlet() {
+        finishUpload = qiniuPicPaths.size();
+        CompanyInfo company = (CompanyInfo) SharePreferencesUtil.readObject(context,ConstantUtils.USER_LOGIN_INFO);
+        for (int i = 0 ; i < qiniuPicPaths.size();i++){
+            OkHttpClientManager manager = OkHttpClientManager.getInstance();
+            Map<String, String> map = new HashMap<>();
+            map.put("type", "addPic");
+            map.put("PictureURL", qiniuPicPaths.get(i));
+            map.put("CompanyId",company.getCompanyId()+"" );
+            String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.COMPANY_PIC_SERVLET, map);
+            manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+                @Override
+                public void requestFailure(Request request, IOException e) {
+                    Toast.makeText(context,"请求失败！",Toast.LENGTH_SHORT).show();
+                }
 
-    /*
-     * 插入表 参数SQL语句 Type=1表示插入 2查询
-     */
-    private void SavePublish(final String type,final String sqlexe) {}
+                @Override
+                public void requestSuccess(String result) throws Exception {
+                    Gson gson = new Gson();
+                    JSONObject object = new JSONObject(result);
+                    String flag = object.getString("error");
+                    if (flag.equals("ok")){
+                        handler.sendEmptyMessage(ConstantUtils.COMPANYSHOWIMGSERVLET_GET_DATA);
+                    }else {
+                        handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA_FAILURE);
+                    }
+                }
+            });
+        }
+    }
 
-    /*
-     * 解析SQL查询数据
-     */
-    private void jsonjiexi(String jsondata) {}
-
-
-  	/*
-  	 * End
-  	 */
 }
