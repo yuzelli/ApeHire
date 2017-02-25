@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 
 import java.util.Random;
 
@@ -83,7 +84,11 @@ public class SplashActivity extends BaseActivity {
             switch (msg.what) {
                 case ConstantUtils.GUIDE_START_ACTIVITY:
                     if (!firstUse) {
-                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        if (SharePreferencesUtil.readObject(context,ConstantUtils.USER_LOGIN_INFO)!=null){
+                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        }else {
+                            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                        }
                     } else {
                         startActivity(new Intent(SplashActivity.this, GuideActivity.class));
                     }

@@ -1,5 +1,9 @@
 package com.example.buiderdream.apehire.constants;
 
+import android.content.SharedPreferences;
+
+import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
+
 import java.util.StringTokenizer;
 
 /**
@@ -13,7 +17,10 @@ public class ConstantUtils {
     //-------------------handler------------------
     //闪屏页
     public static final int GUIDE_START_ACTIVITY = 0x00001000;
-
+    //用户登录成功
+    public static final int LOGIN_GET_DATA = 0x00001001;
+    public static final int LOGIN_GET_DATA_FAILURE = 0x00001002;
+    public static final int REGISTER_GET_DATA = 0x00001003;
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息
     public static final int EDIT_USER_INFO_ACTIVITY_CODE = 1000;
@@ -21,7 +28,7 @@ public class ConstantUtils {
 
 
     //主机地址
-    public static final String USER_ADDRESS = "http://192.168.21.157:8080/ApeHire/";
+    public static final String USER_ADDRESS = "http://192.168.191.2:8080/ApeHire/";
     //用户表：
     public static final String USER_SERVLET = "userInfoServlet";
     //公司
@@ -34,6 +41,12 @@ public class ConstantUtils {
     public static final String JOB_COLLECTION_SERVLET = "jobCollectionServlet";
     //收藏文章
     public static final String ARTICLE_COLLECTION_SERVLET = "articleCollectionServlet";
+
+
+//    SharedPreferences
+    //登录用户信息
+    public static final String USER_LOGIN_INFO = "UserInfo";
+    public static final String LOCATION_USER_TYPE = "Location_user_type";
 
     //七牛
     public static final String QN_ACCESSKEY = "1lz3oyLnZAMG3r0o6hsRUY_U45E58nb9-Q2mCzp8";
