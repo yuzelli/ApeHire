@@ -14,9 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.buiderdream.apehire.R;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 public class ViewHolder
@@ -119,6 +123,26 @@ public class ViewHolder
         ImageView view = getView(viewId);
         view.setImageBitmap(bm);
 
+        return this;
+    }
+    /**
+     * 为ImageView设置图片
+     *
+     * @param viewId
+     * @param drawableId
+     * @return
+     */
+    public ViewHolder setImageByUrl2(int viewId, String url)
+    {
+        ImageView img = getView(viewId);
+        DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
+                .showStubImage(R.mipmap.ic_launcher)
+                .showImageOnFail(R.mipmap.ic_launcher)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .showImageForEmptyUri(R.mipmap.ic_launcher).cacheInMemory(true)
+                .cacheOnDisc(true).displayer(new FadeInBitmapDisplayer(300))
+                .imageScaleType(ImageScaleType.EXACTLY).build();
+        ImageLoader.getInstance().displayImage(url,img,displayImageOptions);
         return this;
     }
 

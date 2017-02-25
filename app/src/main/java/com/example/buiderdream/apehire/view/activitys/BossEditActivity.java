@@ -36,15 +36,17 @@ import java.util.List;
 
 /**
  * 编辑公司信息
+ *
  * @author 李秉龙
  */
-public class BossEditActivity extends BaseActivity implements View.OnClickListener{
+public class BossEditActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout rl_companyHeadImg;   //头像
     private RelativeLayout rl_companyName;   //公司名称
     private RelativeLayout rl_phoneNumber;   //注册电话
     private RelativeLayout rl_address;   //公司地址
     private RelativeLayout rl_describe;   //公司介绍
-    
+    private RelativeLayout rl_CompanyShow;   //公司轮播图片设置
+
     private ImageView img_companyHeadImg;  //头像
     private TextView tv_companyName;  //公司名称
     private TextView tv_phoneNumber;  //电话
@@ -52,7 +54,6 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_describe;  //介绍
     private Button btn_upload;  //上传
     private AppCompatSpinner spinner_scale;  // 公司规模   0：1-20 , 1 :20-99  , 2 : 100-499;  3 : 500-999 4 :1000+
-
 
 
     /**
@@ -82,6 +83,7 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
         rl_phoneNumber = (RelativeLayout) this.findViewById(R.id.rl_phoneNumber);
         rl_address = (RelativeLayout) this.findViewById(R.id.rl_address);
         rl_describe = (RelativeLayout) this.findViewById(R.id.rl_describe);
+        rl_CompanyShow = (RelativeLayout) this.findViewById(R.id.rl_CompanyShow);
 
         img_companyHeadImg = (ImageView) this.findViewById(R.id.img_companyHeadImg);
         tv_companyName = (TextView) this.findViewById(R.id.tv_companyName);
@@ -92,26 +94,27 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
         spinner_scale = (AppCompatSpinner) this.findViewById(R.id.spinner_scale);
 
 
-
         rl_companyHeadImg.setOnClickListener(this);
         rl_companyName.setOnClickListener(this);
         rl_phoneNumber.setOnClickListener(this);
         rl_address.setOnClickListener(this);
         rl_describe.setOnClickListener(this);
+        rl_CompanyShow.setOnClickListener(this);
         btn_upload.setOnClickListener(this);
     }
 
     private void updataView() {
-        final List<String> educationList = new ArrayList<>(Arrays.asList("0-20","20-99","100-499","500-999","1000+"));
+        final List<String> educationList = new ArrayList<>(Arrays.asList("0-20", "20-99", "100-499", "500-999", "1000+"));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(BossEditActivity.this, android.R.layout.simple_spinner_dropdown_item, educationList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_scale.setAdapter(adapter);
     }
 
-    public static void actionStart(Context context){
-        Intent intent = new Intent(context,BossEditActivity.class);
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, BossEditActivity.class);
         context.startActivity(intent);
     }
+
     /**
      * 显示选择头像的对话框
      */
@@ -192,6 +195,7 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
      */
     private void opendefaultList() {
     }
+
     /**
      * 打开系统图片裁剪功能
      *
@@ -211,10 +215,11 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
         intent.putExtra("noFaceDetection", true);
         startActivityForResult(intent, HEAD_PORTRAIT_CUT);
     }
-//---------------------------------接口方法------------------------------------------------
+
+    //---------------------------------接口方法------------------------------------------------
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_companyHeadImg:
                 showHeadImgDialog();
                 break;
@@ -226,13 +231,15 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.rl_describe:
                 break;
+            case R.id.rl_CompanyShow:
+                break;
             case R.id.btn_upload:
                 break;
             default:
                 break;
         }
-
     }
+
     //回调函数
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -282,7 +289,6 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
                     break;
             }
         }
-
     }
 
 

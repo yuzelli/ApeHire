@@ -194,7 +194,20 @@
                     android:layout_marginEnd="10dp" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/rl_CompanyShow"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
 
+                <TextView
+                    style="@style/PersonalInfoTextStyle"
+                    android:text="@string/CompanyShow" />
+
+                <ImageView
+                    style="@style/PersonalInfoRightArrowStyle"
+                    android:contentDescription="@string/imgContentDescription" />
+
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_describe"
                 android:layout_width="match_parent"

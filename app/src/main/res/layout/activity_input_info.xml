@@ -51,14 +51,17 @@
         android:layout_below="@+id/rl_top"
         android:lines="1"
         android:layout_margin="10dp"
-        android:background="@drawable/bg_et_shape"/>
+        android:background="@drawable/editview_shape"/>
     <EditText
         android:id="@+id/et_userLongInput"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@+id/rl_top"
         android:layout_margin="10dp"
-        android:background="@drawable/bg_et_shape"/>
+        android:textSize="20sp"
+        android:maxLength="500"
+        android:singleLine="false"
+        android:background="@drawable/editview_shape"/>
 
 
 

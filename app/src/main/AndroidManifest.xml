@@ -3,12 +3,16 @@
     package="com.example.buiderdream.apehire"
     android:installLocation="preferExternal">
 
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <!-- 判断网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- SD卡读写权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".app.BaseApplication"
@@ -17,16 +21,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activitys.MainActivity" />
+        <activity android:name=".view.activitys.MainActivity">
+
+        </activity>
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".view.activitys.LoginActivity" />
         <activity android:name=".view.activitys.RegisterActivity" />
         <activity android:name=".view.activitys.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.activitys.GuideActivity" />
         <activity android:name=".view.activitys.CompanyInfoActivity" />
@@ -34,9 +36,18 @@
         <activity android:name=".view.activitys.RegisterCompanyActivity" />
         <activity android:name=".view.activitys.ReleaseJobActivity" />
         <activity android:name=".view.activitys.UserEditActivity" />
-        <activity android:name=".view.activitys.BossEditActivity" />
+        <activity android:name=".view.activitys.BossEditActivity"/>
+
         <activity android:name=".view.activitys.InputInfoActivity" />
         <activity android:name=".view.activitys.PerfectRegCompActivity"></activity>
+        <activity android:name=".view.activitys.CompanyShowImgActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.activitys.ProcessActivity"></activity>
     </application>
 
 </manifest>
