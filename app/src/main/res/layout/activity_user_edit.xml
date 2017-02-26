@@ -27,6 +27,16 @@
             android:layout_centerInParent="true"
             android:text="@string/userInfo"
             android:textSize="@dimen/title_font" />
+        <TextView
+            android:id="@+id/tv_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@string/exit"
+            android:layout_marginEnd="20dp"
+            android:textSize="@dimen/title_font"
+            android:background="@drawable/bg_exit_btn"/>
 
         <View
             android:layout_width="match_parent"

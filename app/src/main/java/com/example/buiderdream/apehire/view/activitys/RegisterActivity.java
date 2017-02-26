@@ -132,7 +132,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         map.put("UserPassword", et_passWord.getText().toString().trim());
         map.put("UserHeadImg", "");
         map.put("UserTrueName", "");
-        //map.put("UserTrueName", URLEncoder.encode("李秉龙", "utf-8"));
         map.put("UserGender", "");
         map.put("UserAge", "0");
         map.put("UserDegree", "0");

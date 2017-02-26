@@ -47,7 +47,7 @@ import java.util.Map;
 import okhttp3.Request;
 
 public class CompanyShowImgActivity extends BaseActivity {
-
+    private ImageView img_back;
     private GridView gridView1;                 //网格显示缩略图
     private Button buttonPublish;              //发布按钮
     private final int IMAGE_OPEN = 1;      //打开图片标记
@@ -98,7 +98,7 @@ public class CompanyShowImgActivity extends BaseActivity {
         //获取控件对象
         gridView1 = (GridView) findViewById(R.id.gridView1);
         buttonPublish = (Button) findViewById(R.id.btn_upload);
-
+        img_back = (ImageView) this.findViewById(R.id.img_back);
         context = this;
         handler = new CompanyShowImgHandler();
         //发布内容
@@ -185,6 +185,12 @@ public class CompanyShowImgActivity extends BaseActivity {
         });
         picPaths = new ArrayList<>();
         qiniuPicPaths = new ArrayList<>();
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     /**

@@ -22,7 +22,7 @@ public class InputInfoActivity extends BaseActivity implements View.OnClickListe
     private int editType;   //传过来的对应标记0：真实姓名；1 年龄； 2 毕业学校 ；3：公司名称；4 公司地址；、
     // 传过来的对应标记 5 公司介绍,6 项目经验  ； 7我的优势；
 
-    private String[] editTypeTitle = {"真实姓名","年龄","毕业学校","薪资水平","公司名称","公司地址","公司介绍","项目经验","我的优势"};
+    private String[] editTypeTitle = {"真实姓名","年龄","毕业学校","公司名称","公司地址","公司介绍","项目经验","我的优势"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

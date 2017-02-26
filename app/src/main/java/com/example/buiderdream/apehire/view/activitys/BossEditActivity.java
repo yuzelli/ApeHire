@@ -305,7 +305,7 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
     }
 
     /**
-     *
+     *退出操作
      */
     private void exitUser() {
         LoginActivity.actionStart(context);

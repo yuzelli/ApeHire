@@ -98,9 +98,13 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         updataView();
         getCompanyShowPics();
-
     }
 
     /**

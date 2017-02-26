@@ -1,6 +1,8 @@
 package com.example.buiderdream.apehire.view.fragment;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +15,13 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.adapter.MineFragmentAdapter;
 import com.example.buiderdream.apehire.base.BaseFragment;
+import com.example.buiderdream.apehire.bean.UserInfo;
+import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.example.buiderdream.apehire.view.activitys.UserEditActivity;
 import com.example.buiderdream.apehire.widgets.RoundImageView;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +41,8 @@ public class UserMineFragment extends BaseFragment implements View.OnClickListen
     private ViewPager vp_fragment;
 
     private Activity activity;
+    private UserInfo userInfo;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         if (userMineFragmentView==null){
@@ -56,6 +65,31 @@ public class UserMineFragment extends BaseFragment implements View.OnClickListen
             initView();
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        userInfo = (UserInfo) SharePreferencesUtil.readObject(activity, ConstantUtils.USER_LOGIN_INFO);
+        updataView();
+    }
+
+    /**
+     * 更新视图
+     */
+    private void updataView() {
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.ic_loading)
+                .showImageOnFail(R.mipmap.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        ImageLoader.getInstance().displayImage(userInfo.getUserHeadImg(), img_userHeader, options);
+        tv_userName.setText(userInfo.getUserTrueName());
+        String [] educations = {"大专","本科","硕士","博士"};
+        tv_education.setText(educations[userInfo.getUserDegree()]);
+    }
+
     /**
      *   初始化布局
      */

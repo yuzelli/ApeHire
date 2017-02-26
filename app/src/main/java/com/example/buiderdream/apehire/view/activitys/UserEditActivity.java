@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -26,15 +28,29 @@ import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
+import com.example.buiderdream.apehire.bean.UserInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.https.OkHttpClientManager;
+import com.example.buiderdream.apehire.utils.ActivityCollectorUtil;
 import com.example.buiderdream.apehire.utils.ImageUtils;
 import com.example.buiderdream.apehire.utils.LxQiniuUploadUtils;
+import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
+import com.google.gson.Gson;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.qiniu.android.http.ResponseInfo;
 
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.IOException;
 import java.text.BreakIterator;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.Request;
 
 /**
  * 编辑用户信息
@@ -55,6 +71,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_graduate;   //毕业学校
     private TextView tv_experience;   //项目经验
     private TextView tv_superiority;   //我的优势
+    private TextView tv_exit;   //退出
     private Button btn_upload;   //上传
 
 
@@ -73,15 +90,19 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
     private static final int HEAD_PORTRAIT_CUT = 3;//图片裁剪
     private File photoFile;
     private Bitmap photoBitmap;
-    private String userHeadImgUrl;   // 图片地址
+
 
     private Context context;
+    private UserInfo userInfo;
+    private UserEditHandler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_edit);
         context = this;
+        handler = new UserEditHandler();
+        userInfo = (UserInfo) SharePreferencesUtil.readObject(context, ConstantUtils.USER_LOGIN_INFO);
         initView();
         updataView();
     }
@@ -91,6 +112,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         img_headImg = (ImageView) this.findViewById(R.id.img_headImg);
         img_back = (ImageView) this.findViewById(R.id.img_back);
         tv_trueName = (TextView) this.findViewById(R.id.tv_trueName);
+        tv_exit = (TextView) this.findViewById(R.id.tv_exit);
         rg_sex = (RadioGroup) this.findViewById(R.id.rg_sex);
         radio_man = (RadioButton) this.findViewById(R.id.radio_man);
         radio_woman = (RadioButton) this.findViewById(R.id.radio_woman);
@@ -111,6 +133,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         rl_superiority = (RelativeLayout) this.findViewById(R.id.rl_superiority);
 
 
+        tv_exit.setOnClickListener(this);
         rl_headImg.setOnClickListener(this);
         img_back.setOnClickListener(this);
         rl_realName.setOnClickListener(this);
@@ -119,13 +142,14 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         rl_graduate.setOnClickListener(this);
         rl_experience.setOnClickListener(this);
         rl_superiority.setOnClickListener(this);
+        btn_upload.setOnClickListener(this);
     }
 
     /**
      *
      */
     private void updataView() {
-        if (false) {
+        if (userInfo.getUserGender().equals("男")) {
             rg_sex.check(radio_man.getId());
         } else {
             rg_sex.check(radio_woman.getId());
@@ -139,11 +163,11 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(UserEditActivity.this, android.R.layout.simple_spinner_dropdown_item, educationList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_education.setAdapter(adapter);
-        spinner_education.setSelection(3);
+        spinner_education.setSelection(userInfo.getUserDegree());
         spinner_education.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(context, educationList.get(position), Toast.LENGTH_SHORT).show();
+                userInfo.setUserDegree(position);
             }
 
             @Override
@@ -160,11 +184,11 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         ArrayAdapter<String> salaryAdapter = new ArrayAdapter<String>(UserEditActivity.this, android.R.layout.simple_spinner_dropdown_item, salaryList);
         salaryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_salary.setAdapter(salaryAdapter);
-        spinner_salary.setSelection(3);
+        spinner_salary.setSelection(userInfo.getUserExpactMonney());
         spinner_salary.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(context, salaryList.get(position), Toast.LENGTH_SHORT).show();
+                userInfo.setUserExpactMonney(position);
             }
 
             @Override
@@ -172,6 +196,20 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
 
             }
         });
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.ic_loading)
+                .showImageOnFail(R.mipmap.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        ImageLoader.getInstance().displayImage(userInfo.getUserHeadImg(), img_headImg, options);
+        tv_trueName.setText(userInfo.getUserTrueName());
+        tv_phoneNumber.setText(userInfo.getUserPhoneNum());
+        tv_age.setText(userInfo.getUserAge() + "");
+        tv_graduate.setText(userInfo.getUserSchool());
+        tv_experience.setText(userInfo.getUserExperence());
+        tv_superiority.setText(userInfo.getUserAdvantage());
     }
 
 
@@ -281,6 +319,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         Intent intent = new Intent(context, UserEditActivity.class);
         context.startActivity(intent);
     }
+
     /**
      * 在InputInfoAC中修改个人信息
      *
@@ -291,13 +330,23 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
         intent.putExtra("editType", i);
         startActivityForResult(intent, ConstantUtils.EDIT_USER_INFO_ACTIVITY_CODE);
     }
-
+    /**
+     *退出操作
+     */
+    private void exitUser() {
+        LoginActivity.actionStart(context);
+        SharePreferencesUtil.saveObject(context,ConstantUtils.USER_LOGIN_INFO,null);
+        ActivityCollectorUtil.removeOtherForLogin();
+    }
 
     //-----------------------------接口回调---------------------------------
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
+            case R.id.tv_exit:
+                exitUser();
+                break;
             case R.id.img_back:
                 finish();
                 break;
@@ -314,12 +363,13 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
                 updateUserInfo(2);
                 break;
             case R.id.rl_experience:
-                updateUserInfo(5);
-                break;
-            case R.id.rl_superiority:
                 updateUserInfo(6);
                 break;
+            case R.id.rl_superiority:
+                updateUserInfo(7);
+                break;
             case R.id.btn_upload:
+                uploadUserInfo();
                 break;
             default:
                 break;
@@ -327,6 +377,44 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
 
     }
 
+    /**
+     * 提交数据
+     */
+    private void uploadUserInfo() {
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "updateUser");
+        map.put("userID", userInfo.getUserId() + "");
+        map.put("UserPhoneNum", userInfo.getUserPhoneNum());
+        map.put("UserPassword", userInfo.getUserPassword());
+        map.put("UserHeadImg", userInfo.getUserHeadImg());
+        map.put("UserTrueName", tv_trueName.getText().toString().trim());
+        map.put("UserGender", userInfo.getUserGender());
+        map.put("UserAge", tv_age.getText().toString().trim());
+        map.put("UserDegree", userInfo.getUserDegree() + "");
+        map.put("UserSchool", tv_graduate.getText().toString().trim());
+        map.put("UserExpactMonney", userInfo.getUserExpactMonney() + "");
+        map.put("UserExperence", tv_experience.getText().toString().trim());
+        map.put("UserAdvantage", tv_superiority.getText().toString().trim());
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.USER_SERVLET, map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                Gson gson = new Gson();
+                JSONObject object = new JSONObject(result);
+                String flag = object.getString("error");
+                if (flag.equals("ok")) {
+                    userInfo = gson.fromJson(object.getString("object"), UserInfo.class);
+                    handler.sendEmptyMessage(ConstantUtils.USEREDIT__GET_DATA);
+                }
+            }
+        });
+    }
 
 
     //回调函数
@@ -362,7 +450,7 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
                                     @Override
                                     public void sucess(String url) {
                                         Toast.makeText(context, url, Toast.LENGTH_SHORT).show();
-                                        userHeadImgUrl = ConstantUtils.QN_IMG_ADDRESS + StouserHeadImgName;
+                                        userInfo.setUserHeadImg(ConstantUtils.QN_IMG_ADDRESS + StouserHeadImgName);
                                     }
 
                                     @Override
@@ -392,10 +480,10 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
                     case 2:
                         tv_graduate.setText(result);
                         break;
-                    case 3:
+                    case 6:
                         tv_experience.setText(result);
                         break;
-                    case 4:
+                    case 7:
                         tv_superiority.setText(result);
                         break;
                     default:
@@ -411,10 +499,26 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         if (checkedId == radio_man.getId()) {
-            Toast.makeText(context, "man", Toast.LENGTH_SHORT).show();
+            userInfo.setUserGender(radio_man.getText().toString());
         }
         if (checkedId == radio_woman.getId()) {
-            Toast.makeText(context, "woman", Toast.LENGTH_SHORT).show();
+            userInfo.setUserGender(radio_woman.getText().toString());
+        }
+    }
+
+
+    class UserEditHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case ConstantUtils.USEREDIT__GET_DATA:
+                    SharePreferencesUtil.saveObject(context, ConstantUtils.USER_LOGIN_INFO, userInfo);
+                    finish();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

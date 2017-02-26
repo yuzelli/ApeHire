@@ -25,6 +25,7 @@ public class ConstantUtils {
     public static final int COMPANYSHOWIMGSERVLET_GET_DATA = 0x00001005;
     public static final int COMPANYS_UPDATE_GET_DATA = 0x00001006;
     public static final int COMPANYS_SHOW_PICS_GET_DATA = 0x00001007;
+    public static final int USEREDIT__GET_DATA = 0x00001008;
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息
     public static final int EDIT_USER_INFO_ACTIVITY_CODE = 1000;
@@ -32,7 +33,7 @@ public class ConstantUtils {
 
 
     //主机地址
-    public static final String USER_ADDRESS = "http://130.0.1.70:8080/ApeHire/";
+    public static final String USER_ADDRESS = "http://172.16.31.170:8080/ApeHire/";
     //用户表：
     public static final String USER_SERVLET = "userInfoServlet";
     //公司
