@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseFragment;
+import com.example.buiderdream.apehire.bean.CompanyInfo;
+import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 
 /**
  * Created by 51644 on 2017/2/13.
@@ -25,6 +28,7 @@ public class CompanyDescribeFragment extends BaseFragment {
             companyDescribeFragmentView = inflater.inflate(R.layout.fragment_company_describe,container,false);
         }
         if (companyDescribeFragmentView!=null){
+
             return companyDescribeFragmentView;
         }
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -45,7 +49,8 @@ public class CompanyDescribeFragment extends BaseFragment {
     }
 
     private void updateView() {
-        tv_describe.setText("神马是专注移动互联网的搜索引擎，致力于为用户创造方便、快捷、开放的移动搜索新体验。神马是一支创业团队，由全球用户量最大的移动浏览器UC优视与中国互联网行业领军企业阿里巴巴共同发起组建，并由来自微软、谷歌、百度、360等国内外IT公司的资深员工所组成，我们坚信移动互联网一定能够让搜索更智慧，让生活更美好。");
+        CompanyInfo companyInfo = (CompanyInfo) SharePreferencesUtil.readObject(getActivity(), ConstantUtils.USER_LOGIN_INFO);
+        tv_describe.setText(companyInfo.getCompanyIntroduce());
     }
 
     @Override

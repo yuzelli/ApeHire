@@ -16,6 +16,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -118,7 +119,7 @@ public class CompanyShowImgActivity extends BaseActivity {
                 }
                 uploadPics();
                 //消息提示
-                Toast.makeText(CompanyShowImgActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(CompanyShowImgActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -205,7 +206,7 @@ public class CompanyShowImgActivity extends BaseActivity {
 
                 @Override
                 public void fail(String key, ResponseInfo info) {
-                    Toast.makeText(context, "shibeile", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "失败了", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -392,6 +393,7 @@ public class CompanyShowImgActivity extends BaseActivity {
             switch (msg.what) {
                 case ConstantUtils.COMPANYSHOWIMG_GET_DATA:
                     finishUpload --;
+                    Log.d("qiniu add ","--->qiniu"+finishUpload);
                     if (finishUpload==0){
 //                        提交后台
                         uploadServlet();
@@ -399,6 +401,7 @@ public class CompanyShowImgActivity extends BaseActivity {
                     break;
                 case ConstantUtils.COMPANYSHOWIMGSERVLET_GET_DATA:
                     finishUpload --;
+                    Log.d("houtai add ","--->houtai"+finishUpload);
                     if (finishUpload==0){
                         Toast.makeText(context,"上传成功！",Toast.LENGTH_SHORT).show();
                         finish();
@@ -434,13 +437,10 @@ public class CompanyShowImgActivity extends BaseActivity {
 
                 @Override
                 public void requestSuccess(String result) throws Exception {
-                    Gson gson = new Gson();
                     JSONObject object = new JSONObject(result);
                     String flag = object.getString("error");
                     if (flag.equals("ok")){
                         handler.sendEmptyMessage(ConstantUtils.COMPANYSHOWIMGSERVLET_GET_DATA);
-                    }else {
-                        handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA_FAILURE);
                     }
                 }
             });

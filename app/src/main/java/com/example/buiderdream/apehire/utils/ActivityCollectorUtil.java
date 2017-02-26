@@ -30,12 +30,13 @@ public class ActivityCollectorUtil {
         }
     }
 
-    public static void removeTwoActivity(){
+    public static void removeOtherForLogin(){
 
-       for(int i = activities.size()-1;i>activities.size()-3;i--){
+       for(int i = activities.size()-1;i>=0;i--){
            if (!activities.get(i).isFinishing()) {
                activities.get(i).finish();
            }
        }
     }
+
 }

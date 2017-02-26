@@ -12,6 +12,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
+import com.example.buiderdream.apehire.base.BaseActivity;
 import com.example.buiderdream.apehire.utils.JudgeUtils;
 import com.example.buiderdream.apehire.view.fragment.BossMineFragment;
 import com.example.buiderdream.apehire.view.fragment.HireFragment;
@@ -24,7 +25,7 @@ import com.example.buiderdream.apehire.view.fragment.UserMineFragment;
  *
  * @author 李秉龙
  */
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseActivity {
     //定义FragmentTabHost对象
     private FragmentTabHost tabHost;
     //定义一个布局

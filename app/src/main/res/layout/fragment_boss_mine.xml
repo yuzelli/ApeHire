@@ -72,7 +72,7 @@
             android:layout_toEndOf="@+id/img_companyHead"
             android:layout_marginStart="10dp" />
         <TextView
-            android:id="@+id/job_item_companyName"
+            android:id="@+id/job_item_companyScale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/order_size"

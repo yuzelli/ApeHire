@@ -41,6 +41,7 @@
     <string name="register">注册</string>
     <string name="CompanyShow">公司场景</string>
     <string name="CompanyImgs">公司图片</string>
+    <string name="exit">退出</string>
 
     <string-array name="education_array">
         <item>不限</item>

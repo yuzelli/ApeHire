@@ -310,15 +310,14 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
             case R.id.rl_age:
                 updateUserInfo(1);
                 break;
-
             case R.id.rl_graduate:
                 updateUserInfo(2);
                 break;
             case R.id.rl_experience:
-                updateUserInfo(3);
+                updateUserInfo(5);
                 break;
             case R.id.rl_superiority:
-                updateUserInfo(4);
+                updateUserInfo(6);
                 break;
             case R.id.btn_upload:
                 break;

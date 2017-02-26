@@ -211,9 +211,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     } else {
                         SharePreferencesUtil.saveObject(context, ConstantUtils.USER_LOGIN_INFO, companyInfo);
                     }
-                    if (!userTypeFlag){
-
-                    }
                     MainActivity.actionStart(context);
                     finish();
                     break;

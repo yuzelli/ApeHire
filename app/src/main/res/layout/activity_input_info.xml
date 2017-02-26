@@ -61,6 +61,7 @@
         android:textSize="20sp"
         android:maxLength="500"
         android:singleLine="false"
+        android:gravity="top"
         android:background="@drawable/editview_shape"/>
 
 
