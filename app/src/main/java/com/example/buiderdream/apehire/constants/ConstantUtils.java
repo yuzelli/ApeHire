@@ -26,14 +26,18 @@ public class ConstantUtils {
     public static final int COMPANYS_UPDATE_GET_DATA = 0x00001006;
     public static final int COMPANYS_SHOW_PICS_GET_DATA = 0x00001007;
     public static final int USEREDIT__GET_DATA = 0x00001008;
+    public static final int RELEASE_JOB__GET_DATA = 0x00001009;
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息
     public static final int EDIT_USER_INFO_ACTIVITY_CODE = 1000;
     public static final int EDIT_USER_INFO_ACTIVITY_RESULT_CODE = 1001;
 
-
     //主机地址
+<<<<<<< HEAD
     public static final String USER_ADDRESS = "http://192.168.21.138:8080/ApeHire/";
+=======
+    public static final String USER_ADDRESS = "http://130.0.1.70:8080/ApeHire/";
+>>>>>>> 702c72d0e9630face6b04e5158bbc13831d97d39
     //用户表：
     public static final String USER_SERVLET = "userInfoServlet";
     //公司
@@ -46,6 +50,8 @@ public class ConstantUtils {
     public static final String JOB_COLLECTION_SERVLET = "jobCollectionServlet";
     //收藏文章
     public static final String ARTICLE_COLLECTION_SERVLET = "articleCollectionServlet";
+//    职位
+    public static final String  JOB_SERVLET = "jobServlet";
 
     //v2ex
     public static  final  String V2EX_ARTICLE = "https://www.v2ex.com";

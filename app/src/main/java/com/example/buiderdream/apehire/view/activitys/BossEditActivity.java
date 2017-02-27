@@ -291,7 +291,7 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
                 updateUserInfo(4);
                 break;
             case R.id.rl_describe:
-                updateUserInfo(5);
+                updateUserInfo(6);
                 break;
             case R.id.rl_CompanyShow:
                 CompanyShowImgActivity.actionStart(context);
@@ -316,7 +316,7 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
     /**
      * 在InputInfoAC中修改个人信息
      *
-     * @param i 0：公司名称；1 地址； 4 公司介绍
+     * @param i 3：公司名称；4地址； 6公司介绍
      */
     private void updateUserInfo(int i) {
         Intent intent = new Intent(BossEditActivity.this, InputInfoActivity.class);
@@ -420,7 +420,7 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
                     case 4:
                         tv_address.setText(result);
                         break;
-                    case 5:
+                    case 6:
                         tv_describe.setText(result);
                         break;
                     default:

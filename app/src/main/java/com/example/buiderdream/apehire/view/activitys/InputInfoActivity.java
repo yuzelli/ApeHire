@@ -19,10 +19,10 @@ public class InputInfoActivity extends BaseActivity implements View.OnClickListe
     private EditText et_userInput;  //用户短输入
     private EditText et_userLongInput;  //用户短输入
     private ImageView img_back;  //后退
-    private int editType;   //传过来的对应标记0：真实姓名；1 年龄； 2 毕业学校 ；3：公司名称；4 公司地址；、
-    // 传过来的对应标记 5 公司介绍,6 项目经验  ； 7我的优势；
+    private int editType;   //传过来的对应标记0：真实姓名；1 年龄； 2 毕业学校 ；3：公司名称；4 公司地址；5、职位名称
+    // 传过来的对应标记 6公司介绍,7 项目经验  ； 8我的优势；9职位介绍；10技能要求
 
-    private String[] editTypeTitle = {"真实姓名","年龄","毕业学校","公司名称","公司地址","公司介绍","项目经验","我的优势"};
+    private String[] editTypeTitle = {"真实姓名","年龄","毕业学校","公司名称","公司地址","职位名称","公司介绍","项目经验","我的优势","职位介绍","技能要求"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,7 @@ public class InputInfoActivity extends BaseActivity implements View.OnClickListe
         editType = intent.getIntExtra("editType",-1);
         if (editType!=-1){
             tv_title.setText(editTypeTitle[editType]);
-            if(editType>4){
+            if(editType>5){
                 et_userLongInput.setVisibility(View.VISIBLE);
                 et_userInput.setVisibility(View.GONE);
             }else {
@@ -64,7 +64,7 @@ public class InputInfoActivity extends BaseActivity implements View.OnClickListe
      */
     private void returnResult() {
         String value = null;
-        if (editType>4) {
+        if (editType>5) {
             value  = et_userLongInput.getText().toString().trim();
         }else {
             value  = et_userInput.getText().toString().trim();
