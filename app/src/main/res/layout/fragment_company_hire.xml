@@ -2,13 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     >
     <ListView
         android:id="@+id/lv_hire"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/btn_releaseHire">
-
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:scrollbars="none"
+        android:divider="@null"
+        android:layout_above="@+id/btn_releaseHire">
     </ListView>
     <Button
         android:id="@+id/btn_releaseHire"
