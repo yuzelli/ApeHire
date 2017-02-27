@@ -191,7 +191,7 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
         map.put("jobtype", job.getJobType() + "");
         map.put("city", job.getJobCity() + "");
         map.put("jobsalary", job.getJobCharge() + "");
-        map.put("companyname", job.getCompanyId() + "");
+        map.put("companyname", company.getCompanyId() + "");
         map.put("jobskill", tv_jobTechnology.getText().toString().trim());
         String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.JOB_SERVLET, map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
