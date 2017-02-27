@@ -1,5 +1,7 @@
 package com.example.buiderdream.apehire.view.activitys;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
+import com.example.buiderdream.apehire.base.BaseActivity;
+import com.example.buiderdream.apehire.utils.JudgeUtils;
 import com.example.buiderdream.apehire.view.fragment.BossMineFragment;
 import com.example.buiderdream.apehire.view.fragment.HireFragment;
 import com.example.buiderdream.apehire.view.fragment.MessageFragment;
@@ -21,11 +25,12 @@ import com.example.buiderdream.apehire.view.fragment.UserMineFragment;
  *
  * @author 李秉龙
  */
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseActivity {
     //定义FragmentTabHost对象
     private FragmentTabHost tabHost;
     //定义一个布局
     private LayoutInflater layoutInflater;
+
 
     //定义数组来存放user的Fragment界面
     private Class userFragmentArray[] = {HireFragment.class, TechnologyFragment.class, MessageFragment.class, UserMineFragment.class};
@@ -54,7 +59,7 @@ public class MainActivity extends FragmentActivity {
 
         //得到fragment的个数
         int count = userFragmentArray.length;
-        if (false) {
+        if (!JudgeUtils.getUserType(getApplication())) {
             for (int i = 0; i < count; i++) {
                 //为每一个Tab按钮设置图标、文字和内容
                 TabHost.TabSpec tabSpec = tabHost.newTabSpec(tabtTextViewArray[i]).setIndicator(getTabItemView(i));
@@ -87,6 +92,8 @@ public class MainActivity extends FragmentActivity {
         textView.setText(tabtTextViewArray[index]);
         return view;
     }
-
-
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 }

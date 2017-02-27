@@ -60,13 +60,13 @@ public class TechnologyFragment extends BaseFragment {
     private void addData() {
         List<String> title_list =  new ArrayList<String>();
         title_list.add("android");
-        title_list.add("java");
+        title_list.add("js");
         title_list.add("c");
-        title_list.add("c++");
-        title_list.add("PHP");
-        title_list.add("H5");
-        title_list.add("C#");
-        title_list.add("python");
+        title_list.add("html");
+        title_list.add("mysql");
+        title_list.add("php");
+        title_list.add("java");
+        title_list.add("git");
         List<Fragment> fragment_list = new ArrayList<Fragment>();
         for (int i=0;i<title_list.size();i++)
         {

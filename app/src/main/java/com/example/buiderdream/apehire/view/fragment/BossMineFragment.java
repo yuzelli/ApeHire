@@ -1,12 +1,15 @@
 package com.example.buiderdream.apehire.view.fragment;
 
 import android.app.Activity;
+import android.app.backup.SharedPreferencesBackupHelper;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,20 +25,36 @@ import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.adapter.BannerAdapter;
 import com.example.buiderdream.apehire.adapter.MineFragmentAdapter;
 import com.example.buiderdream.apehire.base.BaseFragment;
+import com.example.buiderdream.apehire.bean.CompanyInfo;
+import com.example.buiderdream.apehire.bean.CompanyPics;
+import com.example.buiderdream.apehire.bean.UserInfo;
+import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.DensityUtils;
+import com.example.buiderdream.apehire.utils.GsonUtils;
+import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.example.buiderdream.apehire.view.activitys.BossEditActivity;
 import com.example.buiderdream.apehire.view.activitys.UserEditActivity;
+import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.Request;
 
 /**
  * Created by bingling_li on 2016/12/4.
  * 公司的个人中心
  */
 
-public class BossMineFragment extends BaseFragment implements View.OnClickListener,View.OnTouchListener, ViewPager.OnPageChangeListener {
+public class BossMineFragment extends BaseFragment implements View.OnClickListener, View.OnTouchListener, ViewPager.OnPageChangeListener {
     private View bossMineFragmentView;
     private ViewPager vp_picture;   //图片轮播
     private LinearLayout ll_Point;   //图片轮播下标点
@@ -48,6 +67,14 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     private BossMineHandler handler;
     private PagerSlidingTabStrip psts_tab;   //选项卡
     private ViewPager vp_fragment;           //选项卡对应的Fragment
+    private TextView job_item_companyName;  //公司名称
+    private TextView job_item_companyAddress;  //公司名称
+    private TextView job_item_companyScale;  //公司规模
+    private ImageView img_companyHead;
+
+    private CompanyInfo company;  // 公司信息
+    private Context context;
+    private ArrayList<CompanyPics> companyPics;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +84,11 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         if (bossMineFragmentView != null) {
             activity = getActivity();
             handler = new BossMineHandler();
+            context = getActivity();
+            company = (CompanyInfo) SharePreferencesUtil.readObject(context, ConstantUtils.USER_LOGIN_INFO);
+            if (company == null) {
+                company = new CompanyInfo();
+            }
             return bossMineFragmentView;
         }
         return inflater.inflate(R.layout.fragment_boss_mine, null);
@@ -66,7 +98,31 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
-        updataBanner();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updataView();
+        getCompanyShowPics();
+    }
+
+    /**
+     * 更新视图
+     */
+    private void updataView() {
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.ic_loading)
+                .showImageOnFail(R.mipmap.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        ImageLoader.getInstance().displayImage(company.getCompanyHeadImg(), img_companyHead, options);
+        job_item_companyName.setText(company.getCompanyName());
+        job_item_companyAddress.setText(company.getCompanyAddress());
+        String[] scale = {"0-20", "20-99", "100-499", "500-999", "1000+"};
+        job_item_companyScale.setText(scale[company.getCompanyScale()]);
     }
 
     private void initView() {
@@ -74,7 +130,11 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         tv_edit = (TextView) bossMineFragmentView.findViewById(R.id.tv_edit);
         ll_Point = (LinearLayout) bossMineFragmentView.findViewById(R.id.ll_Point);
         psts_tab = (PagerSlidingTabStrip) bossMineFragmentView.findViewById(R.id.psts_tab);
-        vp_fragment  = (ViewPager) bossMineFragmentView.findViewById(R.id.vp_fragment);
+        vp_fragment = (ViewPager) bossMineFragmentView.findViewById(R.id.vp_fragment);
+        img_companyHead = (ImageView) bossMineFragmentView.findViewById(R.id.img_companyHead);
+        job_item_companyName = (TextView) bossMineFragmentView.findViewById(R.id.job_item_companyName);
+        job_item_companyAddress = (TextView) bossMineFragmentView.findViewById(R.id.job_item_companyAddress);
+        job_item_companyScale = (TextView) bossMineFragmentView.findViewById(R.id.job_item_companyScale);
         tv_edit.setOnClickListener(this);
         initBossFragment();
     }
@@ -89,7 +149,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new CompanyDescribeFragment());
         fragmentList.add(new CompanyHireFragment());
-        MineFragmentAdapter adapter = new MineFragmentAdapter(getChildFragmentManager(),titleList,fragmentList);
+        MineFragmentAdapter adapter = new MineFragmentAdapter(getChildFragmentManager(), titleList, fragmentList);
         vp_fragment.setAdapter(adapter);
         psts_tab.setViewPager(vp_fragment);
     }
@@ -116,7 +176,16 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
-        for (int i = 0; i < 5; i++) {
+        if (companyPics!=null){
+            for (CompanyPics pic :companyPics){
+                ImageView img = new ImageView(activity);
+                img.setImageResource(R.drawable.splash0);
+                img.setScaleType(ImageView.ScaleType.FIT_XY);
+                ImageLoader.getInstance().displayImage(pic.getPictureURL(),img,options);
+                bannerImageDates.add(img);
+            }
+        }
+        if (bannerImageDates.size() == 0) {
             ImageView img = new ImageView(activity);
             img.setImageResource(R.drawable.splash0);
             img.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -168,9 +237,9 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         // 1.根据图片多少，添加多少小圆点
         ll_Point.removeAllViews();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < bannerImageDates.size(); i++) {
             LinearLayout.LayoutParams pointParams = new LinearLayout.LayoutParams(
-                    DensityUtils.dp2px(activity,10), DensityUtils.dp2px(activity,10));
+                    DensityUtils.dp2px(activity, 10), DensityUtils.dp2px(activity, 10));
             if (i < 1) {
                 pointParams.setMargins(0, 0, 0, 0);
             } else {
@@ -190,8 +259,8 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
      * @param position
      */
     private void monitorPoint(int position) {
-        int current = (position - 300) % 5;
-        for (int i = 0; i < 5; i++) {
+        int current = (position - 300) % bannerImageDates.size();
+        for (int i = 0; i < bannerImageDates.size(); i++) {
             if (i == current) {
                 ll_Point.getChildAt(current).setBackgroundResource(
                         R.drawable.point_select);
@@ -202,21 +271,55 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         }
     }
 
+    /**
+     * 获取公司展示图片
+     */
+    public void getCompanyShowPics() {
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "findPicByCompID");
+        map.put("CompanyId", company.getCompanyId() + "");
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.COMPANY_PIC_SERVLET, map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+
+                JSONObject object = new JSONObject(result);
+                String flag = object.getString("error");
+                if (flag.equals("ok")) {
+                    companyPics = GsonUtils.jsonToArrayList(object.getString("object"), CompanyPics.class);
+                    handler.sendEmptyMessage(ConstantUtils.COMPANYS_SHOW_PICS_GET_DATA);
+                } else {
+                    Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
     class BossMineHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-
+                case ConstantUtils.COMPANYS_SHOW_PICS_GET_DATA:
+                    updataBanner();
+                    break;
                 default:
                     break;
             }
         }
     }
+
     //------------------------------接口回调--------------------------------------------
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_edit:
                 BossEditActivity.actionStart(activity);
                 break;
@@ -237,7 +340,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         bannerImageDates.get(index).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity,position+"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, position + "", Toast.LENGTH_SHORT).show();
 
             }
         });

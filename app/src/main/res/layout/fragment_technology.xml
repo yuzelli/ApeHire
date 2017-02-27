@@ -4,10 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffeecc">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="技术文章"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:background="@color/blueviolet"/>
 
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/frag_tech_strip"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">

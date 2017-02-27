@@ -4,10 +4,262 @@
     android:id="@+id/activity_job"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.buiderdream.apehire.view.activitys.JobActivity">
+    <RelativeLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:background="@color/blueviolet">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:onClick="backClick"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="职位详情"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/titleLayout">
 
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1">
+                <RelativeLayout
+                    android:id="@+id/job_detail_part1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@color/white"
+                    android:layout_weight="2.18">
+
+                    <TextView
+                        android:text="阿里巴巴"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/jd_company_name"
+                        android:layout_centerVertical="true"
+                        android:layout_alignStart="@+id/jd_title" />
+
+                    <TextView
+                        android:text="北京市海淀区"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/jd_company_address"
+                        android:layout_below="@+id/jd_company_name"
+                        android:layout_alignStart="@+id/jd_company_name" />
+
+                    <TextView
+                        android:text="Android工程师"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/jd_title"
+                        android:textColor="@color/blueviolet"
+                        android:textSize="16sp"
+                        android:layout_marginStart="20dp"
+                        android:layout_above="@+id/jd_company_name"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="11dp" />
+
+                    <TextView
+                        android:text="8K~12K"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/jd_charge"
+                        android:textColor="@color/hotpink"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="35dp"
+                        android:layout_above="@+id/jd_company_name"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@+id/job_detail_part1"
+                    android:id="@+id/job_detail_part2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:text="职位详情"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="13dp"
+                        android:id="@+id/textView"
+                        android:textColor="@color/blueviolet"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/lightgray"
+                        android:id="@+id/line1"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignStart="@+id/textView"
+                        android:layout_marginEnd="20dp"
+                        android:layout_below="@id/textView"/>
+                    <TextView
+                        android:text="详细工作职责"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="11dp"
+                        android:id="@+id/jd_detail"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/line1"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignStart="@+id/textView" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_below="@+id/job_detail_part2"
+                    android:id="@+id/job_detail_part3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:text="技能要求"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="13dp"
+                        android:id="@+id/textView2"
+                        android:textColor="@color/blueviolet"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/lightgray"
+                        android:id="@+id/line2"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignStart="@+id/textView2"
+                        android:layout_marginEnd="20dp"
+                        android:layout_below="@id/textView2"/>
+                    <TextView
+                        android:text="技能要求"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="11dp"
+                        android:id="@+id/jd_technology"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/textView2"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignStart="@+id/textView2" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/job_detail_part4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/job_detail_part3"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white">
+                    <TextView
+                        android:text="公司介绍"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/textView3"
+                        android:textColor="@color/blueviolet"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/lightgray"
+                        android:id="@+id/line3"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignStart="@+id/textView3"
+                        android:layout_marginEnd="20dp"
+                        android:layout_below="@id/textView3"/>
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:contentDescription="@string/imgContentDescription"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_below="@+id/textView3"
+                        android:src="@drawable/icon_head_200px"
+                        android:id="@+id/jd_company_img" />
+
+                    <TextView
+                        android:id="@+id/jd_company_address2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/order_size"
+                        android:text="北京上地五道口"
+                        android:layout_alignBottom="@+id/jd_company_img"
+                        android:layout_toEndOf="@+id/jd_company_img"
+                        android:layout_marginStart="10dp" />
+
+                    <TextView
+                        android:id="@+id/jd_company_name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/main_size"
+                        android:text="阿里巴巴"
+                        android:layout_alignTop="@+id/jd_company_img"
+                        android:layout_alignStart="@+id/jd_company_scale" />
+
+                    <TextView
+                        android:id="@+id/jd_company_scale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/order_size"
+                        android:text="B轮,20-99人"
+                        android:layout_below="@+id/jd_company_name2"
+                        android:layout_alignStart="@+id/jd_company_address2" />
+                    <TextView
+                        android:text="公司详情介绍"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="11dp"
+                        android:id="@+id/jd_company_detail"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/jd_company_img"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignStart="@+id/jd_company_img" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
 </RelativeLayout>

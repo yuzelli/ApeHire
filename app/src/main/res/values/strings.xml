@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ApeHire</string>
+    <string name="app_name">猿聘</string>
 
     <string name="imgContentDescription">图片</string>
     <string name="userCollTitle_Hire">收藏的公司</string>
@@ -13,12 +13,42 @@
     <string name="Age">年龄</string>
     <string name="Education">学历</string>
     <string name="Graduate">毕业学校</string>
-    <string name="Salary">薪资</string>
+    <string name="Salary">期望薪资</string>
     <string name="Experience">项目经验</string>
     <string name="Superiority">我的优势</string>
     <string name="upload">上传</string>
     <string name="Photograph">拍照上传</string>
     <string name="Album">相册选择</string>
     <string name="DefaultAvatar">默认头像</string>
+    <string name="Confirm">确定</string>
     <string name="Cancel">取消</string>
+    <string name="man">男</string>
+    <string name="weman">女</string>
+    <string name="ReleaseHire">发布新的职位</string>
+    <string name="PhoneNumber">注册手机号</string>
+    <string name="BossInfo">公司信息</string>
+    <string name="CompanyName">公司名称</string>
+    <string name="Address">地址</string>
+    <string name="Scale">规模</string>
+    <string name="Describe">公司介绍</string>
+    <string name="not_member_yet">Not a member yet?</string>
+    <string name="phone">请输入手机号</string>
+    <string name="password">请输入密码</string>
+    <string name="worker">求职者</string>
+    <string name="boss">boss</string>
+    <string name="certainPassword">请再次输入密码</string>
+    <string name="login">登陆</string>
+    <string name="register">注册</string>
+    <string name="CompanyShow">公司场景</string>
+    <string name="CompanyImgs">公司图片</string>
+    <string name="exit">退出</string>
+
+    <string-array name="education_array">
+        <item>不限</item>
+        <item>专科</item>
+        <item>本科</item>
+        <item>硕士</item>
+        <item>博士</item>
+    </string-array>
+
 </resources>

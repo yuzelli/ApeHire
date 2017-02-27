@@ -49,7 +49,7 @@ public class TechListFragment extends Fragment {
 
     private void addData() {
         List<String> list = new ArrayList<String>();
-       for (int i=0;i<20;i++){
+       for (int i=0;i< 20;i++){
            list.add("wenz"+i+type);
        }
         adapter.addList(list);
