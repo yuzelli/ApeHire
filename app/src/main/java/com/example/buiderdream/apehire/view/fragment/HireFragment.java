@@ -149,7 +149,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         });
         //薪资筛选
         ListView charge_listView = (ListView) jobChargeView.findViewById(R.id.jd_charge_list);
-        String[] chargeLists = {"不限","3K以下","3K~6K","6K~10K","10K~15K","15K以上"};
+        String[] chargeLists = {"不限","3k-5k","5k-10k","10k-15k","15k-20k","20k-30k","30k-50k"};
         List<String> chargeList = new ArrayList<String>();
         for (String s:chargeLists) {
             chargeList.add(s);

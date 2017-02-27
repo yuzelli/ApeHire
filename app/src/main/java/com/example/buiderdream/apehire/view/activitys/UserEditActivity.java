@@ -176,11 +176,13 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
             }
         });
         final List<String> salaryList = new ArrayList<>();
-        salaryList.add("4k-8k");
-        salaryList.add("8k-10k");
+        salaryList.add("不限");
+        salaryList.add("3k-5k");
+        salaryList.add("5k-10k");
         salaryList.add("10k-15k");
         salaryList.add("15k-20k");
-        salaryList.add("20k+");
+        salaryList.add("20k-30k");
+        salaryList.add("30k-50k");
         ArrayAdapter<String> salaryAdapter = new ArrayAdapter<String>(UserEditActivity.this, android.R.layout.simple_spinner_dropdown_item, salaryList);
         salaryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_salary.setAdapter(salaryAdapter);
@@ -363,10 +365,10 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
                 updateUserInfo(2);
                 break;
             case R.id.rl_experience:
-                updateUserInfo(6);
+                updateUserInfo(7);
                 break;
             case R.id.rl_superiority:
-                updateUserInfo(7);
+                updateUserInfo(8);
                 break;
             case R.id.btn_upload:
                 uploadUserInfo();
@@ -480,10 +482,10 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
                     case 2:
                         tv_graduate.setText(result);
                         break;
-                    case 6:
+                    case 7:
                         tv_experience.setText(result);
                         break;
-                    case 7:
+                    case 8:
                         tv_superiority.setText(result);
                         break;
                     default:

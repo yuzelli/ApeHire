@@ -42,6 +42,13 @@
     <string name="CompanyShow">公司场景</string>
     <string name="CompanyImgs">公司图片</string>
     <string name="exit">退出</string>
+    <string name="release_job">发布职位</string>
+    <string name="job_name">职位名称</string>
+    <string name="city">城市</string>
+    <string name="jobType">职位类别</string>
+    <string name="jobCharge">薪资水平</string>
+    <string name="JobTechnology">技能要求</string>
+    <string name="jobDetail">职位详情</string>
 
     <string-array name="education_array">
         <item>不限</item>
