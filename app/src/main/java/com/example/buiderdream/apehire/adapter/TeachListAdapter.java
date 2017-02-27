@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
+import com.example.buiderdream.apehire.entity.Teachnology;
 
 import java.io.StreamTokenizer;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 
 public class TeachListAdapter extends BaseAdapter {
-     private  List<String> list = new ArrayList<String>();
+     private  List<Teachnology> list = new ArrayList<Teachnology>();
     private Context context;
     private LayoutInflater inflater;
 
@@ -31,14 +32,14 @@ public class TeachListAdapter extends BaseAdapter {
 
     }
 
-    public List<String> getList() {
+    public List<Teachnology> getList() {
         return list;
     }
 
-    public void setList(List<String> list) {
+    public void setList(List<Teachnology> list) {
         this.list = list;
     }
-    public void addList(List<String> list){
+    public void addList(List<Teachnology> list){
         this.list = list;
 
     }
@@ -70,7 +71,7 @@ public class TeachListAdapter extends BaseAdapter {
         else {
             vh = (ViewHolder) convertView.getTag();
         }
-        vh.title_tv.setText(list.get(position));
+        vh.title_tv.setText(list.get(position).getTitle());
         return convertView;
     }
     class ViewHolder{
