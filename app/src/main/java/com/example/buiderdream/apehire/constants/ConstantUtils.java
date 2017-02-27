@@ -28,6 +28,7 @@ public class ConstantUtils {
     public static final int USEREDIT__GET_DATA = 0x00001008;
     public static final int RELEASE_JOB__GET_DATA = 0x00001009;
     public static final int COMPANYHIRE_FRAGMENT_GET_DATA = 0x00001010;
+    public static final int COLLECTION_HIRE_GET_DATA = 0x00001011;
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息
     public static final int EDIT_USER_INFO_ACTIVITY_CODE = 1000;

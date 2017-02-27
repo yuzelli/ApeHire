@@ -2,23 +2,37 @@ package com.example.buiderdream.apehire.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseFragment;
 import com.example.buiderdream.apehire.bean.CompanyInfo;
 import com.example.buiderdream.apehire.bean.JobAndCompany;
 import com.example.buiderdream.apehire.bean.UserInfo;
+import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.CommonAdapter;
+import com.example.buiderdream.apehire.utils.GsonUtils;
+import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.example.buiderdream.apehire.utils.ViewHolder;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.Request;
 
 /**
  * Created by binglong_li on 2017/2/12.
@@ -32,6 +46,7 @@ public class CollectionHireFragment extends BaseFragment{
     private CommonAdapter<JobAndCompany> adapter;
     private Context context;
     private UserInfo userInfo;
+    private CollectionHireFragHandler handler;
 
     @Nullable
     @Override
@@ -49,8 +64,42 @@ public class CollectionHireFragment extends BaseFragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         jobList = new ArrayList<>();
+        handler = new CollectionHireFragHandler();
+        context = getActivity();
+        userInfo = (UserInfo) SharePreferencesUtil.readObject(getActivity(),ConstantUtils.USER_LOGIN_INFO);
         initView();
+        getUserCollectionHire();
+    }
 
+    /**
+     * 获取职位信息
+     */
+    private void getUserCollectionHire() {
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "findJobCollByUserID");
+        map.put("UserInfoId", userInfo.getUserId()+"");
+
+
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.JOB_COLLECTION_SERVLET, map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                JSONObject object = new JSONObject(result);
+                String flag = object.getString("error");
+                if (flag.equals("ok")) {
+                    jobList = GsonUtils.jsonToArrayList(object.getString("object"),JobAndCompany.class);
+                    handler.sendEmptyMessage(ConstantUtils.COLLECTION_HIRE_GET_DATA);
+                }else {
+                    Toast.makeText(context, "请求数据失败！", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void initView() {
@@ -65,7 +114,9 @@ public class CollectionHireFragment extends BaseFragment{
         adapter = new CommonAdapter<JobAndCompany>(context, jobList, R.layout.fragment_hire_item) {
             @Override
             public void convert(ViewHolder helper, JobAndCompany item) {
-                helper.setImageByUrl2(R.id.job_item_img, item.getCompany().getCompanyHeadImg());
+                if (item.getCompany().getCompanyHeadImg()!=null&&!item.getCompany().getCompanyHeadImg().equals("")) {
+                    helper.setImageByUrl2(R.id.job_item_img, item.getCompany().getCompanyHeadImg());
+                }
                 helper.setText(R.id.job_item_jobName, item.getJobName());
                 helper.setText(R.id.job_item_companyAddress, citys.get(item.getJobCity()));
                 helper.setText(R.id.job_item_companyName, item.getCompany().getCompanyName());
@@ -82,5 +133,19 @@ public class CollectionHireFragment extends BaseFragment{
             parent.removeView(collectionHireFragmentView);
         }
         super.onDestroyView();
+    }
+
+    class CollectionHireFragHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case ConstantUtils.COLLECTION_HIRE_GET_DATA:
+                    updataListView();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

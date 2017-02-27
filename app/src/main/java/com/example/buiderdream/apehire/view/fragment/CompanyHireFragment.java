@@ -99,7 +99,9 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
         adapter = new CommonAdapter<JobAndCompany>(context, jobList, R.layout.fragment_hire_item) {
             @Override
             public void convert(ViewHolder helper, JobAndCompany item) {
-                helper.setImageByUrl2(R.id.job_item_img, item.getCompany().getCompanyHeadImg());
+                if (item.getCompany().getCompanyHeadImg()!=null&&!item.getCompany().getCompanyHeadImg().equals("")) {
+                    helper.setImageByUrl2(R.id.job_item_img, item.getCompany().getCompanyHeadImg());
+                }
                 helper.setText(R.id.job_item_jobName, item.getJobName());
                 helper.setText(R.id.job_item_companyAddress, citys.get(item.getJobCity()));
                 helper.setText(R.id.job_item_companyName, item.getCompany().getCompanyName());
