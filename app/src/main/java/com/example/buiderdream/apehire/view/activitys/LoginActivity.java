@@ -20,10 +20,12 @@ import com.example.buiderdream.apehire.bean.UserInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.JudgeUtils;
+import com.example.buiderdream.apehire.utils.NetworkUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +34,10 @@ import okhttp3.Request;
 
 /**
  * 登陆界面
+ *
  * @author 李秉龙
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener ,RadioGroup.OnCheckedChangeListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private TextView tv_register;     //注册按钮
     private EditText et_userPhone;    //手机输入框
     private EditText et_passWord;    //密码输入框
@@ -47,7 +50,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
 
     private Context context;
-    private boolean userTypeFlag ; // 用户判断用户是否boss,还是worker ；worker==true,默认
+    private boolean userTypeFlag; // 用户判断用户是否boss,还是worker ；worker==true,默认
     private LoginHandler handler;
 
     @Override
@@ -74,6 +77,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         tv_register.setOnClickListener(this);
 
         rg_userType.setOnCheckedChangeListener(this);
+        if (!NetworkUtils.isNetAvailable(this)) {
+            Toast.makeText(this, "五网络链接，请检查网络设置！", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -97,11 +103,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         map.put("type", "login");
         map.put("phone", et_userPhone.getText().toString().trim());
         map.put("passWord", et_passWord.getText().toString().trim());
-        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.USER_SERVLET, map);
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.USER_SERVLET, map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
-                Toast.makeText(context,"请求失败！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -109,27 +115,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 Gson gson = new Gson();
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
-                if (flag.equals("ok")){
+                if (flag.equals("ok")) {
                     userInfo = gson.fromJson(object.getString("object"), UserInfo.class);
                     handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA);
-                }else {
+                } else {
                     handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA_FAILURE);
                 }
             }
         });
 
     }
+
     private void doCompanyLogin() {
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String, String> map = new HashMap<>();
         map.put("type", "login");
         map.put("CompanyNum", et_userPhone.getText().toString().trim());
         map.put("CompanyPassword", et_passWord.getText().toString().trim());
-        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.COMPANY_SERVLET, map);
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.COMPANY_SERVLET, map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
-                Toast.makeText(context,"请求失败！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -137,11 +144,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 Gson gson = new Gson();
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
-                if (flag.equals("ok")){
+                if (flag.equals("ok")) {
                     companyInfo = gson.fromJson(object.getString("object"), CompanyInfo.class);
                     handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA);
-                }else {
-                   handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA_FAILURE);
+                } else {
+                    handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA_FAILURE);
                 }
             }
         });
@@ -156,13 +163,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_login:
-                if (!JudgeUtils.isPhoneEnable(et_userPhone.getText().toString().trim(),et_passWord.getText().toString().trim())){
-                   handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA_FAILURE);
+                if (!JudgeUtils.isPhoneEnable(et_userPhone.getText().toString().trim(), et_passWord.getText().toString().trim())) {
+                    handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA_FAILURE);
                     break;
                 }
-                if (userTypeFlag){
+                if (!NetworkUtils.isNetAvailable(context)) {
+                    Toast.makeText(this, "五网络链接，请检查网络设置！", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                if (userTypeFlag) {
                     doUserLogin();
-                }else {
+                } else {
                     doCompanyLogin();
                 }
                 break;
@@ -175,19 +186,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
 
-
-
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         if (checkedId == radio_boss.getId()) {
             Toast.makeText(context, "radio_boss", Toast.LENGTH_SHORT).show();
             userTypeFlag = false;
-            JudgeUtils.saveUserType(context,userTypeFlag);
+            JudgeUtils.saveUserType(context, userTypeFlag);
         }
         if (checkedId == radio_worker.getId()) {
             Toast.makeText(context, "radio_worker", Toast.LENGTH_SHORT).show();
             userTypeFlag = true;
-            JudgeUtils.saveUserType(context,userTypeFlag);
+            JudgeUtils.saveUserType(context, userTypeFlag);
         }
     }
 
@@ -199,14 +208,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 case ConstantUtils.LOGIN_GET_DATA:
                     if (userTypeFlag) {
                         SharePreferencesUtil.saveObject(context, ConstantUtils.USER_LOGIN_INFO, userInfo);
-                    }else {
+                    } else {
                         SharePreferencesUtil.saveObject(context, ConstantUtils.USER_LOGIN_INFO, companyInfo);
                     }
                     MainActivity.actionStart(context);
                     finish();
                     break;
                 case ConstantUtils.LOGIN_GET_DATA_FAILURE:
-                    Toast.makeText(context,"验证用户失败！请核对您的用户名、密码。",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "验证用户失败！请核对您的用户名、密码。", Toast.LENGTH_SHORT).show();
                     et_userPhone.setText("");
                     et_passWord.setText("");
                     break;

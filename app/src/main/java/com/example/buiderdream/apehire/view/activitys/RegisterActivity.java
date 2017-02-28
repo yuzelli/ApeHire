@@ -18,6 +18,7 @@ import com.example.buiderdream.apehire.bean.UserInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.JudgeUtils;
+import com.example.buiderdream.apehire.utils.NetworkUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.google.gson.Gson;
 import org.json.JSONObject;
@@ -170,6 +171,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 if (!JudgeUtils.isPhoneEnable(et_userPhone.getText().toString().trim(),et_passWord.getText().toString().trim())
                         &&!et_passWord.getText().toString().trim().equals(et_certainPassWord.getText().toString().trim())){
                     errorEdit();
+                    break;
+                }
+                if (!NetworkUtils.isNetAvailable(context)) {
+                    Toast.makeText(this, "五网络链接，请检查网络设置！", Toast.LENGTH_SHORT).show();
                     break;
                 }
                 if (userTypeFlag) {

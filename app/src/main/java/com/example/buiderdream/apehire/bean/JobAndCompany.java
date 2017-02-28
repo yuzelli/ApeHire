@@ -103,7 +103,7 @@ public class JobAndCompany implements Serializable {
         this.jobType = jobType;
     }
 
-    public static class CompanyBean {
+    public static class CompanyBean implements Serializable {
         private String companyAddress;
         private String companyHeadImg;
         private int companyId;

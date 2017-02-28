@@ -33,6 +33,7 @@ import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.ActivityCollectorUtil;
 import com.example.buiderdream.apehire.utils.ImageUtils;
 import com.example.buiderdream.apehire.utils.LxQiniuUploadUtils;
+import com.example.buiderdream.apehire.utils.NetworkUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -297,6 +298,10 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
                 CompanyShowImgActivity.actionStart(context);
                 break;
             case R.id.btn_upload:
+                if (!NetworkUtils.isNetAvailable(context)) {
+                    Toast.makeText(this, "五网络链接，请检查网络设置！", Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 updateCompanyInfo();
                 break;
             default:

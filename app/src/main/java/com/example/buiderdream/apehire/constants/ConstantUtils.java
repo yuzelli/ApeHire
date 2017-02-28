@@ -28,14 +28,22 @@ public class ConstantUtils {
     public static final int USEREDIT__GET_DATA = 0x00001008;
     public static final int RELEASE_JOB__GET_DATA = 0x00001009;
     public static final int COMPANYHIRE_FRAGMENT_GET_DATA = 0x00001010;
+
     public static final int COLLECTION_HIRE_GET_DATA = 0x00001011;
+
+    public static final int TEACHLOGY_GET_DATA = 0x00001012;
+
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息
     public static final int EDIT_USER_INFO_ACTIVITY_CODE = 1000;
     public static final int EDIT_USER_INFO_ACTIVITY_RESULT_CODE = 1001;
 
     //主机地址
+
     public static final String USER_ADDRESS = "http://130.0.1.70:8080/ApeHire/";
+
+//    public static final String USER_ADDRESS = "http://130.0.1.70:8080/ApeHire/";
+
     //用户表：
     public static final String USER_SERVLET = "userInfoServlet";
     //公司
@@ -51,6 +59,12 @@ public class ConstantUtils {
 //    职位
     public static final String  JOB_SERVLET = "jobServlet";
 
+    //v2ex
+    public static  final  String V2EX_ARTICLE = "https://www.v2ex.com";
+    //v2ex文章标题
+    public static  final  String V2EX_NODE = "/api/topics/show.json";
+
+
 
 //    SharedPreferences
     //登录用户信息
@@ -63,6 +77,13 @@ public class ConstantUtils {
     public static final String QN_IMG_ADDRESS = "http://ojterpx44.bkt.clouddn.com/";
     //用户头像存放文件名
     public static final String AVATAR_FILE_PATH = "/userHeadImg.jpg";
+
+    //有盟
+    public static final String YOUMENG_APPKEY = "58b443eef5ade43938000d69";
+
+    //acache
+    public static final String COMPANY_HIRE_FRAGMENT_ACACHE = "CollectionHireFragment_DATA";
+    public static final String BOSS_MINE_FRAGEMENT_ACACHE = "BossMineFragment_DATA";
 
 
 }

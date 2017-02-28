@@ -19,8 +19,10 @@ import com.example.buiderdream.apehire.bean.CompanyInfo;
 import com.example.buiderdream.apehire.bean.JobAndCompany;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
+import com.example.buiderdream.apehire.utils.ACache;
 import com.example.buiderdream.apehire.utils.CommonAdapter;
 import com.example.buiderdream.apehire.utils.GsonUtils;
+import com.example.buiderdream.apehire.utils.NetworkUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.example.buiderdream.apehire.utils.ViewHolder;
 import com.example.buiderdream.apehire.view.activitys.MainActivity;
@@ -81,13 +83,23 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
         lv_hire = (ListView) compangyHireFragmentView.findViewById(R.id.lv_hire);
         btn_releaseHire = (Button) compangyHireFragmentView.findViewById(R.id.btn_releaseHire);
         btn_releaseHire.setOnClickListener(this);
-        jobList = new ArrayList<>();
+        String result = ACache.get(context).getAsString(ConstantUtils.COMPANY_HIRE_FRAGMENT_ACACHE);
+
+        if (result!=null&&!result.equals("")) {
+            jobList = GsonUtils.jsonToArrayList(result,JobAndCompany.class);
+
+        }else {
+            jobList = new ArrayList<>();
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getCompanyJob();
+        if (NetworkUtils.isNetAvailable(context)) {
+            getCompanyJob();
+        }
+
     }
 
     /**
@@ -135,6 +147,9 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     jobList = GsonUtils.jsonToArrayList(object.getString("object"),JobAndCompany.class);
+                    ACache aCache = ACache.get(context);
+                    aCache.put(ConstantUtils.COMPANY_HIRE_FRAGMENT_ACACHE,object.getString("object"));
+
                     handler.sendEmptyMessage(ConstantUtils.COMPANYHIRE_FRAGMENT_GET_DATA);
                 }else {
                     Toast.makeText(context, "请求数据失败！", Toast.LENGTH_SHORT).show();
@@ -170,6 +185,7 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
             super.handleMessage(msg);
             switch (msg.what) {
                 case ConstantUtils.COMPANYHIRE_FRAGMENT_GET_DATA:
+
                     updataListView();
                     break;
                 default:

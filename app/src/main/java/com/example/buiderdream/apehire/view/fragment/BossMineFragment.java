@@ -27,9 +27,11 @@ import com.example.buiderdream.apehire.adapter.MineFragmentAdapter;
 import com.example.buiderdream.apehire.base.BaseFragment;
 import com.example.buiderdream.apehire.bean.CompanyInfo;
 import com.example.buiderdream.apehire.bean.CompanyPics;
+import com.example.buiderdream.apehire.bean.JobAndCompany;
 import com.example.buiderdream.apehire.bean.UserInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
+import com.example.buiderdream.apehire.utils.ACache;
 import com.example.buiderdream.apehire.utils.DensityUtils;
 import com.example.buiderdream.apehire.utils.GsonUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
@@ -98,6 +100,15 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
+        String result = ACache.get(context).getAsString(ConstantUtils.BOSS_MINE_FRAGEMENT_ACACHE);
+
+        if (result!=null&&!result.equals("")) {
+            companyPics = GsonUtils.jsonToArrayList(result,CompanyPics.class);
+
+        }else {
+            companyPics = new ArrayList<>();
+        }
+        updataBanner();
     }
 
     @Override
@@ -105,6 +116,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         super.onResume();
         updataView();
         getCompanyShowPics();
+
     }
 
     /**
@@ -293,6 +305,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     companyPics = GsonUtils.jsonToArrayList(object.getString("object"), CompanyPics.class);
+                    ACache.get(getActivity()).put(ConstantUtils.BOSS_MINE_FRAGEMENT_ACACHE,object.getString("object"));
                     handler.sendEmptyMessage(ConstantUtils.COMPANYS_SHOW_PICS_GET_DATA);
                 } else {
                     Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
