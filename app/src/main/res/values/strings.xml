@@ -49,6 +49,9 @@
     <string name="jobCharge">薪资水平</string>
     <string name="JobTechnology">技能要求</string>
     <string name="jobDetail">职位详情</string>
+    <string name="push">推送</string>
+    <string name="userjob">投的职位</string>
+    <string name="getResume">收到的简历</string>
 
     <string-array name="education_array">
         <item>不限</item>

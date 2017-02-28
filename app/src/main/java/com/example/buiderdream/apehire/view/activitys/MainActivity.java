@@ -36,9 +36,12 @@ public class MainActivity extends BaseActivity {
     private Class userFragmentArray[] = {HireFragment.class, TechnologyFragment.class, MessageFragment.class, UserMineFragment.class};
     //定义数组来存放boss的Fragment界面
     private Class bossFragmentArray[] = {HireFragment.class, TechnologyFragment.class, MessageFragment.class, BossMineFragment.class};
-    //定义数组来存放的按钮图片
-    private int tabImageViewArray[] = {R.drawable.tab_hire_btn, R.drawable.tab_hire_btn,
-            R.drawable.tab_hire_btn, R.drawable.tab_hire_btn};
+    //定义数组来存放boss的按钮图片
+    private int tabImageViewArray[] = {R.drawable.tab_hire_btn, R.drawable.tab_tech_btn,
+            R.drawable.tab_mess_btn, R.drawable.tab_boss_btn};
+    //定义数组来存放boss的按钮图片
+    private int tabImageViewArray2[] = {R.drawable.tab_hire_btn, R.drawable.tab_tech_btn,
+            R.drawable.tab_mess_btn, R.drawable.tab_user_btn};
     //Tab选项卡的文字
     private String tabtTextViewArray[] = {"招聘", "技术", "消息", "我的"};
 
@@ -85,12 +88,22 @@ public class MainActivity extends BaseActivity {
      * 给Tab按钮设置图标和文字
      */
     private View getTabItemView(int index) {
-        View view = layoutInflater.inflate(R.layout.main_tab_select_view, null);
-        ImageView imageView = (ImageView) view.findViewById(R.id.img_tabIcon);
-        imageView.setImageResource(tabImageViewArray[index]);
-        TextView textView = (TextView) view.findViewById(R.id.tv_tabText);
-        textView.setText(tabtTextViewArray[index]);
-        return view;
+        if (!JudgeUtils.getUserType(getApplication())) {
+            View view = layoutInflater.inflate(R.layout.main_tab_select_view, null);
+            ImageView imageView = (ImageView) view.findViewById(R.id.img_tabIcon);
+            imageView.setImageResource(tabImageViewArray[index]);
+            TextView textView = (TextView) view.findViewById(R.id.tv_tabText);
+            textView.setText(tabtTextViewArray[index]);
+            return view;
+        }else {
+            View view = layoutInflater.inflate(R.layout.main_tab_select_view, null);
+            ImageView imageView = (ImageView) view.findViewById(R.id.img_tabIcon);
+            imageView.setImageResource(tabImageViewArray2[index]);
+            TextView textView = (TextView) view.findViewById(R.id.tv_tabText);
+            textView.setText(tabtTextViewArray[index]);
+            return view;
+        }
+
     }
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, MainActivity.class);

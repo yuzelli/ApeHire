@@ -32,6 +32,7 @@ public class ConstantUtils {
     public static final int COLLECTION_HIRE_GET_DATA = 0x00001011;
 
     public static final int TEACHLOGY_GET_DATA = 0x00001012;
+    public static final int COLLECTION_ARTICLE_GET_DATA = 0x00001012;
 
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息
@@ -83,6 +84,7 @@ public class ConstantUtils {
 
     //acache
     public static final String COMPANY_HIRE_FRAGMENT_ACACHE = "CollectionHireFragment_DATA";
+    public static final String COMPANY_ARTICLE_FRAGMENT_ACACHE = "CollectionArticleFragment_DATA";
     public static final String BOSS_MINE_FRAGEMENT_ACACHE = "BossMineFragment_DATA";
 
 
