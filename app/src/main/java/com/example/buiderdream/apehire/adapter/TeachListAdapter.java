@@ -5,13 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
-import com.example.buiderdream.apehire.entity.Teachnology;
+import com.example.buiderdream.apehire.entity.Technology;
 
-import java.io.StreamTokenizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +18,7 @@ import java.util.List;
  */
 
 public class TeachListAdapter extends BaseAdapter {
-    private  List<Teachnology> list = new ArrayList<Teachnology>();
+    private  List<Technology> list = new ArrayList<Technology>();
     private Context context;
     private LayoutInflater inflater;
 
@@ -32,14 +30,14 @@ public class TeachListAdapter extends BaseAdapter {
 
     }
 
-    public List<Teachnology> getList() {
+    public List<Technology> getList() {
         return list;
     }
 
-    public void setList(List<Teachnology> list) {
+    public void setList(List<Technology> list) {
         this.list = list;
     }
-    public void addList(List<Teachnology> list){
+    public void addList(List<Technology> list){
         this.list = list;
 
     }

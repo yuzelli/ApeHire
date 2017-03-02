@@ -1,10 +1,12 @@
 package com.example.buiderdream.apehire.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Admin on 2017/2/27.
  */
 
-public class Teachnology {
+public class Technology implements Serializable {
 
     /**
      * id : 343624
@@ -49,7 +51,7 @@ public class Teachnology {
      * avatar_large : //v2ex.assets.uxengine.net/navatar/d67d/8ab4/39_large.png?m=1484191305
      */
 
-    private NodeBean node;
+    private NodeBean node ;
     private int created;
     private int last_modified;
     private int last_touched;
@@ -142,7 +144,7 @@ public class Teachnology {
         this.last_touched = last_touched;
     }
 
-    public static class MemberBean {
+    public static class MemberBean implements  Serializable{
         private int id;
         private String username;
         private String tagline;
@@ -199,7 +201,7 @@ public class Teachnology {
         }
     }
 
-    public static class NodeBean {
+    public static class NodeBean implements  Serializable {
         private int id;
         private String name;
         private String title;

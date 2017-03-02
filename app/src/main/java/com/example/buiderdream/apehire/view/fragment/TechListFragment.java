@@ -9,19 +9,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
-import com.example.buiderdream.apehire.adapter.TeachListAdapter;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
-import com.example.buiderdream.apehire.entity.Teachnology;
+import com.example.buiderdream.apehire.entity.Technology;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.CommonAdapter;
 import com.example.buiderdream.apehire.utils.GsonUtils;
 import com.example.buiderdream.apehire.utils.ViewHolder;
-
-import org.json.JSONObject;
+import com.example.buiderdream.apehire.view.activitys.TechnologyActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,10 +37,10 @@ import okhttp3.Request;
 public class TechListFragment extends Fragment {
     private  View techlistFragView;
     private ListView lv;
-    private CommonAdapter<Teachnology> adapter;
+    private CommonAdapter<Technology> adapter;
     private  String type;
     private Context context;
-    private List<Teachnology> list;
+    private List<Technology> list;
     private  TeachListFragmentHandler handler;
     @Nullable
     @Override
@@ -65,17 +64,16 @@ public class TechListFragment extends Fragment {
             handler = new TeachListFragmentHandler();
             initView();
             addData();
-           // upDataList();
-            list = new ArrayList<Teachnology>();
+            list = new ArrayList<Technology>();
         }
     }
 
     private void upDataList() {
         lv.setAdapter(adapter);
 
-        adapter = new CommonAdapter<Teachnology>(context,list,R.layout.item_tech_arti) {
+        adapter = new CommonAdapter<Technology>(context,list,R.layout.item_tech_arti) {
             @Override
-            public void convert(ViewHolder helper, Teachnology item) {
+            public void convert(ViewHolder helper, Technology item) {
                 if (item.getMember().getAvatar_large()!=null){
                     helper.setImageByUrl2(R.id.img_userHeader,"http:"+item.getMember().getAvatar_large());
                 }
@@ -86,6 +84,12 @@ public class TechListFragment extends Fragment {
             }
         };
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TechnologyActivity.actionStart(getActivity(),list.get(position));
+            }
+        });
     }
 
     private void addData() {
@@ -103,7 +107,7 @@ public class TechListFragment extends Fragment {
 
             @Override
             public void requestSuccess(String result) throws Exception {
-                list = GsonUtils.jsonToArrayList(result,Teachnology.class);
+                list = GsonUtils.jsonToArrayList(result,Technology.class);
                 handler.sendEmptyMessage(ConstantUtils.TEACHLOGY_GET_DATA);
             }
         });
