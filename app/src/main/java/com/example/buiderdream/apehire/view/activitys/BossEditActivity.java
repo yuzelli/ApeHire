@@ -146,8 +146,8 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void updataView() {
-        final List<String> educationList = new ArrayList<>(Arrays.asList("0-20", "20-99", "100-499", "500-999", "1000+"));
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(BossEditActivity.this, android.R.layout.simple_spinner_dropdown_item, educationList);
+        final List<String> scaleList = new ArrayList<>(Arrays.asList("0-20", "20-99", "100-499", "500-999", "1000+"));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(BossEditActivity.this, android.R.layout.simple_spinner_dropdown_item, scaleList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_scale.setAdapter(adapter);
         spinner_scale.setSelection(company.getCompanyScale());

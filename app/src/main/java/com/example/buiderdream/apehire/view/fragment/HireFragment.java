@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseFragment;
-import com.example.buiderdream.apehire.entity.JobInfo;
+import com.example.buiderdream.apehire.bean.JobInfo;
 import com.example.buiderdream.apehire.utils.CommonAdapter;
 import com.example.buiderdream.apehire.utils.ViewHolder;
 import com.example.buiderdream.apehire.view.activitys.JobActivity;

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/img_userHeader"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/imgContentDescription"
+            android:src="@drawable/icon_head_200px" />
+
+        <TextView
+            android:id="@+id/tv_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img_userHeader"
+            android:layout_marginStart="24dp"
+            android:layout_toEndOf="@+id/img_userHeader"
+            android:layout_toStartOf="@+id/v_line"
+            android:lines="1"
+            android:text="李秉龙"
+            android:textSize="@dimen/order_size" />
+
+        <TextView
+            android:id="@+id/tv_degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tv_userName"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="25dp"
+            android:layout_toStartOf="@+id/v_line"
+            android:lines="1"
+            android:text="本科"
+            android:textSize="@dimen/order_size" />
+
+
+        <TextView
+            android:id="@+id/tv_expactMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img_userHeader"
+            android:layout_alignStart="@+id/tv_userName"
+            android:layout_marginEnd="25dp"
+            android:layout_toEndOf="@+id/img_userHeader"
+            android:layout_toStartOf="@+id/v_line"
+            android:lines="1"
+            android:text="10-15k"
+            android:textSize="@dimen/order_size" />
+
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/rl_job"
+            android:background="@color/darkgray" />
+
+        <RelativeLayout
+            android:id="@+id/rl_job"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:id="@+id/tv_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="应聘职位" />
+
+            <TextView
+                android:id="@+id/tv_jobName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:text="android工程师" />
+
+            <TextView
+                android:id="@+id/tv_jobType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/tv_jobName"
+                android:layout_marginBottom="10dp"
+                android:text="android工程师" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

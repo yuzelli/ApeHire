@@ -3,7 +3,6 @@
     package="com.example.buiderdream.apehire"
     android:installLocation="preferExternal">
 
-
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 判断网络权限 -->
@@ -14,8 +13,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
-
     <application
         android:name=".app.BaseApplication"
         android:allowBackup="true"
@@ -23,9 +20,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activitys.MainActivity">
-
-        </activity>
+        <activity android:name=".view.activitys.MainActivity"></activity>
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".view.activitys.LoginActivity" />
         <activity android:name=".view.activitys.RegisterActivity" />
@@ -45,9 +40,8 @@
         <activity android:name=".view.activitys.InputInfoActivity" />
         <activity android:name=".view.activitys.PerfectRegCompActivity" />
         <activity android:name=".view.activitys.CompanyShowImgActivity" />
-        <activity android:name=".view.activitys.ProcessActivity"></activity>
-
-
+        <activity android:name=".view.activitys.ProcessActivity" />
+        <activity android:name=".view.activitys.UserActivity"></activity>
     </application>
 
 </manifest>

@@ -1,19 +1,19 @@
 package com.example.buiderdream.apehire.view.activitys;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
-import com.example.buiderdream.apehire.entity.JobInfo;
+import com.example.buiderdream.apehire.base.BaseActivity;
+import com.example.buiderdream.apehire.bean.JobInfo;
 
 /**
  * 职位详情页面
  * @author
  */
-public class JobActivity extends AppCompatActivity {
+public class JobActivity extends BaseActivity {
     TextView jd_title,jd_company_name,jd_company_name2,jd_company_address,jd_company_address2,jd_company_scale,jd_company_detail,jd_detail,jd_charge,jd_technology;
     JobInfo jobInfo;//职位详情
     @Override

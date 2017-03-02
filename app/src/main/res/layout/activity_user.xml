@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_user"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.buiderdream.apehire.view.activitys.UserActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/imgContentDescription"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_left_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/BossInfo"
+            android:textSize="@dimen/title_font" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/darkgray" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_top">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_job"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2.18"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_jobType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tv_jobName"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/order_size"
+                    android:text="kaifa" />
+
+                <TextView
+                    android:id="@+id/tv_jobAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tv_jobType"
+                    android:layout_below="@+id/tv_jobType"
+                    android:layout_marginTop="10dp"
+                    android:textSize="@dimen/order_size"
+                    android:layout_marginEnd="20dp"
+                    android:text="北京市海淀区" />
+
+                <TextView
+                    android:id="@+id/tv_jobName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_jobType"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="11dp"
+                    android:layout_marginStart="20dp"
+                    android:text="Android工程师"
+                    android:textColor="@color/blueviolet"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_monney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="8K~12K"
+                    android:textColor="@color/hotpink"
+                    android:textSize="18sp"
+                    android:layout_alignTop="@+id/tv_jobName"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_userInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_job"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
+
+
+                <TextView
+                    android:id="@+id/tv_getUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="13dp"
+                    android:text="求职者"
+                    android:textColor="@color/blueviolet" />
+
+                <View
+                    android:id="@+id/v_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignStart="@+id/tv_getUser"
+                    android:layout_below="@id/tv_getUser"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/lightgray" />
+
+                <ImageView
+                    android:id="@+id/img_userHeader"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/v_line"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/imgContentDescription"
+                    android:src="@drawable/icon_head_200px" />
+
+                <TextView
+                    android:id="@+id/tv_userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/img_userHeader"
+                    android:layout_marginStart="24dp"
+                    android:layout_toEndOf="@+id/img_userHeader"
+                    android:lines="1"
+                    android:text="李秉龙"
+                    android:textSize="@dimen/order_size" />
+
+                <TextView
+                    android:id="@+id/tv_degree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_expact"
+                    android:layout_alignStart="@+id/tv_userName"
+                    android:layout_below="@+id/tv_userName"
+                    android:layout_marginEnd="25dp"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="本科"
+                    android:textSize="@dimen/order_size" />
+
+
+                <TextView
+                    android:id="@+id/tv_expact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/img_userHeader"
+                    android:layout_alignStart="@+id/tv_userName"
+
+                    android:layout_toEndOf="@+id/img_userHeader"
+                    android:lines="1"
+                    android:text="@string/Salary"
+                    android:textSize="@dimen/order_size" />
+
+                <TextView
+                    android:id="@+id/tv_expactMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/img_userHeader"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/tv_expact"
+                    android:lines="1"
+                    android:text="10-15k"
+                    android:textSize="@dimen/order_size" />
+
+                <TextView
+                    android:id="@+id/tv_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/order_size"
+                    android:text="@string/man"
+                    android:layout_marginStart="22dp"
+                    android:layout_alignBaseline="@+id/tv_userName"
+                    android:layout_alignBottom="@+id/tv_userName"
+                    android:layout_toEndOf="@+id/tv_expactMoney" />
+                <TextView
+                    android:id="@+id/tv_school"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/order_size"
+                    android:text="shanxinoyedaxue"
+                    android:layout_marginStart="22dp"
+                    android:layout_alignBaseline="@+id/tv_degree"
+                    android:layout_alignBottom="@+id/tv_degree"
+                    android:layout_alignEnd="@+id/v_line"
+                    android:layout_toEndOf="@+id/tv_expactMoney" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_experience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_userInfo"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
+                <TextView
+                    android:id="@+id/tv_experence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/Experience"
+                    android:textColor="@color/blueviolet" />
+
+                <View
+                    android:id="@+id/v_line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignStart="@+id/tv_experence"
+                    android:layout_below="@id/tv_experence"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/lightgray"/>
+                <TextView
+                    android:id="@+id/tv_userExperence"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/v_line1"
+                    android:layout_alignStart="@+id/v_line1"
+                    android:layout_alignEnd="@+id/v_line1"
+                    android:textSize="@dimen/order_size"
+                    android:layout_marginTop="10dp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_experience"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
+                <TextView
+                    android:id="@+id/tv_advantage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/Superiority"
+                    android:textColor="@color/blueviolet" />
+
+                <View
+                    android:id="@+id/v_line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignStart="@+id/tv_advantage"
+                    android:layout_below="@id/tv_advantage"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/lightgray"/>
+                <TextView
+                    android:id="@+id/tv_userAdvantage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/v_line2"
+                    android:layout_alignStart="@+id/v_line2"
+                    android:layout_alignEnd="@+id/v_line2"
+                    android:textSize="@dimen/order_size"
+                    android:layout_marginTop="10dp"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

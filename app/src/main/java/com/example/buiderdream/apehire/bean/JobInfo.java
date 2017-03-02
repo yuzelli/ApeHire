@@ -1,4 +1,4 @@
-package com.example.buiderdream.apehire.entity;
+package com.example.buiderdream.apehire.bean;
 
 import java.io.Serializable;
 
