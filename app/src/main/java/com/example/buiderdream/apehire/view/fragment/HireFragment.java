@@ -3,6 +3,7 @@ package com.example.buiderdream.apehire.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,13 +19,27 @@ import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseFragment;
+import com.example.buiderdream.apehire.bean.JobAndCompany;
 import com.example.buiderdream.apehire.bean.JobInfo;
+import com.example.buiderdream.apehire.bean.UserInfo;
+import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.CommonAdapter;
 import com.example.buiderdream.apehire.utils.ViewHolder;
 import com.example.buiderdream.apehire.view.activitys.JobActivity;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.Request;
 
 /**
  * Created by Administrator on 2016/12/4.
@@ -35,10 +50,11 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
     TextView job_city,job_type,job_charge,cityMark;
     LinearLayout jobSelectLayout;
     ListView jobListView;
-    List<JobInfo> jobInfolist;
-    CommonAdapter<JobInfo> jobInfoAdapter;
+    List<JobAndCompany> jobInfolist;
+    CommonAdapter<JobAndCompany> jobInfoAdapter;
     PopupWindow jobCityWindow,jobTypeWindow,jobChargeWindow;
     View jobCityView,jobTypeView,jobChargeView;
+    String type_city = "",type_job = "",type_charge = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         if (hireFragmentView==null){
@@ -110,7 +126,12 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         cityGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //doSearchJobBy(1,i);
+                if (i==0){
+                    type_city="";
+                }else {
+                    type_city = i + "";
+                }
+                doSearchJobBy();
                 if (i!=0){
                     cityMark.setVisibility(View.VISIBLE);
                     cityMark.setText(list.get(i));
@@ -140,7 +161,12 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         type_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //doSearchJobBy(2,i);
+                if (i==0){
+                    type_job="";
+                }else {
+                    type_job = i + "";
+                }
+                doSearchJobBy();
                 Toast.makeText(getActivity(), i+"", Toast.LENGTH_SHORT).show();
                 if (jobTypeWindow.isShowing()) {
                     jobTypeWindow.dismiss();
@@ -164,7 +190,12 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         charge_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //doSearchJobBy(3,i);
+                if (i==0){
+                    type_charge="";
+                }else{
+                    type_charge = i+"";
+                }
+                doSearchJobBy();
                 Toast.makeText(getActivity(), i+"", Toast.LENGTH_SHORT).show();
                 if (jobChargeWindow.isShowing()) {
                     jobChargeWindow.dismiss();
@@ -173,43 +204,73 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         });
     }
     //按照筛选结果查找职位
-    private void doSearchJobBy(int num,int i) {
-        switch (num){
-            case 1://
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            default:
-                break;
-        }
+    private void doSearchJobBy() {
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String,String> map = new HashMap<>();
+        if (type_city!=""||type_city.length()!=0)
+            map.put("JobCity",type_city);
+        if (type_job!=""||type_job.length()!=0)
+            map.put("JobType",type_job);
+        if (type_charge!=""||type_charge.length()!=0)
+            map.put("JobCharge",type_charge);
+        String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.JOB_SERVLET,map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
+                Log.i("asdasdasdadsas",e.getMessage());
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                Gson gson = new Gson();
+                JSONObject object = new JSONObject(result);
+                String flag = object.getString("error");
+                if (flag.equals("ok")) {
+                    JSONArray array = object.getJSONArray("object");
+                    for (int i = 0;i<array.length();i++){
+                        JobAndCompany jac = gson.fromJson(array.getJSONObject(i).toString(),JobAndCompany.class);
+                        jobInfolist.add(jac);
+                    }
+
+                }
+            }
+        });
+
     }
 
     private void initData() {
         jobInfolist = new ArrayList<>();
 
-        jobInfolist.add(new JobInfo(1,"Android工程师","负责公司已有Android项目的开发和维护",1,1,2,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(2,"iOS工程师","负责公司已有iOS项目的开发和维护",1,2,3,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(2,"iOS工程师","负责公司已有iOS项目的开发和维护",1,2,4,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(2,"iOS工程师","负责公司已有iOS项目的开发和维护",1,2,1,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(1,"Android工程师","负责公司已有Android项目的开发和维护",1,1,2,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(2,"iOS工程师","负责公司已有iOS项目的开发和维护",1,2,3,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(2,"iOS工程师","负责公司已有iOS项目的开发和维护",1,2,4,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(2,"iOS工程师","负责公司已有iOS项目的开发和维护",1,2,1,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(1,"Android工程师","负责公司已有Android项目的开发和维护",1,1,2,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(2,"iOS工程师","负责公司已有iOS项目的开发和维护",1,2,3,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(2,"iOS工程师","负责公司已有iOS项目的开发和维护",1,2,4,1,"Android常用框架，熟练使用Git等版本控制工具"));
-        jobInfolist.add(new JobInfo(2,"iOS工程师","负责公司已有iOS项目的开发和维护",1,2,1,1,"Android常用框架，熟练使用Git等版本控制工具"));
+        JobAndCompany j1 = new JobAndCompany();
+        j1.setJobName("假数据1");
+        j1.setJobCharge(3);
+        j1.setJobCity(2);
+        JobAndCompany.CompanyBean comp = new JobAndCompany.CompanyBean();
+        comp.setCompanyName("连不上服务器啊");
+        comp.setCompanyAddress("又想看界面啊");
+        comp.setCompanyIntroduce("好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊");
+        comp.setCompanyScale(2);
+        j1.setCompany(comp);
+        jobInfolist.add(j1);
 
-        jobInfoAdapter = new CommonAdapter<JobInfo>(getActivity(),jobInfolist,R.layout.fragment_hire_item) {
+        doSearchJobBy();
+        initAdapter();
+    }
+
+    private void initAdapter() {
+        jobInfoAdapter = new CommonAdapter<JobAndCompany>(getActivity(),jobInfolist, R.layout.fragment_hire_item) {
             @Override
-            public void convert(ViewHolder helper, JobInfo item) {
+            public void convert(ViewHolder helper, JobAndCompany item) {
                 helper.setText(R.id.job_item_jobName,item.getJobName());
                 helper.setText(R.id.job_item_jobCharge,item.getJobCharge()>2?(item.getJobCharge()>3?(item.getJobCharge()>4?"15K+":"8K~15K"):"5K~8k"):"5K以下");
+                helper.setText(R.id.job_item_companyName,item.getCompany().getCompanyName());
+                helper.setText(R.id.job_item_companyAddress,item.getCompany().getCompanyAddress());
+                helper.setImageByUrl(R.id.job_item_img,item.getCompany().getCompanyHeadImg());
             }
         };
         jobListView.setAdapter(jobInfoAdapter);
+        jobInfoAdapter.notifyDataSetChanged();
     }
 
     @Override

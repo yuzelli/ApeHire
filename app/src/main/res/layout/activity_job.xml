@@ -8,9 +8,9 @@
     <RelativeLayout
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
         android:layout_alignParentStart="true"
-        android:background="@color/blueviolet">
+        android:background="#7cdcd1"
+        android:layout_height="44dp">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,15 +25,25 @@
             android:textSize="18sp"
             android:textColor="@color/black"
             android:layout_centerInParent="true"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/job_like_normal"
+            android:layout_marginRight="20dp"
+            android:id="@+id/job_like_click"/>
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:layout_below="@+id/titleLayout">
+        android:layout_below="@+id/titleLayout"
+        android:id="@+id/middleLayout">
 
 
         <ScrollView
@@ -79,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/jd_title"
-                        android:textColor="@color/blueviolet"
+                        android:textColor="#2eafa0"
                         android:textSize="16sp"
                         android:layout_marginStart="20dp"
                         android:layout_above="@+id/jd_company_name"
@@ -114,7 +124,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="13dp"
                         android:id="@+id/textView"
-                        android:textColor="@color/blueviolet"
+                        android:textColor="#2eafa0"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentStart="true" />
                     <ImageView
@@ -155,7 +165,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="13dp"
                         android:id="@+id/textView2"
-                        android:textColor="@color/blueviolet"
+                        android:textColor="#2eafa0"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentStart="true" />
                     <ImageView
@@ -262,4 +272,17 @@
         </ScrollView>
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2eafa0"
+        android:text="立即投递"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:id="@+id/sendJobReq"
+        android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>
