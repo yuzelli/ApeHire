@@ -84,10 +84,8 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
         btn_releaseHire = (Button) compangyHireFragmentView.findViewById(R.id.btn_releaseHire);
         btn_releaseHire.setOnClickListener(this);
         String result = ACache.get(context).getAsString(ConstantUtils.COMPANY_HIRE_FRAGMENT_ACACHE);
-
         if (result!=null&&!result.equals("")) {
             jobList = GsonUtils.jsonToArrayList(result,JobAndCompany.class);
-
         }else {
             jobList = new ArrayList<>();
         }
@@ -111,7 +109,7 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
         adapter = new CommonAdapter<JobAndCompany>(context, jobList, R.layout.fragment_hire_item) {
             @Override
             public void convert(ViewHolder helper, JobAndCompany item) {
-                if (item.getCompany().getCompanyHeadImg()!=null&&!item.getCompany().getCompanyHeadImg().equals("")) {
+                if (item.getCompany()!=null&&item.getCompany().getCompanyHeadImg()!=null&&!item.getCompany().getCompanyHeadImg().equals("")) {
                     helper.setImageByUrl2(R.id.job_item_img, item.getCompany().getCompanyHeadImg());
                 }
                 helper.setText(R.id.job_item_jobName, item.getJobName());

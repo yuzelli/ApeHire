@@ -104,11 +104,11 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
 
         if (result!=null&&!result.equals("")) {
             companyPics = GsonUtils.jsonToArrayList(result,CompanyPics.class);
-
+            updataBanner();
         }else {
             companyPics = new ArrayList<>();
         }
-        updataBanner();
+
     }
 
     @Override

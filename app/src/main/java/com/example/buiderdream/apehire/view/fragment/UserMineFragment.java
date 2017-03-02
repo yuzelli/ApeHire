@@ -36,6 +36,7 @@ public class UserMineFragment extends BaseFragment implements View.OnClickListen
     private RoundImageView img_userHeader;   //用户头像
     private TextView tv_userName;   //用户名
     private TextView tv_education;   //用户学历
+    private TextView tv_school;   //用户学校
     private TextView tv_edit;   //编辑
     private PagerSlidingTabStrip psts_tab;
     private ViewPager vp_fragment;
@@ -86,6 +87,7 @@ public class UserMineFragment extends BaseFragment implements View.OnClickListen
                 .build();
         ImageLoader.getInstance().displayImage(userInfo.getUserHeadImg(), img_userHeader, options);
         tv_userName.setText(userInfo.getUserTrueName());
+        tv_school.setText(userInfo.getUserSchool());
         String [] educations = {"大专","本科","硕士","博士"};
         tv_education.setText(educations[userInfo.getUserDegree()]);
     }
@@ -97,6 +99,7 @@ public class UserMineFragment extends BaseFragment implements View.OnClickListen
         img_userHeader = (RoundImageView) userMineFragmentView.findViewById(R.id.img_userHeader);
         tv_userName  = (TextView) userMineFragmentView.findViewById(R.id.tv_userName);
         tv_education  = (TextView) userMineFragmentView.findViewById(R.id.tv_education);
+        tv_school  = (TextView) userMineFragmentView.findViewById(R.id.tv_school);
         tv_edit  = (TextView) userMineFragmentView.findViewById(R.id.tv_edit);
         psts_tab = (PagerSlidingTabStrip) userMineFragmentView.findViewById(R.id.psts_tab);
         vp_fragment = (ViewPager) userMineFragmentView.findViewById(R.id.vp_fragment);

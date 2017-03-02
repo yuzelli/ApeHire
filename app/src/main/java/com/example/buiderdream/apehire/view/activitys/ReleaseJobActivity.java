@@ -20,15 +20,13 @@ import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
 import com.example.buiderdream.apehire.bean.CompanyInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
-import com.example.buiderdream.apehire.entity.JobInfo;
+import com.example.buiderdream.apehire.bean.JobInfo;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
-import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

@@ -32,6 +32,9 @@ public class ConstantUtils {
     public static final int COLLECTION_HIRE_GET_DATA = 0x00001011;
 
     public static final int TEACHLOGY_GET_DATA = 0x00001012;
+    public static final int COLLECTION_ARTICLE_GET_DATA = 0x00001013;
+    public static final int BOSS_GET_RESUME_GET_DATA = 0x00001014;
+    public static final int USER_JOB_GET_DATA = 0x00001014;
 
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息
@@ -56,6 +59,8 @@ public class ConstantUtils {
     public static final String JOB_COLLECTION_SERVLET = "jobCollectionServlet";
     //收藏文章
     public static final String ARTICLE_COLLECTION_SERVLET = "articleCollectionServlet";
+    //收藏文章
+    public static final String COMPANY_RESUM_SERVLET = "companyResumeServlet";
 //    职位
     public static final String  JOB_SERVLET = "jobServlet";
 
@@ -83,7 +88,10 @@ public class ConstantUtils {
 
     //acache
     public static final String COMPANY_HIRE_FRAGMENT_ACACHE = "CollectionHireFragment_DATA";
+    public static final String COMPANY_ARTICLE_FRAGMENT_ACACHE = "CollectionArticleFragment_DATA";
     public static final String BOSS_MINE_FRAGEMENT_ACACHE = "BossMineFragment_DATA";
+    public static final String BOSS_GET_RESUME_ACACHE = "BossGetResumeFragment_DATA";
+    public static final String USER_JOB_FRAGMENT_ACACHE = "UserJobFragment_DATA";
 
 
 }
