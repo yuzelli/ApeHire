@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,6 +72,19 @@ public class CompanyInfoActivity extends BaseActivity {
         comp.setCompanyScale(2);
         j1.setCompany(comp);
         jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+
 
         getAllJobByComp();
         initAdapter();
@@ -103,7 +118,6 @@ public class CompanyInfoActivity extends BaseActivity {
                         JobAndCompany jac = gson.fromJson(array.getJSONObject(i).toString(),JobAndCompany.class);
                         jobInfolist.add(jac);
                     }
-
                 }
             }
         });
@@ -122,8 +136,32 @@ public class CompanyInfoActivity extends BaseActivity {
         };
         allJobOfCompLV.setAdapter(jobInfoAdapter);
         jobInfoAdapter.notifyDataSetChanged();
+        allJobOfCompLV.setFocusable(false);
+        setListViewHeightBasedOnChildren(allJobOfCompLV);
     }
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        // 获取ListView对应的Adapter
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
 
+        int totalHeight = 0;
+        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
+            // listAdapter.getCount()返回数据项的数目
+            View listItem = listAdapter.getView(i, null, listView);
+            // 计算子项View 的宽高
+            listItem.measure(0, 0);
+            // 统计所有子项的总高度
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight+ (listView.getDividerHeight() * (listAdapter.getCount() - 1))+50;
+        // listView.getDividerHeight()获取子项间分隔符占用的高度
+        // params.height最后得到整个ListView完整显示需要的高度
+        listView.setLayoutParams(params);
+    }
     private void initView() {
         jd_company_name2 = (TextView) findViewById(R.id.jd_company_name2);
         jd_company_address2 = (TextView) findViewById(R.id.jd_company_address2);

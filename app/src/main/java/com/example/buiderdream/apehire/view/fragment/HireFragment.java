@@ -207,7 +207,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
     private void doSearchJobBy() {
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String,String> map = new HashMap<>();
-        map.put("type", "selJob");
+        map.put("type", "selSomeJob");
 //        if (type_city!=""||type_city.length()!=0)
             map.put("JobCity",type_city);
 //        if (type_job!=""||type_job.length()!=0)
@@ -234,6 +234,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
                     for (int i = 0;i<array.length();i++){
                         JobAndCompany jac = gson.fromJson(array.getJSONObject(i).toString(),JobAndCompany.class);
                         jobInfolist.add(jac);
+                        initAdapter();
                     }
 
                 }
@@ -255,6 +256,16 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         comp.setCompanyIntroduce("好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊");
         comp.setCompanyScale(2);
         j1.setCompany(comp);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
+        jobInfolist.add(j1);
         jobInfolist.add(j1);
 
         doSearchJobBy();
