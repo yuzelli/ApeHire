@@ -162,8 +162,7 @@
                 android:scrollbars="none"
                 android:focusableInTouchMode="true"
                 android:focusable="true"
-                android:paddingLeft="5dp"
-                android:paddingRight="10dp"/>
+                />
         </LinearLayout>
     </ScrollView>
 
