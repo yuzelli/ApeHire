@@ -59,7 +59,7 @@ public class ConstantUtils {
     public static final String JOB_COLLECTION_SERVLET = "jobCollectionServlet";
     //收藏文章
     public static final String ARTICLE_COLLECTION_SERVLET = "articleCollectionServlet";
-    //收藏文章
+    //投递职位
     public static final String COMPANY_RESUM_SERVLET = "companyResumeServlet";
 //    职位
     public static final String  JOB_SERVLET = "jobServlet";

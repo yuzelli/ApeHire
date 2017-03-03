@@ -207,12 +207,15 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
     private void doSearchJobBy() {
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String,String> map = new HashMap<>();
-        if (type_city!=""||type_city.length()!=0)
+        map.put("type", "selJob");
+//        if (type_city!=""||type_city.length()!=0)
             map.put("JobCity",type_city);
-        if (type_job!=""||type_job.length()!=0)
+//        if (type_job!=""||type_job.length()!=0)
             map.put("JobType",type_job);
-        if (type_charge!=""||type_charge.length()!=0)
+//        if (type_charge!=""||type_charge.length()!=0)
             map.put("JobCharge",type_charge);
+        map.put("CompanyId", "");
+
         String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.JOB_SERVLET,map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
@@ -266,7 +269,8 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
                 helper.setText(R.id.job_item_jobCharge,item.getJobCharge()>2?(item.getJobCharge()>3?(item.getJobCharge()>4?"15K+":"8K~15K"):"5K~8k"):"5K以下");
                 helper.setText(R.id.job_item_companyName,item.getCompany().getCompanyName());
                 helper.setText(R.id.job_item_companyAddress,item.getCompany().getCompanyAddress());
-                helper.setImageByUrl(R.id.job_item_img,item.getCompany().getCompanyHeadImg());
+                if (item.getCompany().getCompanyHeadImg()!=null||item.getCompany().getCompanyHeadImg()!="")
+                    helper.setImageByUrl(R.id.job_item_img,item.getCompany().getCompanyHeadImg());
             }
         };
         jobListView.setAdapter(jobInfoAdapter);
