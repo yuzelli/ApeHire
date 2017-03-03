@@ -70,9 +70,16 @@ public class CollectionTechnologyFragment extends BaseFragment{
         handler = new CollectionTechnologyFragmentHandler();
         context = getActivity();
         userInfo = (UserInfo) SharePreferencesUtil.readObject(context,ConstantUtils.USER_LOGIN_INFO);
+        String result = ACache.get(context).getAsString(ConstantUtils.COLLECTION_ARTICLE_FRAGMENT_ACACHE);
+        if (result!=null&&!result.equals("")) {
+            articleList = GsonUtils.jsonToArrayList(result,CollectionArticle.class);
+        }else {
+            articleList = new ArrayList<>();
+        }
         initView();
         updataListView();
         getUserCollArticle();
+        updataListView();
     }
 
     /**
@@ -98,7 +105,7 @@ public class CollectionTechnologyFragment extends BaseFragment{
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     ACache achace = ACache.get(context);
-                    achace.put(ConstantUtils.COMPANY_ARTICLE_FRAGMENT_ACACHE,object.getString("object"));
+                    achace.put(ConstantUtils.COLLECTION_ARTICLE_FRAGMENT_ACACHE,object.getString("object"));
                     articleList = GsonUtils.jsonToArrayList(object.getString("object"), CollectionArticle.class);
                     handler.sendEmptyMessage(ConstantUtils.COLLECTION_ARTICLE_GET_DATA);
                 }
@@ -128,14 +135,7 @@ public class CollectionTechnologyFragment extends BaseFragment{
 
     private void initView() {
         frag_list_lv = (ListView) collectionTechnologyFragmentView.findViewById(R.id.frag_list_lv);
-        String result = ACache.get(context).getAsString(ConstantUtils.COMPANY_ARTICLE_FRAGMENT_ACACHE);
 
-        if (result!=null&&!result.equals("")) {
-            articleList = GsonUtils.jsonToArrayList(result,CollectionArticle.class);
-
-        }else {
-            articleList = new ArrayList<>();
-        }
     }
 
     @Override

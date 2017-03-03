@@ -40,4 +40,5 @@ dependencies {
     //    d0c81656ff223ba5d5eed5762169697f          Umeng Message Secre
     //wchktm0ikujf6inmdu9pp7sicum20ecs          App Master Secre
     compile 'com.loopeer.android.thirdparty.pulltorefresh:Android-PullToRefresh:2.1.1'
+    compile project(':PushSDK')
 }

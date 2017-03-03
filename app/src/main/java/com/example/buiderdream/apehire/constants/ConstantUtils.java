@@ -75,6 +75,7 @@ public class ConstantUtils {
     //登录用户信息
     public static final String USER_LOGIN_INFO = "UserInfo";
     public static final String LOCATION_USER_TYPE = "Location_user_type";
+    public static final String PUSH_MESSAGE_DATA = "Push_message_type";
 
     //七牛
     public static final String QN_ACCESSKEY = "1lz3oyLnZAMG3r0o6hsRUY_U45E58nb9-Q2mCzp8";
@@ -87,8 +88,10 @@ public class ConstantUtils {
     public static final String YOUMENG_APPKEY = "58b443eef5ade43938000d69";
 
     //acache
-    public static final String COMPANY_HIRE_FRAGMENT_ACACHE = "CollectionHireFragment_DATA";
-    public static final String COMPANY_ARTICLE_FRAGMENT_ACACHE = "CollectionArticleFragment_DATA";
+    public static final String COMPANY_HIRE_FRAGMENT_ACACHE = "CompanyHireFragment_DATA";
+    public static final String COLLECTION_HIRE_FRAGMENT_ACACHE = "CollectionHireFragment_DATA";
+    public static final String COLLECTION_ARTICLE_FRAGMENT_ACACHE = "CollectionArticleFragment_DATA";
+    public static final String COMPANY_ARTICLE_FRAGMENT_ACACHE = "CompanyArticleFragment_DATA";
     public static final String BOSS_MINE_FRAGEMENT_ACACHE = "BossMineFragment_DATA";
     public static final String BOSS_GET_RESUME_ACACHE = "BossGetResumeFragment_DATA";
     public static final String USER_JOB_FRAGMENT_ACACHE = "UserJobFragment_DATA";

@@ -22,11 +22,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".view.activitys.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 
@@ -35,7 +31,11 @@
         <activity android:name=".view.activitys.LoginActivity" />
         <activity android:name=".view.activitys.RegisterActivity" />
         <activity android:name=".view.activitys.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".view.activitys.GuideActivity" />
         <activity android:name=".view.activitys.CompanyInfoActivity" />
@@ -53,7 +53,24 @@
 
 
         <activity android:name=".view.activitys.UserActivity"></activity>
-
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="58b7bbe9c62dca63e5001e40">
+        </meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="59f55f7154b4eb9ab337ee3fa72f8c92">
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" >
+        </meta-data>
+        <service android:name=".service.UmengPushService"></service>
+        <receiver android:name=".view.fragment.PushFragment$UMBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.example.buiderdream.UmengPushService"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

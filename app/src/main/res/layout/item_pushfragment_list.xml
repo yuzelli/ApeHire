@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/img_userHeader"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/imgContentDescription"
+            android:src="@drawable/icon_head_200px" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img_userHeader"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="24dp"
+            android:layout_toEndOf="@+id/img_userHeader"
+            android:lines="1"
+            android:text="雍和宫发布招聘会"
+            android:textSize="@dimen/title_font" />
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="刚刚"
+            android:layout_marginEnd="10dp"
+            android:textSize="@dimen/order_size"
+            android:layout_alignBottom="@+id/img_userHeader"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

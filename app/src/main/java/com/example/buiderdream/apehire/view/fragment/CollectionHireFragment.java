@@ -18,6 +18,7 @@ import com.example.buiderdream.apehire.bean.JobAndCompany;
 import com.example.buiderdream.apehire.bean.UserInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
+import com.example.buiderdream.apehire.utils.ACache;
 import com.example.buiderdream.apehire.utils.CommonAdapter;
 import com.example.buiderdream.apehire.utils.GsonUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
@@ -67,8 +68,15 @@ public class CollectionHireFragment extends BaseFragment{
         handler = new CollectionHireFragHandler();
         context = getActivity();
         userInfo = (UserInfo) SharePreferencesUtil.readObject(getActivity(),ConstantUtils.USER_LOGIN_INFO);
+        String result = ACache.get(context).getAsString(ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE);
+        if (result!=null&&!result.equals("")) {
+            jobList = GsonUtils.jsonToArrayList(result,JobAndCompany.class);
+        }else {
+            jobList = new ArrayList<>();
+        }
         initView();
         getUserCollectionHire();
+        updataListView();
     }
 
     /**
@@ -94,6 +102,8 @@ public class CollectionHireFragment extends BaseFragment{
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     jobList = GsonUtils.jsonToArrayList(object.getString("object"),JobAndCompany.class);
+                    ACache aCache = ACache.get(getActivity());
+                    aCache.put(ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE,object.getString("object"));
                     handler.sendEmptyMessage(ConstantUtils.COLLECTION_HIRE_GET_DATA);
                 }else {
                     Toast.makeText(context, "请求数据失败！", Toast.LENGTH_SHORT).show();
@@ -141,6 +151,7 @@ public class CollectionHireFragment extends BaseFragment{
             super.handleMessage(msg);
             switch (msg.what) {
                 case ConstantUtils.COLLECTION_HIRE_GET_DATA:
+
                     updataListView();
                     break;
                 default:

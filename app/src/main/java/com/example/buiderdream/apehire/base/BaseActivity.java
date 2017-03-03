@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.utils.ActivityCollectorUtil;
+import com.umeng.message.PushAgent;
 
 /**
  *Created by Administrator on 2016/12/3.
@@ -20,6 +21,8 @@ public class BaseActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         ActivityCollectorUtil.addActivity(this);
+
+        PushAgent.getInstance(this).onAppStart();
     }
     @Override
     protected void onDestroy() {
