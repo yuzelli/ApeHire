@@ -109,7 +109,7 @@ public class PushFragment extends BaseFragment {
        if (list==null||list.size()==0){
            list =new  ArrayList();
        }
-        PushMessage message = new PushMessage(title, text, img,System.currentTimeMillis());
+        PushMessage message = new PushMessage(title, text, img,System.currentTimeMillis()/1000);
         list.add(message);
         SharePreferencesUtil.saveObject(context, ConstantUtils.PUSH_MESSAGE_DATA, list);
         List<PushMessage> list2 = (List<PushMessage>) SharePreferencesUtil.readObject(context, ConstantUtils.PUSH_MESSAGE_DATA);

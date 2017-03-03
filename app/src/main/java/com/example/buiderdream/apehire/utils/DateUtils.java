@@ -17,7 +17,7 @@ public class    DateUtils {
      * @return
      */
     public static String converTime(long timestamp) {
-        long currentSeconds = System.currentTimeMillis() / 1000;
+        long currentSeconds = System.currentTimeMillis()/1000;
         long timeGap = currentSeconds - timestamp;// 与现在时间相差秒数
         String timeStr = null;
         if (timeGap > 24 * 60 * 60) {// 1天以上

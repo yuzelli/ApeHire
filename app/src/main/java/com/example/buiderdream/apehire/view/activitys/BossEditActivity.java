@@ -250,6 +250,9 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
      * 打开默认头像
      */
     private void opendefaultList() {
+        img_companyHeadImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        img_companyHeadImg.setImageResource(R.drawable.icon_head_200px);
+        company.setCompanyHeadImg(ConstantUtils.QN_DEFINE_IMG_HEADER);
     }
 
     /**

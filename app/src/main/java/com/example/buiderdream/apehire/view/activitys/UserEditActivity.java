@@ -296,6 +296,9 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
      * 打开默认头像
      */
     private void opendefaultList() {
+        img_headImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        img_headImg.setImageResource(R.drawable.icon_head_200px);
+        userInfo.setUserHeadImg(ConstantUtils.QN_DEFINE_IMG_HEADER);
     }
 
     /**
