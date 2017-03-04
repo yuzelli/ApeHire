@@ -73,17 +73,7 @@ public class CompanyInfoActivity extends BaseActivity {
         j1.setCompany(comp);
         jobInfolist.add(j1);
         jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
+
 
 
         getAllJobByComp();

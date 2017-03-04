@@ -162,6 +162,7 @@
                 android:scrollbars="none"
                 android:focusableInTouchMode="true"
                 android:focusable="true"
+                android:divider="@null"
                 />
         </LinearLayout>
     </ScrollView>

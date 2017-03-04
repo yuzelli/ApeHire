@@ -215,7 +215,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
 //        if (type_charge!=""||type_charge.length()!=0)
             map.put("JobCharge",type_charge);
         map.put("CompanyId", "");
-
+//        String urls = "http://172.20.10.2:8080/ApeHire/jobServlet";
         String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.JOB_SERVLET,map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
@@ -258,15 +258,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         j1.setCompany(comp);
         jobInfolist.add(j1);
         jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
+
 
         doSearchJobBy();
         initAdapter();
