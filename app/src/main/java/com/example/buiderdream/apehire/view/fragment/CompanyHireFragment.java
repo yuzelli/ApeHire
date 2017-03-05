@@ -1,6 +1,7 @@
 package com.example.buiderdream.apehire.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -25,6 +27,7 @@ import com.example.buiderdream.apehire.utils.GsonUtils;
 import com.example.buiderdream.apehire.utils.NetworkUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.example.buiderdream.apehire.utils.ViewHolder;
+import com.example.buiderdream.apehire.view.activitys.JobActivity;
 import com.example.buiderdream.apehire.view.activitys.MainActivity;
 import com.example.buiderdream.apehire.view.activitys.ReleaseJobActivity;
 
@@ -119,6 +122,19 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
             }
         };
         lv_hire.setAdapter(adapter);
+        lv_hire.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ReleaseJobActivity.actionStart(getActivity(),jobList.get(position));
+            }
+        });
+        lv_hire.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                return false;
+            }
+        });
     }
     /**
      * 获取发布的职位
@@ -170,7 +186,7 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_releaseHire:
-                ReleaseJobActivity.actionStart(getActivity());
+                ReleaseJobActivity.actionStart(getActivity(),null);
                 break;
             default:
                 break;

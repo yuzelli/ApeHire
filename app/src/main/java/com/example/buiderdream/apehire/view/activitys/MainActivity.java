@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
@@ -44,15 +46,12 @@ public class MainActivity extends BaseActivity {
             R.drawable.tab_mess_btn, R.drawable.tab_user_btn};
     //Tab选项卡的文字
     private String tabtTextViewArray[] = {"招聘", "技术", "消息", "我的"};
-
+    private long exitTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-
-
-
     }
 
     private void initView() {
@@ -108,6 +107,23 @@ public class MainActivity extends BaseActivity {
         }
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(this,"再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+
+    }
+
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);

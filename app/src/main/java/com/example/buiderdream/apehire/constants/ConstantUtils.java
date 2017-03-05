@@ -43,7 +43,7 @@ public class ConstantUtils {
 
     //主机地址
 
-    public static final String USER_ADDRESS = "http://130.0.1.70:8080/ApeHire/";
+    public static final String USER_ADDRESS = "http://130.0.1.231:8080/ApeHire/";
 
 //    public static final String USER_ADDRESS = "http://130.0.1.70:8080/ApeHire/";
 
@@ -59,7 +59,7 @@ public class ConstantUtils {
     public static final String JOB_COLLECTION_SERVLET = "jobCollectionServlet";
     //收藏文章
     public static final String ARTICLE_COLLECTION_SERVLET = "articleCollectionServlet";
-    //收藏文章
+    //投递职位
     public static final String COMPANY_RESUM_SERVLET = "companyResumeServlet";
 //    职位
     public static final String  JOB_SERVLET = "jobServlet";

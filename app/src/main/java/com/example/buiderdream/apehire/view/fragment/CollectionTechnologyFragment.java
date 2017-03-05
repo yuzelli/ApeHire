@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.example.buiderdream.apehire.bean.CompanyInfo;
 import com.example.buiderdream.apehire.bean.JobAndCompany;
 import com.example.buiderdream.apehire.bean.UserInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
+import com.example.buiderdream.apehire.entity.Technology;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.ACache;
 import com.example.buiderdream.apehire.utils.CommonAdapter;
@@ -25,6 +27,7 @@ import com.example.buiderdream.apehire.utils.GsonUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.example.buiderdream.apehire.utils.ViewHolder;
 import com.example.buiderdream.apehire.view.activitys.MainActivity;
+import com.example.buiderdream.apehire.view.activitys.TechnologyActivity;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -130,6 +133,26 @@ public class CollectionTechnologyFragment extends BaseFragment{
             }
         };
         frag_list_lv.setAdapter(adapter);
+        frag_list_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CollectionArticle art = articleList.get(position);
+                Technology tech = new Technology();
+                tech.setId(art.getVexID());
+                Technology.MemberBean member = new Technology.MemberBean();
+                member.setUsername(art.getUserName());
+                member.setAvatar_large(art.getImgUrl());
+                member.setAvatar_mini(art.getImgUrl());
+                member.setAvatar_normal(art.getImgUrl());
+                tech.setMember(member);
+                tech.setReplies(Integer.valueOf(art.getReplies()));
+                tech.setContent(art.getContent());
+              //  tech.setCreated(Integer.valueOf(art.getCreateTime()));
+                tech.setTitle(art.getTitle());
+
+                TechnologyActivity.actionStart(context,tech);
+            }
+        });
 
     }
 

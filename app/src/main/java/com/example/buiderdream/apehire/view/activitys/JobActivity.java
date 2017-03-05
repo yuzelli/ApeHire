@@ -6,14 +6,18 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
 import com.example.buiderdream.apehire.bean.JobAndCompany;
+import com.example.buiderdream.apehire.bean.UserInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
+import com.example.buiderdream.apehire.utils.ImageLoader;
+import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,18 +28,24 @@ import okhttp3.Request;
 
 /**
  * 职位详情页面
- * @文捷
+ * @李文捷
  */
 public class JobActivity extends BaseActivity implements View.OnClickListener{
     TextView jd_title,jd_company_name,jd_company_name2,jd_company_address,jd_company_address2,jd_company_scale,jd_company_detail,jd_detail,jd_charge,jd_technology;
+    ImageView job_company_img;
     JobAndCompany jobInfo;//职位详情
     TextView sendJobReq;//职位投递
     ImageView job_like_click;//职位收藏
+    UserInfo userInfo;
+    ImageLoader imageLoader;
+    RelativeLayout companyPart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
         initView();
+        imageLoader = ImageLoader.getInstance();
+        userInfo = (UserInfo) SharePreferencesUtil.readObject(JobActivity.this,ConstantUtils.USER_LOGIN_INFO);
         Intent intent = getIntent();
         jobInfo = (JobAndCompany) intent.getSerializableExtra("jobInfo");
         initData();
@@ -53,9 +63,12 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         jd_company_address.setText(jobInfo.getCompany().getCompanyAddress());
         jd_company_address2.setText(jobInfo.getCompany().getCompanyAddress());
         jd_company_detail.setText(jobInfo.getCompany().getCompanyIntroduce());
+        // TODO: 2017/3/3 图片加载容错有问题，公司信息页面同
+//        if(jobInfo.getCompany().getCompanyHeadImg()!=null||jobInfo.getCompany().getCompanyHeadImg()!=""){
+//            imageLoader.loadImage(jobInfo.getCompany().getCompanyHeadImg(),job_company_img);
+//        }
         int scale = jobInfo.getCompany().getCompanyScale();
-        jd_company_scale.setText(scale>2?(scale>3?(scale>4?(scale>5?(scale>6?"上市公司":"C轮"):"B轮"):"A轮"):"天使轮"):"未融资");
-
+        jd_company_scale.setText(scale>2?(scale>3?(scale>4?(scale>5?(scale>6?"上市公司 1000人以上":"C轮 100~1000人"):"B轮 20~99人"):"A轮  10~50人"):"天使轮  0~20人"):"未融资  0~20人");
 
     }
 
@@ -70,11 +83,13 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         jd_company_address2 = (TextView) findViewById(R.id.jd_company_address2);
         jd_company_scale = (TextView) findViewById(R.id.jd_company_scale);
         jd_company_detail = (TextView) findViewById(R.id.jd_company_detail);
+        job_company_img = (ImageView) findViewById(R.id.jd_company_img);
         sendJobReq = (TextView) findViewById(R.id.sendJobReq);
         sendJobReq.setOnClickListener(this);
         job_like_click = (ImageView) findViewById(R.id.job_like_click);
         job_like_click.setOnClickListener(this);
-
+        companyPart = (RelativeLayout) findViewById(R.id.job_detail_part4);
+        companyPart.setOnClickListener(this);
     }
     public void backClick(View v){
         finish();
@@ -89,6 +104,10 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
             case R.id.job_like_click:
                 doLikeJobReq();
                 break;
+            case R.id.job_detail_part4:
+                Intent intent = new Intent(JobActivity.this, CompanyInfoActivity.class);
+                intent.putExtra("jobInfo",jobInfo);
+                startActivity(intent);
             default:
                 break;
         }
@@ -125,6 +144,10 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
     private void doLikeJobReq() {
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String,String> map = new HashMap<>();
+        map.put("type", "addJobColl");
+        map.put("UserInfoId",userInfo.getUserId()+"");
+        map.put("jobID",jobInfo.getJobId()+"");
+
         String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.JOB_COLLECTION_SERVLET,map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
@@ -145,7 +168,12 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
     private void doSendJobReq() {
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String,String> map = new HashMap<>();
-        String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS,map);
+        map.put("type", "addCompanyResume");
+        map.put("jobId",jobInfo.getJobId()+"");
+        map.put("userId",userInfo.getUserId()+"");
+        map.put("companyId",jobInfo.getCompany().getCompanyId()+"");
+
+        String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.COMPANY_RESUM_SERVLET,map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {

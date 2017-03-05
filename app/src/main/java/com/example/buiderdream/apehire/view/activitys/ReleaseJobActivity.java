@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
 import com.example.buiderdream.apehire.bean.CompanyInfo;
+import com.example.buiderdream.apehire.bean.JobAndCompany;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.bean.JobInfo;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
@@ -61,6 +62,7 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
     private CompanyInfo company;
     private ReleaseJobHandler handler;
     private Context context;
+    private boolean isUpDataJob = true;
 
 
     @Override
@@ -72,6 +74,46 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
         company = (CompanyInfo) SharePreferencesUtil.readObject(this, ConstantUtils.USER_LOGIN_INFO);
         initView();
         updataView();
+
+        judgeType();
+    }
+
+    /**
+     * 判断是发布还是修改
+     */
+    private void judgeType() {
+        Intent intent = getIntent();
+        JobAndCompany jobInfo = (JobAndCompany) intent.getSerializableExtra("jobInfo");
+        if (jobInfo!=null){
+            job.setJobId(jobInfo.getJobId());
+            job.setCompanyId(jobInfo.getCompany().getCompanyId());
+            job.setJobCharge(jobInfo.getJobCharge());
+            job.setJobCity(jobInfo.getJobCity())
+            ;
+            job.setJobDetail(jobInfo.getJobDetail());
+            job.setJobName(jobInfo.getJobName());
+            job.setJobTechnology(jobInfo.getJobTechnology());
+            job.setJobType(jobInfo.getJobType());
+            isUpDataJob = false;
+            initDataView();
+        }else {
+            isUpDataJob = true;
+            btn_upload.setText("发布职位");
+        }
+    }
+
+    /**
+     * 修改job信息，需加载job数据
+     */
+    private void initDataView() {
+        tv_companyName.setText(company.getCompanyName());
+        tv_jobName.setText(job.getJobName());
+        spinner_city.setSelection(job.getJobCity());
+        spinner_jobType.setSelection(job.getJobType());
+        spinner_jobCharge.setSelection(job.getJobCharge());
+        tv_jobDetail.setText(job.getJobDetail());
+        tv_jobTechnology.setText(job.getJobTechnology());
+        btn_upload.setText("修改职位");
     }
 
     /**
@@ -97,8 +139,7 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
         img_back.setOnClickListener(this);
         btn_upload.setOnClickListener(this);
 
-        job = new JobInfo();
-
+       job = new JobInfo();
     }
 
     /**
@@ -106,12 +147,10 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
      */
     private void updataView() {
         tv_companyName.setText(company.getCompanyName());
-
         List<String> citys = new ArrayList<>(Arrays.asList("不限", "北京", "上海", "广州", "深圳", "武汉", "杭州", "成都", "西安"));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, citys);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_city.setAdapter(adapter);
-
         spinner_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -161,8 +200,9 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
     }
 
 
-    public static void actionStart(Context context) {
+    public static void actionStart(Context context,JobAndCompany job) {
         Intent intent = new Intent(context, ReleaseJobActivity.class);
+        intent.putExtra("jobInfo",job);
         context.startActivity(intent);
     }
 
@@ -226,10 +266,47 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
                 updateJobInfo(10);
                 break;
             case R.id.btn_upload:
-                releaseJob();
+                if(isUpDataJob) {
+                    releaseJob();
+                }else {
+                    updataJob();
+                }
                 break;
 
         }
+    }
+
+    /**
+     * 修改职位信息
+     */
+    private void updataJob() {
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "jobUpdate");
+        map.put("jobid", job.getJobId()+"");
+        map.put("jobrname", tv_jobName.getText().toString().trim());
+        map.put("jobdetails", tv_jobDetail.getText().toString().trim());
+        map.put("jobtype", job.getJobType() + "");
+        map.put("city", job.getJobCity() + "");
+        map.put("jobsalary", job.getJobCharge() + "");
+        map.put("companyname", company.getCompanyId() + "");
+        map.put("jobskill", tv_jobTechnology.getText().toString().trim());
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.JOB_SERVLET, map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                JSONObject object = new JSONObject(result);
+                String flag = object.getString("error");
+                if (flag.equals("ok")) {
+                    handler.sendEmptyMessage(ConstantUtils.RELEASE_JOB__GET_DATA);
+                }
+            }
+        });
     }
 
 

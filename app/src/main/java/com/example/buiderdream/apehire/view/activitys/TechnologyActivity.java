@@ -37,7 +37,7 @@ public class TechnologyActivity extends Activity{
         Technology technology = (Technology) intent.getSerializableExtra("technology");
 
         InitView();
-         title_tv.setText(technology.getTitle().toString());
+        title_tv.setText(technology.getTitle().toString());
         content_tv.setText(technology.getContent().toString());
         user_name_tv.setText(technology.getMember().getUsername().toString());
         String time = DateUtils.converTime(technology.getCreated());
