@@ -221,7 +221,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
-                Log.i("asdasdasdadsas",e.getMessage());
+               // Log.i("asdasdasdadsas",e.getMessage());
             }
 
             @Override

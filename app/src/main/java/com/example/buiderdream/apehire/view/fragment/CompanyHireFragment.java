@@ -1,11 +1,13 @@
 package com.example.buiderdream.apehire.view.fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,8 +133,62 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
         lv_hire.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ShowDeleteDialog(jobList.get(position).getJobId());
 
-                return false;
+                return true;
+            }
+        });
+    }
+
+    /**
+     * show Delete Dialog
+     */
+    private void ShowDeleteDialog(final int jobID) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);// 构建
+        builder.setTitle("提示框");
+        builder.setMessage("你确定要删除么");
+        // 添加确定按钮 listener事件是继承与DialogInerface的
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                // 完成业务逻辑代码
+                DeleteCollectionHire(jobID);
+            }
+        });
+
+        // 添加取消按钮
+        builder.setNegativeButton("取消删除",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+        builder.show();
+    }
+
+    private void DeleteCollectionHire(int jobID) {
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "delJob");
+        map.put("ids",jobID+"");
+
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.JOB_SERVLET, map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                JSONObject object = new JSONObject(result);
+                boolean flag = object.getBoolean("flag");
+                if (flag==true) {
+                    handler.sendEmptyMessage(ConstantUtils.COMPANY_HIRE_DELET_DATA);
+                }
             }
         });
     }
@@ -188,6 +244,7 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
             case R.id.btn_releaseHire:
                 ReleaseJobActivity.actionStart(getActivity(),null);
                 break;
+
             default:
                 break;
         }
@@ -199,8 +256,10 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
             super.handleMessage(msg);
             switch (msg.what) {
                 case ConstantUtils.COMPANYHIRE_FRAGMENT_GET_DATA:
-
                     updataListView();
+                    break;
+                case ConstantUtils.COMPANY_HIRE_DELET_DATA:
+                    getCompanyJob();
                     break;
                 default:
                     break;

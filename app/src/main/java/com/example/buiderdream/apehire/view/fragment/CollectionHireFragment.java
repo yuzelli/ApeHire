@@ -1,11 +1,13 @@
 package com.example.buiderdream.apehire.view.fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseFragment;
 import com.example.buiderdream.apehire.bean.CompanyInfo;
 import com.example.buiderdream.apehire.bean.JobAndCompany;
+import com.example.buiderdream.apehire.bean.JobAndCompanyC;
 import com.example.buiderdream.apehire.bean.UserInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
@@ -46,8 +49,8 @@ import okhttp3.Request;
 public class CollectionHireFragment extends BaseFragment{
     private View collectionHireFragmentView;
     private ListView lv_hire;
-    private List<JobAndCompany> jobList;
-    private CommonAdapter<JobAndCompany> adapter;
+    private List<JobAndCompanyC> jobList;
+    private CommonAdapter<JobAndCompanyC> adapter;
     private Context context;
     private UserInfo userInfo;
     private CollectionHireFragHandler handler;
@@ -73,7 +76,7 @@ public class CollectionHireFragment extends BaseFragment{
         userInfo = (UserInfo) SharePreferencesUtil.readObject(getActivity(),ConstantUtils.USER_LOGIN_INFO);
         String result = ACache.get(context).getAsString(ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE);
         if (result!=null&&!result.equals("")) {
-            jobList = GsonUtils.jsonToArrayList(result,JobAndCompany.class);
+            jobList = GsonUtils.jsonToArrayList(result,JobAndCompanyC.class);
         }else {
             jobList = new ArrayList<>();
         }
@@ -104,7 +107,7 @@ public class CollectionHireFragment extends BaseFragment{
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
-                    jobList = GsonUtils.jsonToArrayList(object.getString("object"),JobAndCompany.class);
+                    jobList = GsonUtils.jsonToArrayList(object.getString("object"),JobAndCompanyC.class);
                     ACache aCache = ACache.get(getActivity());
                     aCache.put(ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE,object.getString("object"));
                     handler.sendEmptyMessage(ConstantUtils.COLLECTION_HIRE_GET_DATA);
@@ -124,9 +127,9 @@ public class CollectionHireFragment extends BaseFragment{
     private void updataListView() {
         final List<String> citys = new ArrayList<>(Arrays.asList("不限", "北京", "上海", "广州", "深圳", "武汉", "杭州", "成都", "西安"));
         final List<String> jobCharges = new ArrayList<>(Arrays.asList("不限", "3k-5k", "5k-10k", "10k-15k", "15k-20k", "20k-30k", "30k-50k"));
-        adapter = new CommonAdapter<JobAndCompany>(context, jobList, R.layout.fragment_hire_item) {
+        adapter = new CommonAdapter<JobAndCompanyC>(context, jobList, R.layout.fragment_hire_item) {
             @Override
-            public void convert(ViewHolder helper, JobAndCompany item) {
+            public void convert(ViewHolder helper, JobAndCompanyC item) {
                 if (item.getCompany().getCompanyHeadImg()!=null&&!item.getCompany().getCompanyHeadImg().equals("")) {
                     helper.setImageByUrl2(R.id.job_item_img, item.getCompany().getCompanyHeadImg());
                 }
@@ -141,8 +144,79 @@ public class CollectionHireFragment extends BaseFragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),JobActivity.class);
-                intent.putExtra("jobInfo",jobList.get(position));
+                JobAndCompanyC jcc = jobList.get(position);
+                JobAndCompany jc = new JobAndCompany();
+                jc.setCompany(jcc.getCompany());
+                jc.setJobType(jcc.getJobType());
+                jc.setJobTechnology(jcc.getJobTechnology());
+                jc.setJobCity(jcc.getJobCity());
+                jc.setJobName(jcc.getJobName());
+                jc.setJobCharge(jcc.getJobCharge());
+                jc.setJobDetail(jcc.getJobDetail());
+                jc.setJobId(jcc.getJobId());
+
+                intent.putExtra("jobInfo",jc);
                 startActivity(intent);
+            }
+        });
+        lv_hire.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                ShowDeleteDialog(jobList.get(position).getCollectionId());
+                return true;
+            }
+        });
+    }
+    /**
+     * show Delete Dialog
+     */
+    private void ShowDeleteDialog(final int hireCollectionID) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);// 构建
+        builder.setTitle("提示框");
+        builder.setMessage("你确定要删除么");
+        // 添加确定按钮 listener事件是继承与DialogInerface的
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                // 完成业务逻辑代码
+                DeleteCollectionHire(hireCollectionID);
+            }
+        });
+        // 添加取消按钮
+        builder.setNegativeButton("取消删除",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+        builder.show();
+    }
+
+    private void DeleteCollectionHire(int hireCollectionID) {
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "deleteJobColl");
+        map.put("CollectionId",hireCollectionID +"");
+
+
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.JOB_COLLECTION_SERVLET, map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                JSONObject object = new JSONObject(result);
+                boolean flag = object.getBoolean("flag");
+                if (flag==true) {
+                    handler.sendEmptyMessage(ConstantUtils.COLLECTION_HIRE_DELET_DATA);
+                }
             }
         });
     }
@@ -162,8 +236,10 @@ public class CollectionHireFragment extends BaseFragment{
             super.handleMessage(msg);
             switch (msg.what) {
                 case ConstantUtils.COLLECTION_HIRE_GET_DATA:
-
                     updataListView();
+                    break;
+                case ConstantUtils.COLLECTION_HIRE_DELET_DATA:
+                    getUserCollectionHire();
                     break;
                 default:
                     break;

@@ -34,7 +34,11 @@ public class ConstantUtils {
     public static final int TEACHLOGY_GET_DATA = 0x00001012;
     public static final int COLLECTION_ARTICLE_GET_DATA = 0x00001013;
     public static final int BOSS_GET_RESUME_GET_DATA = 0x00001014;
-    public static final int USER_JOB_GET_DATA = 0x00001014;
+    public static final int USER_JOB_GET_DATA = 0x00001015;
+
+    public static final int COLLECTION_ARTICLE_DELET_DATA = 0x00001016;
+    public static final int COLLECTION_HIRE_DELET_DATA = 0x00001017;
+    public static final int COMPANY_HIRE_DELET_DATA = 0x00001018;
 
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息

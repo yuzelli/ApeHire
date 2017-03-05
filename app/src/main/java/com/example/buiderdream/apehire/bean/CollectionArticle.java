@@ -21,6 +21,7 @@ public class CollectionArticle  implements Serializable{
      */
 
     private int articleId;
+    private int collectionId;
     private String content;
     private String createTime;
     private String imgUrl;
@@ -29,6 +30,14 @@ public class CollectionArticle  implements Serializable{
     private String type;
     private String userName;
     private int vexID;
+
+    public int getCollectionId() {
+        return collectionId;
+    }
+
+    public void setCollectionId(int collectionId) {
+        this.collectionId = collectionId;
+    }
 
     public int getArticleId() {
         return articleId;

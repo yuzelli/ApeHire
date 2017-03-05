@@ -2,7 +2,7 @@
     <string name="app_name">猿聘</string>
 
     <string name="imgContentDescription">图片</string>
-    <string name="userCollTitle_Hire">收藏的公司</string>
+    <string name="userCollTitle_Hire">收藏的职位</string>
     <string name="userCollTitle_Technology">收藏的技术</string>
     <string name="companyDescribe">公司介绍</string>
     <string name="companyHire">公司职位</string>

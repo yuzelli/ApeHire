@@ -1,10 +1,12 @@
 package com.example.buiderdream.apehire.view.fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,6 +110,7 @@ public class CollectionTechnologyFragment extends BaseFragment{
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     ACache achace = ACache.get(context);
+                    articleList = new ArrayList<CollectionArticle>();
                     achace.put(ConstantUtils.COLLECTION_ARTICLE_FRAGMENT_ACACHE,object.getString("object"));
                     articleList = GsonUtils.jsonToArrayList(object.getString("object"), CollectionArticle.class);
                     handler.sendEmptyMessage(ConstantUtils.COLLECTION_ARTICLE_GET_DATA);
@@ -149,11 +152,74 @@ public class CollectionTechnologyFragment extends BaseFragment{
                 tech.setContent(art.getContent());
               //  tech.setCreated(Integer.valueOf(art.getCreateTime()));
                 tech.setTitle(art.getTitle());
-
                 TechnologyActivity.actionStart(context,tech);
             }
         });
 
+        frag_list_lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ShowDeleteDialog(articleList.get(position).getCollectionId());
+                return true;
+            }
+        });
+
+    }
+
+    /**
+     * show Delete Dialog
+     */
+    private void ShowDeleteDialog(final int artCollectionID) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);// 构建
+        builder.setTitle("提示框");
+        builder.setMessage("你确定要删除么");
+        // 添加确定按钮 listener事件是继承与DialogInerface的
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                // 完成业务逻辑代码
+                DeleteCollectionTech(artCollectionID);
+            }
+        });
+        // 添加取消按钮
+        builder.setNegativeButton("取消删除",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+        builder.show();
+    }
+
+    /**
+     * 删除
+     */
+    private void DeleteCollectionTech(int artCollectionID) {
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "deleteArtColl");
+        map.put("CollectionId",artCollectionID+"");
+
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.ARTICLE_COLLECTION_SERVLET, map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+
+                JSONObject object = new JSONObject(result);
+                boolean flag = object.getBoolean("flag");
+                if (flag==true) {
+                     handler.sendEmptyMessage(ConstantUtils.COLLECTION_ARTICLE_DELET_DATA);
+                }
+            }
+        });
     }
 
     private void initView() {
@@ -177,6 +243,9 @@ public class CollectionTechnologyFragment extends BaseFragment{
             switch (msg.what) {
                 case ConstantUtils.COLLECTION_ARTICLE_GET_DATA:
                     updataListView();
+                    break;
+                case ConstantUtils.COLLECTION_ARTICLE_DELET_DATA:
+                    getUserCollArticle();
                     break;
                 default:
                     break;
