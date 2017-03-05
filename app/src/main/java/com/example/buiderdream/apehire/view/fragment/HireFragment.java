@@ -207,7 +207,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
     private void doSearchJobBy() {
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String,String> map = new HashMap<>();
-        map.put("type", "selJob");
+        map.put("type", "selSomeJob");
 //        if (type_city!=""||type_city.length()!=0)
             map.put("JobCity",type_city);
 //        if (type_job!=""||type_job.length()!=0)
@@ -215,7 +215,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
 //        if (type_charge!=""||type_charge.length()!=0)
             map.put("JobCharge",type_charge);
         map.put("CompanyId", "");
-
+//        String urls = "http://172.20.10.2:8080/ApeHire/jobServlet";
         String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.JOB_SERVLET,map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
@@ -234,6 +234,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
                     for (int i = 0;i<array.length();i++){
                         JobAndCompany jac = gson.fromJson(array.getJSONObject(i).toString(),JobAndCompany.class);
                         jobInfolist.add(jac);
+                        initAdapter();
                     }
 
                 }
@@ -256,6 +257,8 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         comp.setCompanyScale(2);
         j1.setCompany(comp);
         jobInfolist.add(j1);
+        jobInfolist.add(j1);
+
 
         doSearchJobBy();
         initAdapter();
