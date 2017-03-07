@@ -73,10 +73,10 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         jd_company_address.setText(jobInfo.getCompany().getCompanyAddress());
         jd_company_address2.setText(jobInfo.getCompany().getCompanyAddress());
         jd_company_detail.setText(jobInfo.getCompany().getCompanyIntroduce());
-        // TODO: 2017/3/3 图片加载容错有问题，公司信息页面同
-//        if(jobInfo.getCompany().getCompanyHeadImg()!=null||jobInfo.getCompany().getCompanyHeadImg()!=""){
-//            imageLoader.loadImage(jobInfo.getCompany().getCompanyHeadImg(),job_company_img);
-//        }
+
+        if(jobInfo.getCompany().getCompanyHeadImg()!=null||jobInfo.getCompany().getCompanyHeadImg()!=""){
+            imageLoader.loadImage(jobInfo.getCompany().getCompanyHeadImg(),job_company_img);
+        }
         int scale = jobInfo.getCompany().getCompanyScale();
         jd_company_scale.setText(scale>2?(scale>3?(scale>4?(scale>5?(scale>6?"上市公司 1000人以上":"C轮 100~1000人"):"B轮 20~99人"):"A轮  10~50人"):"天使轮  0~20人"):"未融资  0~20人");
 

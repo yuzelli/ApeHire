@@ -35,10 +35,7 @@ public class BaseApplication extends Application {
         options.setAutoLogin(true);
 
         EaseUI.getInstance().init(this,options);
-
-
-
-
+        EMClient.getInstance().setDebugMode(false);
 
         initImageLoader(getApplicationContext());
 
