@@ -164,7 +164,21 @@
                 android:focusable="true"
                 android:divider="@null"
                 />
+            <TextView
+                android:id="@+id/tv_chat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:layout_below="@+id/rl_advantage"
+                android:text="@string/chat"/>
         </LinearLayout>
+
     </ScrollView>
 
 </RelativeLayout>

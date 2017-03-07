@@ -37,6 +37,8 @@ import com.example.buiderdream.apehire.utils.LxQiniuUploadUtils;
 import com.example.buiderdream.apehire.utils.NetworkUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.google.gson.Gson;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.qiniu.android.http.ResponseInfo;
@@ -340,9 +342,23 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
      *退出操作
      */
     private void exitUser() {
-        LoginActivity.actionStart(context);
-        SharePreferencesUtil.saveObject(context,ConstantUtils.USER_LOGIN_INFO,null);
-        ActivityCollectorUtil.removeOtherForLogin();
+
+        EMClient.getInstance().logout(true, new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                handler.sendEmptyMessage(ConstantUtils.HUANXING_LOGOUT);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
     }
 
     //-----------------------------接口回调---------------------------------
@@ -525,6 +541,11 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
                 case ConstantUtils.USEREDIT__GET_DATA:
                     SharePreferencesUtil.saveObject(context, ConstantUtils.USER_LOGIN_INFO, userInfo);
                     finish();
+                    break;
+                case ConstantUtils.HUANXING_LOGOUT:
+                    LoginActivity.actionStart(context);
+                    SharePreferencesUtil.saveObject(context,ConstantUtils.USER_LOGIN_INFO,null);
+                    ActivityCollectorUtil.removeOtherForLogin();
                     break;
                 default:
                     break;

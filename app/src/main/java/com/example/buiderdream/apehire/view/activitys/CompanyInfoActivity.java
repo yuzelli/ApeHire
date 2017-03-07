@@ -40,7 +40,7 @@ import okhttp3.Request;
  * @李文捷
  */
 public class CompanyInfoActivity extends BaseActivity {
-    TextView jd_company_name2,jd_company_address2,jd_company_scale,jd_company_detail;
+    TextView jd_company_name2,jd_company_address2,jd_company_scale,jd_company_detail,tv_chat;
     ImageView job_company_img;
     JobAndCompany jobInfo;//职位详情
     ListView allJobOfCompLV;
@@ -157,6 +157,7 @@ public class CompanyInfoActivity extends BaseActivity {
         jd_company_address2 = (TextView) findViewById(R.id.jd_company_address2);
         jd_company_scale = (TextView) findViewById(R.id.jd_company_scale);
         jd_company_detail = (TextView) findViewById(R.id.jd_company_detail);
+        tv_chat = (TextView) findViewById(R.id.tv_chat);
         job_company_img = (ImageView) findViewById(R.id.jd_company_img);
         allJobOfCompLV = (ListView) findViewById(R.id.allJobOfComp);
 
@@ -177,6 +178,13 @@ public class CompanyInfoActivity extends BaseActivity {
                 intent.putExtra("jobInfo",jobInfolist.get(i));
                 startActivity(intent);
 
+            }
+        });
+        tv_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("--->",jobInfo.getCompany().getCompanyNum());
+                ChatActivity.actionStart(CompanyInfoActivity.this,jobInfo.getCompany().getCompanyNum());
             }
         });
     }

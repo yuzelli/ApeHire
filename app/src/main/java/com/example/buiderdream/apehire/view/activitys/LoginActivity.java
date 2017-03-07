@@ -23,6 +23,8 @@ import com.example.buiderdream.apehire.utils.JudgeUtils;
 import com.example.buiderdream.apehire.utils.NetworkUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.google.gson.Gson;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 
 import org.json.JSONObject;
 
@@ -171,11 +173,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     Toast.makeText(this, "五网络链接，请检查网络设置！", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (userTypeFlag) {
-                    doUserLogin();
-                } else {
-                    doCompanyLogin();
-                }
+//                if (userTypeFlag) {
+//                    doUserLogin();
+//                } else {
+//                    doCompanyLogin();
+//                }
+                loginHuanxing(et_userPhone.getText().toString().trim(), et_passWord.getText().toString().trim());
                 break;
             case R.id.tv_register:
                 RegisterActivity.actionStart(context);
@@ -183,6 +186,33 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             default:
                 break;
         }
+    }
+
+    /**
+     * 登陆环信
+     *
+     * @param phone
+     * @param pass
+     */
+    private void loginHuanxing(String phone, String pass) {
+        EMClient.getInstance().login(phone, pass, new EMCallBack() {
+            @Override
+            public void onSuccess() {
+
+                handler.sendEmptyMessage(ConstantUtils.HUANXING_LOGIN);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                Toast.makeText(context,"登陆失败",Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
     }
 
 
@@ -205,6 +235,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
+                case ConstantUtils.HUANXING_LOGIN:
+                    if (userTypeFlag) {
+                        doUserLogin();
+                    } else {
+                        doCompanyLogin();
+                    }
+                    break;
                 case ConstantUtils.LOGIN_GET_DATA:
                     if (userTypeFlag) {
                         SharePreferencesUtil.saveObject(context, ConstantUtils.USER_LOGIN_INFO, userInfo);

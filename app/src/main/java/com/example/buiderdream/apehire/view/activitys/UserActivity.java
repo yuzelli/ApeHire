@@ -37,6 +37,7 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_userExperence;  //求职者期望经验
     private TextView tv_userAdvantage;  //求职者期望优势
 
+    private TextView tv_chat;  // 聊天
     private Context context;
 
     private UserCompJob userCompJob;
@@ -63,6 +64,7 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         tv_monney = (TextView) this.findViewById(R.id.tv_monney);
         tv_jobType = (TextView) this.findViewById(R.id.tv_jobType);
         tv_jobAddress = (TextView) this.findViewById(R.id.tv_jobAddress);
+        tv_chat = (TextView) this.findViewById(R.id.tv_chat);
 
         img_userHeader = (ImageView) this.findViewById(R.id.img_userHeader);
         img_back = (ImageView) this.findViewById(R.id.img_back);
@@ -73,6 +75,7 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         tv_expactMoney = (TextView) this.findViewById(R.id.tv_expactMoney);
         tv_userExperence = (TextView) this.findViewById(R.id.tv_userExperence);
         tv_userAdvantage = (TextView) this.findViewById(R.id.tv_userAdvantage);
+        tv_chat.setOnClickListener(this);
         rl_job.setOnClickListener(this);
         img_back.setOnClickListener(this);
     }
@@ -107,6 +110,9 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()){
             case R.id.img_back:
                 finish();
+                break;
+            case R.id.tv_chat:
+                ChatActivity.actionStart(UserActivity.this,userCompJob.getUserInfo().getUserPhoneNum());
                 break;
             case R.id.rl_job:
                 Intent intent = new Intent(context, JobActivity.class);

@@ -3,8 +3,21 @@
     package="com.example.buiderdream.apehire"
     android:installLocation="preferExternal">
 
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 判断网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 网络权限 -->
@@ -20,13 +33,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".view.activitys.MainActivity">
-
-        </activity>
-
-
-
+        <activity android:name=".view.activitys.MainActivity"></activity>
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".view.activitys.LoginActivity" />
         <activity android:name=".view.activitys.RegisterActivity" />
@@ -46,31 +53,55 @@
         <activity android:name=".view.activitys.InputInfoActivity" />
         <activity android:name=".view.activitys.PerfectRegCompActivity" />
         <activity android:name=".view.activitys.CompanyShowImgActivity" />
+        <activity android:name=".view.activitys.ProcessActivity" />
+        <activity android:name=".view.activitys.TechnologyActivity" />
+        <activity android:name=".view.activitys.UserActivity" />
 
-        <activity android:name=".view.activitys.ProcessActivity"></activity>
-        <activity android:name=".view.activitys.TechnologyActivity"></activity>
-
-
-
-        <activity android:name=".view.activitys.UserActivity"></activity>
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="58b7bbe9c62dca63e5001e40">
-        </meta-data>
+            android:value="58b7bbe9c62dca63e5001e40"></meta-data>
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="59f55f7154b4eb9ab337ee3fa72f8c92">
-        </meta-data>
+            android:value="59f55f7154b4eb9ab337ee3fa72f8c92"></meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Channel ID" >
-        </meta-data>
-        <service android:name=".service.UmengPushService"></service>
+            android:value="Channel ID"></meta-data>
+
+        <service android:name=".service.UmengPushService" />
+
         <receiver android:name=".view.fragment.PushFragment$UMBroadcastReceiver">
             <intent-filter>
-                <action android:name="com.example.buiderdream.UmengPushService"/>
+                <action android:name="com.example.buiderdream.UmengPushService" />
             </intent-filter>
         </receiver>
+
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1120170303178475#apehire" />
+        <!-- 声明SDK所需的service SDK核心功能 -->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true" />
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".view.activitys.ChatActivity"></activity>
     </application>
 
 </manifest>

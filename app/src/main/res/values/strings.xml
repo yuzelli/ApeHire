@@ -52,6 +52,7 @@
     <string name="push">推送</string>
     <string name="userjob">投的职位</string>
     <string name="getResume">收到的简历</string>
+    <string name="chat">和他聊聊</string>
 
     <string-array name="education_array">
         <item>不限</item>

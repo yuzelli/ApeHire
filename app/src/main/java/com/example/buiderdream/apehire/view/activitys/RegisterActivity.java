@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
 import com.example.buiderdream.apehire.bean.CompanyInfo;
@@ -21,7 +23,12 @@ import com.example.buiderdream.apehire.utils.JudgeUtils;
 import com.example.buiderdream.apehire.utils.NetworkUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.google.gson.Gson;
+import com.hyphenate.chat.EMChatManager;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
+
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -159,6 +166,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             }
         });
     }
+
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
         context.startActivity(intent);
@@ -168,8 +176,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_register:
-                if (!JudgeUtils.isPhoneEnable(et_userPhone.getText().toString().trim(),et_passWord.getText().toString().trim())
-                        &&!et_passWord.getText().toString().trim().equals(et_certainPassWord.getText().toString().trim())){
+                if (!JudgeUtils.isPhoneEnable(et_userPhone.getText().toString().trim(), et_passWord.getText().toString().trim())
+                        && !et_passWord.getText().toString().trim().equals(et_certainPassWord.getText().toString().trim())) {
                     errorEdit();
                     break;
                 }
@@ -177,27 +185,50 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     Toast.makeText(this, "五网络链接，请检查网络设置！", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (userTypeFlag) {
-                    doRegisterUser();
-                } else {
-                    doRegisterBoss();
-                }
+
+                registerHuanXing(et_userPhone.getText().toString().trim(), et_passWord.getText().toString().trim());
+
+//                if (userTypeFlag) {
+//                    doRegisterUser();
+//                } else {
+//                    doRegisterBoss();
+//                }
                 break;
             default:
                 break;
         }
     }
 
+    /**
+     * 注册环信
+     *
+     * @param userPhone
+     * @param pass
+     */
+    private void registerHuanXing(final String userPhone, final String pass) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    EMClient.getInstance().createAccount(userPhone, pass);
+                    handler.sendEmptyMessage(ConstantUtils.HUANXING_REGISTER);
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                    Log.d("huanxing_register", "注册失败" + e.getErrorCode() + "," + e.getMessage());
+                }
+
+            }
+        }).start();
+    }
+
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         if (checkedId == radio_boss.getId()) {
-            Toast.makeText(context, "radio_boss", Toast.LENGTH_SHORT).show();
             userTypeFlag = false;
             JudgeUtils.saveUserType(context, userTypeFlag);
         }
         if (checkedId == radio_worker.getId()) {
-            Toast.makeText(context, "radio_worker", Toast.LENGTH_SHORT).show();
             userTypeFlag = true;
             JudgeUtils.saveUserType(context, userTypeFlag);
         }
@@ -209,6 +240,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
+                case ConstantUtils.HUANXING_REGISTER:
+                    if (userTypeFlag) {
+                        doRegisterUser();
+                    } else {
+                        doRegisterBoss();
+                    }
+                    break;
                 case ConstantUtils.REGISTER_GET_DATA:
                     if (userTypeFlag) {
                         SharePreferencesUtil.saveObject(context, ConstantUtils.USER_LOGIN_INFO, userInfo);

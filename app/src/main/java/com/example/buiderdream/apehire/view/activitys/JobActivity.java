@@ -17,6 +17,7 @@ import com.example.buiderdream.apehire.bean.UserInfo;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.ImageLoader;
+import com.example.buiderdream.apehire.utils.JudgeUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 
 import java.io.IOException;
@@ -39,13 +40,22 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
     UserInfo userInfo;
     ImageLoader imageLoader;
     RelativeLayout companyPart;
+    private boolean userType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
         initView();
         imageLoader = ImageLoader.getInstance();
-        userInfo = (UserInfo) SharePreferencesUtil.readObject(JobActivity.this,ConstantUtils.USER_LOGIN_INFO);
+        userType =JudgeUtils.getUserType(getApplication());
+        if (userType) {
+            userInfo = (UserInfo) SharePreferencesUtil.readObject(JobActivity.this, ConstantUtils.USER_LOGIN_INFO);
+            job_like_click.setVisibility(View.VISIBLE);
+            sendJobReq.setVisibility(View.VISIBLE);
+        }else {
+            job_like_click.setVisibility(View.GONE);
+            sendJobReq.setVisibility(View.GONE);
+        }
         Intent intent = getIntent();
         jobInfo = (JobAndCompany) intent.getSerializableExtra("jobInfo");
         initData();
