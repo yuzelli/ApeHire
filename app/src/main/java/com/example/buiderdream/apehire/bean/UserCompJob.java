@@ -10,51 +10,52 @@ import java.io.Serializable;
 
 public class UserCompJob implements Serializable {
 
+
     /**
-     * companyAddress : 北京上地中关村
-     * companyHeadImg : http://ojterpx44.bkt.clouddn.com/13133443000_1488105970188
-     * companyId : 7
-     * companyIntroduce : 阿里巴巴网络技术有限公司（简称：阿里巴巴集团）是以曾担任英语教师的马云为首的18人，于1999年在杭州创立，他们相信互联网能够创造公平的竞争环境，让小企业通过创新与科技扩展业务，并在参与国内或全球市场竞争时处于更有利的位置。[1] 阿里巴巴集团经营多项业务，另外也从关联公司的业务和服务中取得经营商业生态系统上的支援。业务和关联公司的业务包括：淘宝网、天猫、聚划算、全球速卖通、阿里巴巴国际交易市场、1688、阿里妈妈、阿里云、蚂蚁金服、菜鸟网络等。[2]  2014年9月19日，阿里巴巴集团在纽约证券交易所正式挂牌上市，股票代码“BABA”，创始人和董事局主席为马云。2015年全年，阿里巴巴总营收943.84亿元人民币，净利润688.44亿元人民币。2016年4月6日，阿里巴巴正式宣布已经成为全球最大的零售交易平台。
-     * companyName : 阿里巴巴
-     * companyNum : 13133443000
+     * companyAddress : 上地
+     * companyHeadImg : http://ojterpx44.bkt.clouddn.com/13133443002_1488850235532
+     * companyId : 8
+     * companyIntroduce : 腾讯-------------------------------------------------------------------------------------------------------------
+     * companyName : 百度
+     * companyNum : 13133443002
      * companyPassword : 123
-     * companyScale : 3
+     * companyScale : 4
      */
 
     private CompanyBean company;
     /**
-     * companyId : 7
-     * jobCharge : 4
+     * companyId : 8
+     * jobCharge : 6
      * jobCity : 1
-     * jobDetail : 、带领安卓团队完成Android移动互联网客户端软件的设计,开发及维护；2、配合产品经理，ui等沟通进行需求分析，研讨技术实现方案，进行应用及系统整合；3、确保代码和架构的质量,具有高可维护性；4、编写开发和维护文档；5、根据市场需求进行产品设计与开发；
-     * jobId : 9
-     * jobName : android
-     * jobTechnology : 1、国家统招一本院校本科以上学历，计算机相关专业，211和985院校以及硕士学历优先；2、2年以上面向对象程序设计与开发经验，3年以上Android应用开发经验，熟练Java开发，熟练使用Android SDK进行应用的开发与调试；3、熟练Android开发技术，包括UI编程，图形编程，多线程编程，网络编程，Service等；4、熟练掌握第三方分享SDK，地图SDK，支付SDK；5、熟悉Android系统结构；6、熟悉常用的设计模式、数据结构。
+     * jobDetail : android---------------------------
+     * jobId : 10
+     * jobName : android_java
+     * jobTechnology : android ------------------------
      * jobType : 1
      */
 
     private JobBean job;
     /**
-     * company : {"companyAddress":"北京上地中关村","companyHeadImg":"http://ojterpx44.bkt.clouddn.com/13133443000_1488105970188","companyId":7,"companyIntroduce":"阿里巴巴网络技术有限公司（简称：阿里巴巴集团）是以曾担任英语教师的马云为首的18人，于1999年在杭州创立，他们相信互联网能够创造公平的竞争环境，让小企业通过创新与科技扩展业务，并在参与国内或全球市场竞争时处于更有利的位置。[1] 阿里巴巴集团经营多项业务，另外也从关联公司的业务和服务中取得经营商业生态系统上的支援。业务和关联公司的业务包括：淘宝网、天猫、聚划算、全球速卖通、阿里巴巴国际交易市场、1688、阿里妈妈、阿里云、蚂蚁金服、菜鸟网络等。[2]  2014年9月19日，阿里巴巴集团在纽约证券交易所正式挂牌上市，股票代码\u201cBABA\u201d，创始人和董事局主席为马云。2015年全年，阿里巴巴总营收943.84亿元人民币，净利润688.44亿元人民币。2016年4月6日，阿里巴巴正式宣布已经成为全球最大的零售交易平台。","companyName":"阿里巴巴","companyNum":"13133443000","companyPassword":"123","companyScale":3}
-     * job : {"companyId":7,"jobCharge":4,"jobCity":1,"jobDetail":"、带领安卓团队完成Android移动互联网客户端软件的设计,开发及维护；2、配合产品经理，ui等沟通进行需求分析，研讨技术实现方案，进行应用及系统整合；3、确保代码和架构的质量,具有高可维护性；4、编写开发和维护文档；5、根据市场需求进行产品设计与开发；","jobId":9,"jobName":"android","jobTechnology":"1、国家统招一本院校本科以上学历，计算机相关专业，211和985院校以及硕士学历优先；2、2年以上面向对象程序设计与开发经验，3年以上Android应用开发经验，熟练Java开发，熟练使用Android SDK进行应用的开发与调试；3、熟练Android开发技术，包括UI编程，图形编程，多线程编程，网络编程，Service等；4、熟练掌握第三方分享SDK，地图SDK，支付SDK；5、熟悉Android系统结构；6、熟悉常用的设计模式、数据结构。","jobType":1}
-     * resume_id : 1
-     * userInfo : {"userAdvantage":"1.熟练掌握Java/android编程, 具有扎实的技术功底，深入理解android应用框架，独立分析和解决bug能力。2.熟练掌握常用UI控件,android下的网络编程，以及android多线程开发和线程间通信。3.熟悉对内存溢出和内存泄露的规避，具有一定的优化程序的能力。4.熟悉Android UI事件传递、布局、绘制等原理，能够编写自定义UI控件。5.熟练ACache、retrofit2.0、OkHttp3、ImageLoader等框架的使用。6.自学了第一行代码、老罗的android开发教程、android群英传。7.熟悉ios开发，熟悉使用MySql数据库、熟练使用SQL语句了解JSP、JavaScript、Html、Css、Xml相关WEB应用开发技术。","userAge":24,"userDegree":1,"userExpactMonney":2,"userExperence":"项目描述：本项目是太原农科所旗下为了帮助农民的生产生活所需要的知识和解决遇到的问题的一款APP。由我们团队承担开发。现已上线使用技术：1、采用MVP设计模式，使VC完全分离方便后期维护。2、使用Retrofit2.0框架，实现数据的网络请求操作。3、使用ACache框架，对请求回来的数据做缓存操作。4、使用Picasso框架，实现对图片的缓存操作。5、使用git分布式版本控制，来同步协同开发。","userGender":"男","userHeadImg":"http://ojterpx44.bkt.clouddn.com/13133443006_1488122086628","userId":22,"userPassword":"123","userPhoneNum":"13133443006","userSchool":"山西农业大学","userTrueName":"李秉龙"}
+     * company : {"companyAddress":"上地","companyHeadImg":"http://ojterpx44.bkt.clouddn.com/13133443002_1488850235532","companyId":8,"companyIntroduce":"腾讯-------------------------------------------------------------------------------------------------------------","companyName":"百度","companyNum":"13133443002","companyPassword":"123","companyScale":4}
+     * job : {"companyId":8,"jobCharge":6,"jobCity":1,"jobDetail":"android---------------------------","jobId":10,"jobName":"android_java","jobTechnology":"android ------------------------","jobType":1}
+     * resume_id : 0
+     * userInfo : {"userAdvantage":"","userAge":0,"userDegree":0,"userExpactMonney":0,"userExperence":"","userGender":"女","userHeadImg":"","userId":24,"userPassword":"123","userPhoneNum":"13133443001","userSchool":"","userTrueName":""}
      */
 
     private int resume_id;
     /**
-     * userAdvantage : 1.熟练掌握Java/android编程, 具有扎实的技术功底，深入理解android应用框架，独立分析和解决bug能力。2.熟练掌握常用UI控件,android下的网络编程，以及android多线程开发和线程间通信。3.熟悉对内存溢出和内存泄露的规避，具有一定的优化程序的能力。4.熟悉Android UI事件传递、布局、绘制等原理，能够编写自定义UI控件。5.熟练ACache、retrofit2.0、OkHttp3、ImageLoader等框架的使用。6.自学了第一行代码、老罗的android开发教程、android群英传。7.熟悉ios开发，熟悉使用MySql数据库、熟练使用SQL语句了解JSP、JavaScript、Html、Css、Xml相关WEB应用开发技术。
-     * userAge : 24
-     * userDegree : 1
-     * userExpactMonney : 2
-     * userExperence : 项目描述：本项目是太原农科所旗下为了帮助农民的生产生活所需要的知识和解决遇到的问题的一款APP。由我们团队承担开发。现已上线使用技术：1、采用MVP设计模式，使VC完全分离方便后期维护。2、使用Retrofit2.0框架，实现数据的网络请求操作。3、使用ACache框架，对请求回来的数据做缓存操作。4、使用Picasso框架，实现对图片的缓存操作。5、使用git分布式版本控制，来同步协同开发。
-     * userGender : 男
-     * userHeadImg : http://ojterpx44.bkt.clouddn.com/13133443006_1488122086628
-     * userId : 22
+     * userAdvantage :
+     * userAge : 0
+     * userDegree : 0
+     * userExpactMonney : 0
+     * userExperence :
+     * userGender : 女
+     * userHeadImg :
+     * userId : 24
      * userPassword : 123
-     * userPhoneNum : 13133443006
-     * userSchool : 山西农业大学
-     * userTrueName : 李秉龙
+     * userPhoneNum : 13133443001
+     * userSchool :
+     * userTrueName :
      */
 
     private UserInfoBean userInfo;

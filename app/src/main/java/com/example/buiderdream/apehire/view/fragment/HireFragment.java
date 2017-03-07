@@ -45,23 +45,24 @@ import okhttp3.Request;
  * Created by Administrator on 2016/12/4.
  */
 
-public class HireFragment extends BaseFragment implements View.OnClickListener{
+public class HireFragment extends BaseFragment implements View.OnClickListener {
     private View hireFragmentView;
-    TextView job_city,job_type,job_charge,cityMark;
+    TextView job_city, job_type, job_charge, cityMark;
     LinearLayout jobSelectLayout;
     ListView jobListView;
     List<JobAndCompany> jobInfolist;
     CommonAdapter<JobAndCompany> jobInfoAdapter;
-    PopupWindow jobCityWindow,jobTypeWindow,jobChargeWindow;
-    View jobCityView,jobTypeView,jobChargeView;
-    String type_city = "",type_job = "",type_charge = "";
+    PopupWindow jobCityWindow, jobTypeWindow, jobChargeWindow;
+    View jobCityView, jobTypeView, jobChargeView;
+    String type_city = "", type_job = "", type_charge = "";
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        if (hireFragmentView==null){
-            hireFragmentView = inflater.inflate(R.layout.fragment_hire, container,false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (hireFragmentView == null) {
+            hireFragmentView = inflater.inflate(R.layout.fragment_hire, container, false);
         }
-        if (hireFragmentView!=null){
-           return hireFragmentView;
+        if (hireFragmentView != null) {
+            return hireFragmentView;
         }
         return inflater.inflate(R.layout.fragment_hire, null);
     }
@@ -69,12 +70,13 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (view!=null){
+        if (view != null) {
             initView();
         }
     }
+
     /**
-     *   初始化布局
+     * 初始化布局
      */
     private void initView() {
         job_city = (TextView) hireFragmentView.findViewById(R.id.job_city);
@@ -90,7 +92,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), JobActivity.class);
-                intent.putExtra("jobInfo",jobInfolist.get(i));
+                intent.putExtra("jobInfo", jobInfolist.get(i));
                 startActivity(intent);
 
             }
@@ -99,46 +101,50 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         initData();
         initPopWindow();
     }
+
     /*
         初始化popWindow
      */
     private void initPopWindow() {
-        jobCityView = LayoutInflater.from(getActivity()).inflate(R.layout.popup_job_city,null);
-        jobTypeView = LayoutInflater.from(getActivity()).inflate(R.layout.popup_job_type,null);
-        jobChargeView = LayoutInflater.from(getActivity()).inflate(R.layout.popup_job_charge,null);
+        jobCityView = LayoutInflater.from(getActivity()).inflate(R.layout.popup_job_city, null);
+        jobTypeView = LayoutInflater.from(getActivity()).inflate(R.layout.popup_job_type, null);
+        jobChargeView = LayoutInflater.from(getActivity()).inflate(R.layout.popup_job_charge, null);
         jobCityWindow = new PopupWindow(jobCityView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         jobTypeWindow = new PopupWindow(jobTypeView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         jobChargeWindow = new PopupWindow(jobChargeView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         //城市筛选
         GridView cityGridView = (GridView) jobCityView.findViewById(R.id.job_city_grid);
-        String[] citys = {"不限","北京","上海","广州","深圳","武汉","杭州","成都","西安"};
+        String[] citys = {"不限", "北京", "上海", "广州", "深圳", "武汉", "杭州", "成都", "西安"};
         final List<String> list = new ArrayList<String>();
-        for (String s:citys) {
+        for (String s : citys) {
             list.add(s);
         }
-        CommonAdapter<String> adapter = new CommonAdapter<String>(getActivity(),list,R.layout.pop_item) {
+        CommonAdapter<String> adapter = new CommonAdapter<String>(getActivity(), list, R.layout.pop_item) {
             @Override
             public void convert(ViewHolder helper, String item) {
-                helper.setText(R.id.pop_item,item);
+                helper.setText(R.id.pop_item, item);
             }
         };
         cityGridView.setAdapter(adapter);
         cityGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0){
-                    type_city="";
-                }else {
+                type_city ="";
+                type_job="";
+                type_charge="";
+                if (i == 0) {
+                    type_city = "";
+                } else {
                     type_city = i + "";
                 }
                 doSearchJobBy();
-                if (i!=0){
+                if (i != 0) {
                     cityMark.setVisibility(View.VISIBLE);
                     cityMark.setText(list.get(i));
-                }else{
+                } else {
                     cityMark.setVisibility(View.GONE);
                 }
-                Toast.makeText(getActivity(), i+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), i + "", Toast.LENGTH_SHORT).show();
                 if (jobCityWindow.isShowing()) {
                     jobCityWindow.dismiss();
                 }
@@ -146,28 +152,31 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         });
         //职位类别筛选
         ListView type_listView = (ListView) jobTypeView.findViewById(R.id.jd_type_list);
-        String[] typeLists = {"不限","软件研发工程师","java研发工程师","嵌入式研发工程师","Unity3D工程师","Linux工程师"};
+        String[] typeLists = {"不限", "软件研发工程师", "java研发工程师", "嵌入式研发工程师", "Unity3D工程师", "Linux工程师"};
         List<String> typeList = new ArrayList<String>();
-        for (String s:typeLists) {
+        for (String s : typeLists) {
             typeList.add(s);
         }
-        CommonAdapter<String> type_adapter = new CommonAdapter<String>(getActivity(),typeList,R.layout.pop_item) {
+        CommonAdapter<String> type_adapter = new CommonAdapter<String>(getActivity(), typeList, R.layout.pop_item) {
             @Override
             public void convert(ViewHolder helper, String item) {
-                helper.setText(R.id.pop_item,item);
+                helper.setText(R.id.pop_item, item);
             }
         };
         type_listView.setAdapter(type_adapter);
         type_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0){
-                    type_job="";
-                }else {
+                type_city ="";
+                type_job="";
+                type_charge="";
+                if (i == 0) {
+                    type_job = "";
+                } else {
                     type_job = i + "";
                 }
                 doSearchJobBy();
-                Toast.makeText(getActivity(), i+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), i + "", Toast.LENGTH_SHORT).show();
                 if (jobTypeWindow.isShowing()) {
                     jobTypeWindow.dismiss();
                 }
@@ -175,53 +184,58 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
         });
         //薪资筛选
         ListView charge_listView = (ListView) jobChargeView.findViewById(R.id.jd_charge_list);
-        String[] chargeLists = {"不限","3k-5k","5k-10k","10k-15k","15k-20k","20k-30k","30k-50k"};
+        String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "15k-20k", "20k-30k", "30k-50k"};
         List<String> chargeList = new ArrayList<String>();
-        for (String s:chargeLists) {
+        for (String s : chargeLists) {
             chargeList.add(s);
         }
-        CommonAdapter<String> charge_adapter = new CommonAdapter<String>(getActivity(),chargeList,R.layout.pop_item) {
+        CommonAdapter<String> charge_adapter = new CommonAdapter<String>(getActivity(), chargeList, R.layout.pop_item) {
             @Override
             public void convert(ViewHolder helper, String item) {
-                helper.setText(R.id.pop_item,item);
+                helper.setText(R.id.pop_item, item);
             }
         };
         charge_listView.setAdapter(charge_adapter);
         charge_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0){
-                    type_charge="";
-                }else{
-                    type_charge = i+"";
+                type_city ="";
+                type_job="";
+                type_charge="";
+                if (i == 0) {
+                    type_charge = "";
+                } else {
+                    type_charge = i + "";
                 }
                 doSearchJobBy();
-                Toast.makeText(getActivity(), i+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), i + "", Toast.LENGTH_SHORT).show();
                 if (jobChargeWindow.isShowing()) {
                     jobChargeWindow.dismiss();
                 }
             }
         });
     }
+
     //按照筛选结果查找职位
     private void doSearchJobBy() {
+        jobInfolist = new ArrayList<JobAndCompany>();
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
-        Map<String,String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("type", "selSomeJob");
 //        if (type_city!=""||type_city.length()!=0)
-            map.put("JobCity",type_city);
+        map.put("JobCity", type_city);
 //        if (type_job!=""||type_job.length()!=0)
-            map.put("JobType",type_job);
+        map.put("JobType", type_job);
 //        if (type_charge!=""||type_charge.length()!=0)
-            map.put("JobCharge",type_charge);
+        map.put("JobCharge", type_charge);
         map.put("CompanyId", "");
 //        String urls = "http://172.20.10.2:8080/ApeHire/jobServlet";
-        String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.JOB_SERVLET,map);
+        String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.JOB_SERVLET, map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
-               // Log.i("asdasdasdadsas",e.getMessage());
+                // Log.i("asdasdasdadsas",e.getMessage());
             }
 
             @Override
@@ -231,12 +245,14 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     JSONArray array = object.getJSONArray("object");
-                    for (int i = 0;i<array.length();i++){
-                        JobAndCompany jac = gson.fromJson(array.getJSONObject(i).toString(),JobAndCompany.class);
-                        jobInfolist.add(jac);
-                        initAdapter();
-                    }
+                    Log.d("----->",result);
 
+                    for (int i = 0; i < array.length(); i++) {
+                        JobAndCompany jac = gson.fromJson(array.getJSONObject(i).toString(), JobAndCompany.class);
+                        jobInfolist.add(jac);
+
+                    }
+                    initAdapter();
                 }
             }
         });
@@ -246,18 +262,18 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
     private void initData() {
         jobInfolist = new ArrayList<>();
 
-        JobAndCompany j1 = new JobAndCompany();
-        j1.setJobName("假数据1");
-        j1.setJobCharge(3);
-        j1.setJobCity(2);
-        JobAndCompany.CompanyBean comp = new JobAndCompany.CompanyBean();
-        comp.setCompanyName("连不上服务器啊");
-        comp.setCompanyAddress("又想看界面啊");
-        comp.setCompanyIntroduce("好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊");
-        comp.setCompanyScale(2);
-        j1.setCompany(comp);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
+//        JobAndCompany j1 = new JobAndCompany();
+//        j1.setJobName("假数据1");
+//        j1.setJobCharge(3);
+//        j1.setJobCity(2);
+//        JobAndCompany.CompanyBean comp = new JobAndCompany.CompanyBean();
+//        comp.setCompanyName("连不上服务器啊");
+//        comp.setCompanyAddress("又想看界面啊");
+//        comp.setCompanyIntroduce("好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊");
+//        comp.setCompanyScale(2);
+//        j1.setCompany(comp);
+//        jobInfolist.add(j1);
+//        jobInfolist.add(j1);
 
 
         doSearchJobBy();
@@ -265,25 +281,25 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
     }
 
     private void initAdapter() {
-        jobInfoAdapter = new CommonAdapter<JobAndCompany>(getActivity(),jobInfolist, R.layout.fragment_hire_item) {
+        jobInfoAdapter = new CommonAdapter<JobAndCompany>(getActivity(), jobInfolist, R.layout.fragment_hire_item) {
             @Override
             public void convert(ViewHolder helper, JobAndCompany item) {
-                helper.setText(R.id.job_item_jobName,item.getJobName());
-                helper.setText(R.id.job_item_jobCharge,item.getJobCharge()>2?(item.getJobCharge()>3?(item.getJobCharge()>4?"15K+":"8K~15K"):"5K~8k"):"5K以下");
-                helper.setText(R.id.job_item_companyName,item.getCompany().getCompanyName());
-                helper.setText(R.id.job_item_companyAddress,item.getCompany().getCompanyAddress());
-                if (item.getCompany().getCompanyHeadImg()!=null||item.getCompany().getCompanyHeadImg()!="")
-                    helper.setImageByUrl(R.id.job_item_img,item.getCompany().getCompanyHeadImg());
+                helper.setText(R.id.job_item_jobName, item.getJobName());
+                helper.setText(R.id.job_item_jobCharge, item.getJobCharge() > 2 ? (item.getJobCharge() > 3 ? (item.getJobCharge() > 4 ? "15K+" : "8K~15K") : "5K~8k") : "5K以下");
+                helper.setText(R.id.job_item_companyName, item.getCompany().getCompanyName());
+                helper.setText(R.id.job_item_companyAddress, item.getCompany().getCompanyAddress());
+                if (item.getCompany().getCompanyHeadImg() != null || item.getCompany().getCompanyHeadImg() != "")
+                    helper.setImageByUrl(R.id.job_item_img, item.getCompany().getCompanyHeadImg());
             }
         };
         jobListView.setAdapter(jobInfoAdapter);
-        jobInfoAdapter.notifyDataSetChanged();
+        // jobInfoAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onDestroy() {
         ViewGroup parent = (ViewGroup) hireFragmentView.getParent();
-        if (parent!=null){
+        if (parent != null) {
             parent.removeView(hireFragmentView);
         }
         super.onDestroy();
@@ -291,7 +307,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.job_city:
                 showJobPop(jobCityWindow);
                 break;
@@ -309,7 +325,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
 
     private void showJobPop(PopupWindow popWindow) {
 
-        if (!popWindow.isShowing()){
+        if (!popWindow.isShowing()) {
             //在底部显示
             popWindow.showAsDropDown(jobSelectLayout);
             //popupWindow.showAtLocation(titleLayout, Gravity.BOTTOM, 0, 0);
@@ -345,7 +361,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener{
                     return false;
                 }
             });
-        }else{
+        } else {
             popWindow.dismiss();
         }
     }

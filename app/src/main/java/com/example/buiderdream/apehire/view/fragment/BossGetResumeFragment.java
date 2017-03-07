@@ -2,10 +2,13 @@ package com.example.buiderdream.apehire.view.fragment;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +113,68 @@ public class BossGetResumeFragment extends BaseFragment {
                 UserActivity.actionStart(context,userInfoList.get(position));
             }
         });
+        lv_userInfo.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                ShowDeleteDialog(userInfoList.get(position).getResume_id());
+
+                return true;
+            }
+        });
+    }
+    /**
+     * show Delete Dialog
+     */
+    private void ShowDeleteDialog(final int resumeID) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);// 构建
+        builder.setTitle("提示框");
+        builder.setMessage("你确定要删除么");
+        // 添加确定按钮 listener事件是继承与DialogInerface的
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                // 完成业务逻辑代码
+                DeleteResume(resumeID);
+            }
+        });
+        // 添加取消按钮
+        builder.setNegativeButton("取消删除",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+        builder.show();
+    }
+    /**
+     * 删除
+     */
+    private void DeleteResume(int resumeID) {
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "deleteCompanyResume");
+        map.put("resume_id", resumeID + "");
+
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.COMPANY_RESUM_SERVLET, map);
+        Log.d("-----url----->",url);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Log.d("-----请求失败----->","请求失败");
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                Log.d("-----chenggonh----->",result);
+                handler.sendEmptyMessage(ConstantUtils.BOSS_GET_DELECT);
+
+            }
+        });
     }
 
     /**
@@ -130,7 +195,7 @@ public class BossGetResumeFragment extends BaseFragment {
 
             @Override
             public void requestSuccess(String result) throws Exception {
-
+                Log.d("-----请求----->",result);
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
@@ -160,6 +225,9 @@ public class BossGetResumeFragment extends BaseFragment {
             switch (msg.what) {
                 case ConstantUtils.BOSS_GET_RESUME_GET_DATA:
                     updataListView();
+                    break;
+                case ConstantUtils.BOSS_GET_DELECT:
+                    getBossGetResumeData();
                     break;
                 default:
                     break;

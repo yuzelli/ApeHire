@@ -82,5 +82,7 @@
         android:id="@+id/vp_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/psts_tab"/>
+        android:layout_below="@+id/psts_tab"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

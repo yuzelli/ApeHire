@@ -43,6 +43,9 @@ public class ConstantUtils {
     public static final int HUANXING_REGISTER = 0x00001019;
     public static final int HUANXING_LOGIN = 0x00001020;
     public static final int HUANXING_LOGOUT = 0x00001021;
+    public static final int ARTI_ADD_DATA = 0x00001022;
+    public static final int COLLECTION_ARTI_ADD_DATA = 0x00001023;
+    public static final int BOSS_GET_DELECT = 0x00001024;
     //--------------------startActivityForResultCode-------------------------
     //编辑用户信息
     public static final int EDIT_USER_INFO_ACTIVITY_CODE = 1000;
