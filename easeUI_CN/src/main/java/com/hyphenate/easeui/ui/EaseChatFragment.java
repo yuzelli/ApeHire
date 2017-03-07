@@ -684,6 +684,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
             return;
         }
         EMMessage message = EMMessage.createTxtSendMessage(content, toChatUsername);
+       
         EMGroup group = EMClient.getInstance().groupManager().getGroup(toChatUsername);
         if(EMClient.getInstance().getCurrentUser().equals(group.getOwner()) && EaseAtMessageHelper.get().containsAtAll(content)){
             message.setAttribute(EaseConstant.MESSAGE_ATTR_AT_MSG, EaseConstant.MESSAGE_ATTR_VALUE_AT_MSG_ALL);

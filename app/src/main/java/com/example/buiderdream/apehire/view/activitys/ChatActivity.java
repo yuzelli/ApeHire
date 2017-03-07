@@ -20,7 +20,7 @@ public class ChatActivity extends BaseActivity {
 
         EaseChatFragment chatFragment = new EaseChatFragment();
         chatFragment.setArguments(getIntent().getExtras());
-        getSupportFragmentManager().beginTransaction().add(R.id.ec_layout_container,chatFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.ec_layout_container, chatFragment).commit();
     }
 
 

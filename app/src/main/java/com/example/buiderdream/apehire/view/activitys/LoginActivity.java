@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -17,6 +18,7 @@ import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
 import com.example.buiderdream.apehire.bean.CompanyInfo;
 import com.example.buiderdream.apehire.bean.UserInfo;
+import com.example.buiderdream.apehire.config.LogUtil;
 import com.example.buiderdream.apehire.constants.ConstantUtils;
 import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.JudgeUtils;
@@ -198,13 +200,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         EMClient.getInstance().login(phone, pass, new EMCallBack() {
             @Override
             public void onSuccess() {
-
+                Log.d("------------->","huanxing id login");
                 handler.sendEmptyMessage(ConstantUtils.HUANXING_LOGIN);
             }
 
             @Override
             public void onError(int i, String s) {
-                Toast.makeText(context,"登陆失败",Toast.LENGTH_SHORT).show();
+              Log.d("------>",s+i);
 
             }
 
