@@ -93,6 +93,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), JobActivity.class);
                 intent.putExtra("jobInfo", jobInfolist.get(i));
+                intent.putExtra("isSend",false);
                 startActivity(intent);
 
             }

@@ -44,6 +44,7 @@ import okhttp3.Request;
 
 /**
  * Created by 51644 on 2017/2/28.
+ * 投递的职位
  */
 
 public class UserJobFragment extends BaseFragment {
@@ -131,6 +132,7 @@ public class UserJobFragment extends BaseFragment {
                 job.setJobTechnology(jobBean.getJobTechnology());
                 job.setJobType(jobBean.getJobType());
                 intent.putExtra("jobInfo",job);
+                intent.putExtra("isSend",true);
                 startActivity(intent);
             }
         });

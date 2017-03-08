@@ -55,30 +55,10 @@ public class CompanyInfoActivity extends BaseActivity {
         Intent intent = getIntent();
         jobInfo = (JobAndCompany) intent.getSerializableExtra("jobInfo");
         initView();
-        initAllJobData();
-    }
-
-    private void initAllJobData() {
         jobInfolist = new ArrayList<>();
-
-        JobAndCompany j1 = new JobAndCompany();
-        j1.setJobName("假数据1");
-        j1.setJobCharge(3);
-        j1.setJobCity(2);
-        JobAndCompany.CompanyBean comp = new JobAndCompany.CompanyBean();
-        comp.setCompanyName("连不上服务器啊");
-        comp.setCompanyAddress("又想看界面啊");
-        comp.setCompanyIntroduce("好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊好可怜啊啊啊啊啊啊啊");
-        comp.setCompanyScale(2);
-        j1.setCompany(comp);
-        jobInfolist.add(j1);
-        jobInfolist.add(j1);
-
-
-
-        getAllJobByComp();
-        initAdapter();
     }
+
+
 
     private void getAllJobByComp() {
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
@@ -176,6 +156,7 @@ public class CompanyInfoActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(CompanyInfoActivity.this, JobActivity.class);
                 intent.putExtra("jobInfo",jobInfolist.get(i));
+                intent.putExtra("isSend",false);
                 startActivity(intent);
 
             }

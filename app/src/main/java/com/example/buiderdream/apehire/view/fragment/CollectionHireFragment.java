@@ -156,6 +156,7 @@ public class CollectionHireFragment extends BaseFragment{
                 jc.setJobId(jcc.getJobId());
 
                 intent.putExtra("jobInfo",jc);
+                intent.putExtra("isSend",false);
                 startActivity(intent);
             }
         });

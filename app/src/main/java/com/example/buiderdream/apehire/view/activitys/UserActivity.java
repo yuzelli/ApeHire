@@ -119,6 +119,7 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
                 UserCompJob.JobBean jobBean = userCompJob.getJob();
                 JobInfo job = new JobInfo(jobBean.getJobId(),jobBean.getJobName(),jobBean.getJobDetail(),jobBean.getJobType(),jobBean.getJobCity(),jobBean.getJobCharge(),jobBean.getCompanyId(),jobBean.getJobTechnology());
                 intent.putExtra("jobInfo",job);
+                intent.putExtra("isSend",false);
                 startActivity(intent);
                 break;
             default:

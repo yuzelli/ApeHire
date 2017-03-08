@@ -87,6 +87,8 @@
     <string name="Mapping">绘图</string>
     <string name="zoom">缩放</string>
     <string name="Flip">翻转</string>
+    <string name="Job_desc">职位详情</string>
+    <string name="Immediate_delivery">立即投递</string>
 
 
     <string-array name="education_array">

@@ -32,15 +32,16 @@ import okhttp3.Request;
  * @李文捷
  */
 public class JobActivity extends BaseActivity implements View.OnClickListener{
-    TextView jd_title,jd_company_name,jd_company_name2,jd_company_address,jd_company_address2,jd_company_scale,jd_company_detail,jd_detail,jd_charge,jd_technology;
-    ImageView job_company_img;
-    JobAndCompany jobInfo;//职位详情
-    TextView sendJobReq;//职位投递
-    ImageView job_like_click;//职位收藏
-    UserInfo userInfo;
-    ImageLoader imageLoader;
-    RelativeLayout companyPart;
-    private boolean userType;
+    private TextView jd_title,jd_company_name,jd_company_name2,jd_company_address,jd_company_address2,jd_company_scale,jd_company_detail,jd_detail,jd_charge,jd_technology;
+    private ImageView job_company_img;
+    private  JobAndCompany jobInfo;//职位详情
+    private TextView sendJobReq;//职位投递
+    private ImageView job_like_click;//职位收藏
+    private UserInfo userInfo;
+    private  ImageLoader imageLoader;
+    private RelativeLayout companyPart;
+    private boolean userType;   //用户类型
+    private boolean isSend;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +59,12 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         }
         Intent intent = getIntent();
         jobInfo = (JobAndCompany) intent.getSerializableExtra("jobInfo");
+        isSend  =  intent.getBooleanExtra("isSend",false);
+        if (isSend){
+            sendJobReq.setVisibility(View.GONE);
+        }else {
+            sendJobReq.setVisibility(View.VISIBLE);
+        }
         initData();
     }
 
@@ -115,6 +122,9 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
                 doLikeJobReq();
                 break;
             case R.id.job_detail_part4:
+                if (!userType){
+                    break;
+                }
                 Intent intent = new Intent(JobActivity.this, CompanyInfoActivity.class);
                 intent.putExtra("jobInfo",jobInfo);
                 startActivity(intent);
