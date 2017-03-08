@@ -9,6 +9,7 @@
         android:id="@+id/img_tabIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/imgContentDescription"
         android:focusable="false"
         android:padding="3dp"
         android:src="@drawable/tab_hire_btn">
@@ -18,8 +19,8 @@
         android:id="@+id/tv_tabText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="招聘"
         android:textSize="10sp"
+        android:text="招聘"
         android:textColor="#ffffff">
     </TextView>
 </LinearLayout>

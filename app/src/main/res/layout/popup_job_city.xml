@@ -6,7 +6,7 @@
     android:background="@color/white">
 
     <TextView
-        android:text="选择城市："
+        android:text="@string/Select_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView10"

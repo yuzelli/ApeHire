@@ -8,6 +8,6 @@
         />
     <gradient
         android:angle="90"
-        android:endColor="@color/lawngreen"
-        android:startColor="@color/green" />
+        android:endColor="@color/btn_color"
+        android:startColor="@color/btn_color" />
 </shape>

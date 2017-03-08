@@ -27,7 +27,6 @@
             android:layout_toEndOf="@+id/img_companyHeader"
             android:layout_toStartOf="@+id/v_line"
             android:lines="1"
-            android:text="新浪"
             android:textSize="@dimen/order_size" />
 
         <TextView
@@ -39,7 +38,6 @@
             android:layout_marginEnd="25dp"
             android:layout_toStartOf="@+id/v_line"
             android:lines="1"
-            android:text="本科"
             android:textSize="@dimen/order_size" />
 
 
@@ -53,7 +51,6 @@
             android:layout_toEndOf="@+id/img_companyHeader"
             android:layout_toStartOf="@+id/v_line"
             android:lines="1"
-            android:text="10-15k"
             android:textSize="@dimen/order_size" />
 
         <View
@@ -77,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="应聘职位" />
+                android:text="@string/Position_applied" />
 
             <TextView
                 android:id="@+id/tv_jobName"
@@ -86,7 +83,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
-                android:text="android工程师" />
+           />
 
             <TextView
                 android:id="@+id/tv_jobType"
@@ -95,7 +92,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignStart="@+id/tv_jobName"
                 android:layout_marginBottom="10dp"
-                android:text="android工程师" />
+                 />
         </RelativeLayout>
     </RelativeLayout>
 

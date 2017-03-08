@@ -9,6 +9,7 @@
         android:id="@+id/iv_spl_background"
         android:layout_width="match_parent"
         android:src="@drawable/splash0"
+        android:contentDescription="@string/imgContentDescription"
         android:scaleType="fitXY"
         android:layout_height="match_parent" />
     <View
@@ -24,7 +25,7 @@
         android:textSize="48sp"
         android:id="@+id/tv_title"
         android:layout_centerInParent="true"
-        android:text="欢迎归来"/>
+        android:text="@string/welcome"/>
 
     <TextView
         android:layout_width="match_parent"

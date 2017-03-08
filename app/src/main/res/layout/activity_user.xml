@@ -8,12 +8,13 @@
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:background="@drawable/titlebar"
+        android:layout_height="44dp">
 
         <ImageView
             android:id="@+id/img_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:contentDescription="@string/imgContentDescription"
@@ -52,7 +53,6 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="2.18"
                 android:background="@color/white">
 
                 <TextView
@@ -62,7 +62,7 @@
                     android:layout_alignStart="@+id/tv_jobName"
                     android:layout_centerVertical="true"
                     android:textSize="@dimen/order_size"
-                    android:text="kaifa" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_jobAddress"
@@ -73,7 +73,7 @@
                     android:layout_marginTop="10dp"
                     android:textSize="@dimen/order_size"
                     android:layout_marginEnd="20dp"
-                    android:text="北京市海淀区" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_jobName"
@@ -83,7 +83,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginBottom="11dp"
                     android:layout_marginStart="20dp"
-                    android:text="Android工程师"
+
                     android:textColor="@color/blueviolet"
                     android:textSize="16sp" />
 
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:text="8K~12K"
+
                     android:textColor="@color/hotpink"
                     android:textSize="18sp"
                     android:layout_alignTop="@+id/tv_jobName"
@@ -119,7 +119,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="13dp"
-                    android:text="求职者"
+                    android:text="@string/want_worker"
                     android:textColor="@color/blueviolet" />
 
                 <View
@@ -150,7 +150,6 @@
                     android:layout_marginStart="24dp"
                     android:layout_toEndOf="@+id/img_userHeader"
                     android:lines="1"
-                    android:text="李秉龙"
                     android:textSize="@dimen/order_size" />
 
                 <TextView
@@ -163,7 +162,6 @@
                     android:layout_marginEnd="25dp"
                     android:gravity="center_vertical"
                     android:lines="1"
-                    android:text="本科"
                     android:textSize="@dimen/order_size" />
 
 
@@ -187,7 +185,6 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/tv_expact"
                     android:lines="1"
-                    android:text="10-15k"
                     android:textSize="@dimen/order_size" />
 
                 <TextView
@@ -195,7 +192,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/order_size"
-                    android:text="@string/man"
                     android:layout_marginStart="22dp"
                     android:layout_alignBaseline="@+id/tv_userName"
                     android:layout_alignBottom="@+id/tv_userName"
@@ -205,7 +201,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/order_size"
-                    android:text="shanxinoyedaxue"
                     android:layout_marginStart="22dp"
                     android:layout_alignBaseline="@+id/tv_degree"
                     android:layout_alignBottom="@+id/tv_degree"

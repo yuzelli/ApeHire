@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="44dp"
+        android:background="@drawable/titlebar">
 
         <ImageView
             android:id="@+id/img_back"
@@ -27,16 +28,17 @@
             android:layout_centerInParent="true"
             android:text="@string/userInfo"
             android:textSize="@dimen/title_font" />
+
         <TextView
             android:id="@+id/tv_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_exit_btn"
             android:text="@string/exit"
-            android:layout_marginEnd="20dp"
-            android:textSize="@dimen/title_font"
-            android:background="@drawable/bg_exit_btn"/>
+            android:textSize="@dimen/title_font" />
 
         <View
             android:layout_width="match_parent"
@@ -48,9 +50,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_top"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rl_top">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,13 +95,11 @@
             <RelativeLayout
                 android:id="@+id/rl_realName"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                >
+                android:layout_height="50dp">
 
                 <TextView
                     style="@style/PersonalInfoTextStyle"
-                    android:text="@string/RealName"
-                    />
+                    android:text="@string/RealName" />
 
                 <TextView
                     android:id="@+id/tv_trueName"
@@ -108,7 +108,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@+id/img_RA2"
-                    android:text="雨泽"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/order_size" />
 
@@ -123,25 +122,23 @@
                     android:layout_alignParentBottom="true"
                     android:background="@color/lightgray" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_phoneNumber"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                >
+                android:layout_height="50dp">
 
                 <TextView
                     style="@style/PersonalInfoTextStyle"
-                    android:text="@string/PhoneNumber"
-                    />
+                    android:text="@string/PhoneNumber" />
 
                 <TextView
                     android:id="@+id/tv_phoneNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
-                    android:text="11133334444"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/order_size" />
 
@@ -152,6 +149,7 @@
                     android:layout_alignParentBottom="true"
                     android:background="@color/lightgray" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_sex"
                 android:layout_width="match_parent"
@@ -165,23 +163,23 @@
                     android:id="@+id/rg_sex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/radio_man"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/man" />
+                    <RadioButton
+                        android:id="@+id/radio_man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/man" />
 
-                <RadioButton
-                    android:id="@+id/radio_woman"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/weman" />
+                    <RadioButton
+                        android:id="@+id/radio_woman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weman" />
                 </RadioGroup>
 
 
@@ -208,7 +206,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@+id/img_RA4"
-                    android:text="25"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/order_size" />
 
@@ -243,8 +240,8 @@
                     android:id="@+id/spinner_education"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp" />
             </RelativeLayout>
 
@@ -264,7 +261,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@+id/img_RA6"
-                    android:text="山西农业大学"
+
                     android:textColor="@color/gray"
                     android:textSize="@dimen/order_size" />
 
@@ -293,8 +290,8 @@
                     android:id="@+id/spinner_salary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp" />
 
                 <View
@@ -329,7 +326,6 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:text="水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/order_size" />
 
@@ -374,7 +370,6 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:text="1.水水水水水水ddddd水水水水水水水dddd水水水水水\n2.水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水\n3.水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/order_size" />
             </RelativeLayout>

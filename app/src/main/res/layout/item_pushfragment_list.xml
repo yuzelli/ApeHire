@@ -27,7 +27,6 @@
             android:layout_marginStart="24dp"
             android:layout_toEndOf="@+id/img_userHeader"
             android:lines="1"
-            android:text="雍和宫发布招聘会"
             android:textSize="@dimen/title_font" />
 
 

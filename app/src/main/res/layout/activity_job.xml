@@ -9,7 +9,7 @@
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_alignParentStart="true"
-        android:background="#7cdcd1"
+        android:background="@drawable/titlebar"
         android:layout_height="44dp">
         <ImageView
             android:layout_width="40dp"
@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2eafa0"
+        android:background="@color/btn_color"
         android:text="立即投递"
         android:textSize="22sp"
         android:gravity="center"

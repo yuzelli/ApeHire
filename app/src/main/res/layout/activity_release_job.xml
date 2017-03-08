@@ -8,12 +8,13 @@
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:background="@drawable/titlebar"
+        android:layout_height="44dp">
 
         <ImageView
             android:id="@+id/img_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:contentDescription="@string/imgContentDescription"
@@ -24,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:textColor="@color/black"
             android:text="@string/release_job"
             android:textSize="@dimen/title_font" />
         <View

@@ -29,7 +29,7 @@
     <application
         android:name=".app.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_apehire"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -51,7 +51,6 @@
         <activity android:name=".view.activitys.UserEditActivity" />
         <activity android:name=".view.activitys.BossEditActivity" />
         <activity android:name=".view.activitys.InputInfoActivity" />
-        <activity android:name=".view.activitys.PerfectRegCompActivity" />
         <activity android:name=".view.activitys.CompanyShowImgActivity" />
         <activity android:name=".view.activitys.ProcessActivity" />
         <activity android:name=".view.activitys.TechnologyActivity" />

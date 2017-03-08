@@ -20,7 +20,7 @@
                     android:layout_height="wrap_content"  
         			android:paddingLeft="40px"
         			android:paddingTop="10px"
-        			android:text="饱和" />
+        			android:text="@string/saturated" />
                 <SeekBar
                     android:id="@+id/seekBarSaturation"
                     android:layout_width="fill_parent"  
@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content" 
                     android:layout_height="wrap_content"  
         			android:paddingLeft="40px"
-        			android:text="色相" />
+        			android:text="@string/Hue" />
                 <SeekBar
                     android:id="@+id/seekBarHue"
                     android:layout_width="fill_parent"  
@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content" 
                     android:layout_height="wrap_content"  
         			android:paddingLeft="40px"
-        			android:text="亮度" />
+        			android:text="@string/brightness" />
                 <SeekBar
                     android:id="@+id/seekBarLum"
                     android:layout_width="fill_parent"  

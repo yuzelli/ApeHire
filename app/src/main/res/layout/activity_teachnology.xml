@@ -6,21 +6,22 @@
     <RelativeLayout
         android:id="@+id/title_layout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/blueviolet">
+        android:layout_height="44dp"
+        android:background="@drawable/titlebar">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/btn_back"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:contentDescription="@string/imgContentDescription"
+            android:layout_marginStart="20dp"
             android:onClick="back"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="技术文章"
+            android:text="@string/teachnology_article"
             android:padding="10dp"
-            android:textSize="18sp"
+            android:textSize="@dimen/title_font"
             android:textColor="@color/black"
             android:layout_centerInParent="true"
              />
@@ -28,10 +29,11 @@
             android:id="@+id/tech_collection_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="收藏"
+            android:text="@string/collection"
             android:padding="10dp"
             android:textSize="18sp"
             android:textColor="@color/black"
+            android:background="@drawable/bg_exit_btn"
             android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
@@ -61,8 +63,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                         android:id="@+id/tech_title_name"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:text="没有绑卡、没有任何消费记录的 google play 帐号如何设置地区和货币？？"/>
+                       />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -78,17 +78,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-
-                    >
+                 >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tech_content_tv"
                         android:textAlignment="center"
                         android:textSize="16sp"
-                        android:text="听说苹果即将推出基于安卓的 iMessage ？不知道通讯运营商和以微信为代表的即时通讯软件心里啥感觉？反正我觉得那个曾经哔哔很火的小程序号基本可以入土为安了。大家觉得呢？听说苹果即将推出基于安卓的 iMessage ？不知道通讯运营商和以微信为代表的即时通讯软件心里啥感觉？反正我觉得那个曾经哔哔很火的小程序号基本可以入土为安了。大家觉得呢？"/>
+                       />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -97,37 +94,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="20dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-
                     >
                     <TextView
                         android:id="@+id/user_tv"
-                        android:paddingLeft="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="发布人"
+                        android:text="@string/Publisher"
                         android:textSize="18sp"
                         android:textColor="@color/aqua"/>
                     <ImageView
-
                         android:id="@+id/tech_user_iv"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
+                        android:contentDescription="@string/imgContentDescription"
                         android:layout_below="@+id/user_tv"
-                        android:src="@drawable/color_cursor"/>
+                        android:src="@drawable/icon_head_200px"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:text="用户名"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:id="@+id/tech_username_tv"
                         android:layout_below="@+id/user_tv"
-                        android:layout_toRightOf="@+id/tech_user_iv"
+                        android:layout_toEndOf="@+id/tech_user_iv"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -135,9 +129,9 @@
                         android:id="@+id/tech_usertime_tv"
                         android:layout_marginTop="15dp"
                         android:layout_below="@+id/tech_username_tv"
-                        android:layout_toRightOf="@+id/tech_user_iv"
-                        android:layout_marginLeft="10dp"
-                        android:text="发布于2017年2月"/>
+                        android:layout_toEndOf="@+id/tech_user_iv"
+                        android:layout_marginStart="10dp"
+                      />
 
 
                 </RelativeLayout>

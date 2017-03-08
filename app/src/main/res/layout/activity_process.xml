@@ -5,36 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.buiderdream.apehire.view.activitys.ProcessActivity">
+
     <RelativeLayout
         android:id="@+id/MyLayout_top"
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:background="#666666"
+        android:layout_height="44dp"
         android:layout_alignParentTop="true"
-        android:gravity="center">
+        android:background="@drawable/titlebar"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:text="@string/pic_edit"
             android:textColor="#ffffff"
-            android:text="图片编辑" />
+            android:textSize="25sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/MyLayout_bottom"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/image_toolbar_bg"
-        android:gravity="center">
+        android:background="@drawable/bg_maintab_toolbar"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true" >
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/layout_watch"
@@ -42,71 +45,85 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/image_watch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imgContentDescription"
                     android:padding="3dp"
                     android:src="@drawable/image_icon_watch_nor" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout_increase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/image_increase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imgContentDescription"
                     android:padding="3dp"
                     android:src="@drawable/image_icon_increase_nor" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout_effect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/image_effect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imgContentDescription"
                     android:padding="3dp"
                     android:src="@drawable/image_icon_effect_nor" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/image_frame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imgContentDescription"
                     android:padding="3dp"
                     android:src="@drawable/image_icon_frame_nor" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout_person"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/imgContentDescription"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/image_person"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imgContentDescription"
                     android:padding="3dp"
                     android:src="@drawable/image_icon_person_nor" />
             </LinearLayout>
@@ -116,18 +133,20 @@
     <!-- 鏄剧ず鍥剧墖 -->
     <RelativeLayout
         android:id="@+id/Content_Layout"
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/MyLayout_bottom"
         android:layout_below="@id/MyLayout_top"
         android:background="#EFDFDF"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/imgContentDescription" />
     </RelativeLayout>
 
 </RelativeLayout>

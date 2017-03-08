@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.buiderdream.apehire.view.activitys.InputInfoActivity">
+
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="44dp"
+        android:background="@drawable/titlebar">
 
         <ImageView
             android:id="@+id/img_back"
@@ -27,16 +29,19 @@
             android:layout_centerInParent="true"
             android:text="@string/userInfo"
             android:textSize="@dimen/title_font" />
+
         <TextView
             android:id="@+id/tv_confirm"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="@string/Confirm"/>
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_exit_btn"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/Confirm" />
 
         <View
             android:layout_width="match_parent"
@@ -44,26 +49,42 @@
             android:layout_alignParentBottom="true"
             android:background="@color/darkgray" />
     </RelativeLayout>
+
     <EditText
         android:id="@+id/et_userInput"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/rl_top"
-        android:lines="1"
         android:layout_margin="10dp"
-        android:background="@drawable/editview_shape"/>
+        android:background="@drawable/editview_shape"
+        android:inputType="text"
+        android:labelFor="@+id/et_userInput"
+        android:lines="1"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp" />
+
     <EditText
         android:id="@+id/et_userLongInput"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/v_line"
         android:layout_below="@+id/rl_top"
         android:layout_margin="10dp"
-        android:textSize="20sp"
-        android:maxLength="500"
-        android:singleLine="false"
+        android:background="@drawable/editview_shape"
         android:gravity="top"
-        android:background="@drawable/editview_shape"/>
+        android:inputType="text"
+        android:labelFor="@+id/et_userLongInput"
+        android:maxLength="500"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:singleLine="false"
+        android:textSize="20sp" />
 
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_centerInParent="true" />
 
 
 </RelativeLayout>

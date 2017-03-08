@@ -9,174 +9,178 @@
     <RelativeLayout
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
+        android:layout_height="44dp"
         android:layout_alignParentStart="true"
-        android:background="#7cdcd1"
-        android:layout_height="44dp">
+        android:background="@drawable/titlebar">
+
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/btn_back"
+            android:id="@+id/imageView"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/imgContentDescription"
             android:onClick="backClick"
-            android:id="@+id/imageView" />
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_left_arrow" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="公司概况"
-            android:textSize="22sp"
+            android:layout_centerInParent="true"
+            android:text="@string/companySurvey"
             android:textColor="@color/black"
-            android:layout_centerInParent="true"/>
+            android:textSize="22sp" />
 
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/titleLayout"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/titleLayout"
         android:focusable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/comp_detail_part1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="10dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:paddingBottom="10dp">
 
                 <ImageView
+                    android:id="@+id/jd_company_img"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:contentDescription="@string/imgContentDescription"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/icon_head_200px"
-                    android:id="@+id/jd_company_img" />
+                    android:contentDescription="@string/imgContentDescription"
+                    android:src="@drawable/icon_head_200px" />
 
                 <TextView
                     android:id="@+id/jd_company_address2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/order_size"
-                    android:text="北京上地五道口"
                     android:layout_alignBottom="@+id/jd_company_img"
-                    android:layout_toEndOf="@+id/jd_company_img"
                     android:layout_marginStart="10dp"
-                    />
+                    android:layout_toEndOf="@+id/jd_company_img"
+                    android:textSize="@dimen/order_size" />
 
                 <TextView
                     android:id="@+id/jd_company_name2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/main_size"
-                    android:text="阿里巴巴"
+                    android:layout_alignStart="@+id/jd_company_scale"
                     android:layout_alignTop="@+id/jd_company_img"
-                    android:layout_alignStart="@+id/jd_company_scale" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/main_size" />
 
                 <TextView
                     android:id="@+id/jd_company_scale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/order_size"
-                    android:text="B轮,20-99人"
+                    android:layout_alignStart="@+id/jd_company_address2"
                     android:layout_below="@+id/jd_company_name2"
-                    android:layout_alignStart="@+id/jd_company_address2" />
+                    android:textSize="@dimen/order_size" />
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/job_detail_part4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/job_detail_part3"
                 android:layout_marginTop="10dp"
                 android:background="@color/white">
+
                 <TextView
-                    android:text="公司介绍"
+                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/textView3"
-                    android:textColor="#2eafa0"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/companyDescribe"
+                    android:textColor="#2eafa0" />
+
                 <ImageView
+                    android:id="@+id/line3"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/lightgray"
-                    android:id="@+id/line3"
-                    android:layout_marginTop="5dp"
                     android:layout_alignStart="@+id/textView3"
+                    android:layout_below="@id/textView3"
                     android:layout_marginEnd="20dp"
-                    android:layout_below="@id/textView3"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/lightgray"
+                    android:contentDescription="@string/imgContentDescription" />
+
                 <TextView
-                    android:text="公司详情介绍"
+                    android:id="@+id/jd_company_detail"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginTop="11dp"
-                    android:id="@+id/jd_company_detail"
                     android:layout_below="@+id/line3"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginTop="11dp"
                     android:paddingLeft="20dp"
-                    android:paddingRight="20dp"/>
+                    android:paddingRight="20dp"
+                    android:text="@string/companyMoreDescribe" />
 
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:orientation="vertical">
+
                 <TextView
-                    android:text="热招职位"
+                    android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/textView4"
-                    android:textColor="#2eafa0"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/HotJob"
+                    android:textColor="#2eafa0" />
+
                 <ImageView
+                    android:id="@+id/line4"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/lightgray"
-                    android:id="@+id/line4"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_alignStart="@+id/textView4"
                     android:layout_marginEnd="20dp"
-                    android:layout_below="@id/textView4"/>
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/lightgray"
+                    android:contentDescription="@string/imgContentDescription" />
 
             </LinearLayout>
+
             <ListView
                 android:id="@+id/allJobOfComp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="none"
-                android:focusableInTouchMode="true"
-                android:focusable="true"
                 android:divider="@null"
-                />
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scrollbars="none" />
+
             <TextView
                 android:id="@+id/tv_chat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_button"
-                android:gravity="center"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:background="@drawable/bg_button"
+                android:gravity="center"
                 android:padding="10dp"
-                android:textSize="18sp"
-                android:layout_below="@+id/rl_advantage"
-                android:text="@string/chat"/>
+                android:text="@string/chat"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </ScrollView>

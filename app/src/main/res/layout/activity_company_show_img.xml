@@ -8,6 +8,7 @@
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
+        android:background="@drawable/titlebar"
         android:layout_height="50dp">
 
         <ImageView
@@ -33,16 +34,12 @@
             android:layout_alignParentBottom="true"
             android:background="@color/darkgray" />
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/Content_Layout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/rl_top"
-        android:gravity="center">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_below="@+id/rl_top"
             android:layout_alignParentBottom="true" >
             <!-- 设置运行多行 设置圆角图形 黑色字体-->
 
@@ -63,23 +60,24 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="(友情提示:只能添加9张图片,长按图片可以删除已添加图片)"
+                android:text="@string/pics_hint_9"
                 android:gravity="center" />
         </LinearLayout>
-    </RelativeLayout>
     <!-- 底部按钮 -->
     <RelativeLayout
         android:id="@+id/Layout_bottom"
         android:layout_alignParentBottom="true"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:padding="10dp"
         android:gravity="center" >
         <Button
             android:id="@+id/btn_upload"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:textSize="20sp"
-            android:text="发布拍拍" />
+            android:background="@drawable/bg_button"
+            android:text="@string/send_company_pics" />
 
     </RelativeLayout>
 </RelativeLayout>

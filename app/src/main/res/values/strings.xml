@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">猿聘</string>
-
+    <string name="welcome">待定</string>
     <string name="imgContentDescription">图片</string>
     <string name="userCollTitle_Hire">收藏的职位</string>
     <string name="userCollTitle_Technology">收藏的技术</string>
@@ -53,6 +53,41 @@
     <string name="userjob">投的职位</string>
     <string name="getResume">收到的简历</string>
     <string name="chat">和他聊聊</string>
+    <string name="companyMoreDescribe">公司详细介绍</string>
+    <string name="HotJob">热招职位</string>
+    <string name="companySurvey">公司概况</string>
+    <string name="send_company_pics">发布公司图片</string>
+    <string name="pics_hint_9">(友情提示:只能添加9张图片,长按图片可以删除已添加图片)</string>
+    <string name="Immediate_use">立即体验</string>
+    <string name="pic_edit">图片编辑</string>
+    <string name="teachnology_article">技术文章</string>
+    <string name="collection">收藏</string>
+    <string name="Publisher">发布人</string>
+    <string name="want_worker">求职者</string>
+    <string name="edit">编辑</string>
+    <string name="Position_applied">应聘职位</string>
+    <string name="sharpening">锐化</string>
+    <string name="Sketch">素描</string>
+    <string name="Illumination">光照</string>
+    <string name="Relief">浮雕</string>
+    <string name="Nostalgia">怀旧</string>
+    <string name="circular">圆形</string>
+    <string name="fillet">圆角</string>
+    <string name="Frame_3">相框3</string>
+    <string name="Frame_2">相框2</string>
+    <string name="Frame_1">相框1</string>
+    <string name="saturated">饱和</string>
+    <string name="Hue">色相</string>
+    <string name="brightness">亮度</string>
+    <string name="Select_salary">选择薪资：</string>
+    <string name="Select_city">选择城市：</string>
+    <string name="Select_job">选择职位：</string>
+    <string name="rotate">旋转</string>
+    <string name="watermark">水印</string>
+    <string name="Mapping">绘图</string>
+    <string name="zoom">缩放</string>
+    <string name="Flip">翻转</string>
+
 
     <string-array name="education_array">
         <item>不限</item>
