@@ -42,6 +42,7 @@ import okhttp3.Request;
 public class CompanyInfoActivity extends BaseActivity {
     TextView jd_company_name2,jd_company_address2,jd_company_scale,jd_company_detail,tv_chat;
     ImageView job_company_img;
+    ImageView imageView;
     JobAndCompany jobInfo;//职位详情
     ListView allJobOfCompLV;
     List<JobAndCompany> jobInfolist;
@@ -139,6 +140,7 @@ public class CompanyInfoActivity extends BaseActivity {
         jd_company_detail = (TextView) findViewById(R.id.jd_company_detail);
         tv_chat = (TextView) findViewById(R.id.tv_chat);
         job_company_img = (ImageView) findViewById(R.id.jd_company_img);
+        imageView = (ImageView) findViewById(R.id.imageView);
         allJobOfCompLV = (ListView) findViewById(R.id.allJobOfComp);
 
         //公司详情赋值
@@ -166,6 +168,12 @@ public class CompanyInfoActivity extends BaseActivity {
             public void onClick(View v) {
                 Log.d("--->",jobInfo.getCompany().getCompanyNum());
                 ChatActivity.actionStart(CompanyInfoActivity.this,jobInfo.getCompany().getCompanyNum());
+            }
+        });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
