@@ -25,8 +25,8 @@ import java.util.List;
 public class GuideActivity extends BaseActivity {
     private ViewPager vp_viewPage;
     // 图片
-    private int[] imageView = { R.drawable.splash0, R.drawable.splash3,
-            R.drawable.splash2, R.drawable.splash1};
+    private int[] imageView = { R.drawable.guide_1, R.drawable.guide_2,
+            R.drawable.guide_3, R.drawable.guide_4};
     private List<View> list;
     // 底部小点的图片
     private LinearLayout ll_Point;

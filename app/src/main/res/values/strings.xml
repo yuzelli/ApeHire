@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">猿聘</string>
-    <string name="welcome">待定</string>
+    <string name="welcome">猿聘在手，工作我有</string>
     <string name="imgContentDescription">图片</string>
     <string name="userCollTitle_Hire">收藏的职位</string>
     <string name="userCollTitle_Technology">收藏的技术</string>
