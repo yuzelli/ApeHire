@@ -33,7 +33,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activitys.MainActivity"></activity>
+        <activity android:name=".view.activitys.MainActivity" />
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".view.activitys.LoginActivity" />
         <activity android:name=".view.activitys.RegisterActivity" />
@@ -58,13 +58,13 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="58b7bbe9c62dca63e5001e40"></meta-data>
+            android:value="58b7bbe9c62dca63e5001e40" />
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="59f55f7154b4eb9ab337ee3fa72f8c92"></meta-data>
+            android:value="59f55f7154b4eb9ab337ee3fa72f8c92" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Channel ID"></meta-data>
+            android:value="Channel ID" />
 
         <service android:name=".service.UmengPushService" />
 
@@ -100,7 +100,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".view.activitys.ChatActivity"></activity>
+        <activity android:name=".view.activitys.ChatActivity" />
+        <activity android:name=".view.activitys.PushMessageActivity"></activity>
     </application>
 
 </manifest>

@@ -40,9 +40,6 @@ public class BannerAdapter extends PagerAdapter {
             container.removeView(datas.get(index));
         }
         ((ViewPager)container).addView(datas.get(index));
-
-
-
         return datas.get(index);
     }
 

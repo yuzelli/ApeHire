@@ -81,7 +81,6 @@ public class CompanyShowImgActivity extends BaseActivity {
     private CompanyShowImgHandler handler;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,19 +106,19 @@ public class CompanyShowImgActivity extends BaseActivity {
             public void onClick(View v) {
 
         		/*
-        		 * 上传图片 进度条显示
+                 * 上传图片 进度条显示
         		 * String path = "/storage/emulated/0/DCIM/Camera/lennaFromSystem.jpg";
         		 * upload_SSP_Pic(path,"ranmei");
         		 * Toast.makeText(MainActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
         		 */
                 //判断是否添加图片
-                if(imageItem.size()==1) {
+                if (imageItem.size() == 1) {
                     Toast.makeText(CompanyShowImgActivity.this, "没有图片需要上传", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 uploadPics();
                 //消息提示
-              //  Toast.makeText(CompanyShowImgActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(CompanyShowImgActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -136,7 +135,7 @@ public class CompanyShowImgActivity extends BaseActivity {
         imageItem.add(map);
         simpleAdapter = new SimpleAdapter(this,
                 imageItem, R.layout.griditem_addpic,
-                new String[] { "itemImage"}, new int[] { R.id.imageView1});
+                new String[]{"itemImage"}, new int[]{R.id.imageView1});
         /*
          * HashMap载入bmp图片在GridView中不显示,但是如果载入资源ID能显示 如
          * map.put("itemImage", R.drawable.img);
@@ -150,8 +149,8 @@ public class CompanyShowImgActivity extends BaseActivity {
             public boolean setViewValue(View view, Object data,
                                         String textRepresentation) {
                 // TODO Auto-generated method stub
-                if(view instanceof ImageView && data instanceof Bitmap){
-                    ImageView i = (ImageView)view;
+                if (view instanceof ImageView && data instanceof Bitmap) {
+                    ImageView i = (ImageView) view;
                     i.setImageBitmap((Bitmap) data);
                     return true;
                 }
@@ -166,16 +165,13 @@ public class CompanyShowImgActivity extends BaseActivity {
          */
         gridView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-            {
-                if( imageItem.size() == 10) { //第一张为默认图片
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                if (imageItem.size() == 10) { //第一张为默认图片
                     Toast.makeText(CompanyShowImgActivity.this, "图片数9张已满", Toast.LENGTH_SHORT).show();
-                }
-                else if(position == 0) { //点击图片位置为+ 0对应0张图片
+                } else if (position == 0) { //点击图片位置为+ 0对应0张图片
                     //Toast.makeText(MainActivity.this, "添加图片", Toast.LENGTH_SHORT).show();
                     AddImageDialog();
-                }
-                else {
+                } else {
                     DeleteDialog(position);
                     //Toast.makeText(MainActivity.this, "点击第" + (position + 1) + " 号图片",
                     //		Toast.LENGTH_SHORT).show();
@@ -198,7 +194,7 @@ public class CompanyShowImgActivity extends BaseActivity {
      */
     private void uploadPics() {
         finishUpload = picPaths.size();
-        for (int i = 0 ; i < picPaths.size();i++){
+        for (int i = 0; i < picPaths.size(); i++) {
             final String picName = picPaths.get(i);
             LxQiniuUploadUtils.uploadPic("yuzelloroom", picPaths.get(i), picPaths.get(i), new LxQiniuUploadUtils.UploadCallBack() {
                 @Override
@@ -223,13 +219,13 @@ public class CompanyShowImgActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //打开图片
-        if(resultCode==RESULT_OK && requestCode==IMAGE_OPEN) {
+        if (resultCode == RESULT_OK && requestCode == IMAGE_OPEN) {
             Uri uri = data.getData();
             if (!TextUtils.isEmpty(uri.getAuthority())) {
                 //查询选择图片
                 Cursor cursor = getContentResolver().query(
                         uri,
-                        new String[] { MediaStore.Images.Media.DATA },
+                        new String[]{MediaStore.Images.Media.DATA},
                         null,
                         null,
                         null);
@@ -255,12 +251,12 @@ public class CompanyShowImgActivity extends BaseActivity {
             }
         }  //end if 打开图片
         //获取图片
-        if(resultCode==RESULT_OK && requestCode==GET_DATA) {
+        if (resultCode == RESULT_OK && requestCode == GET_DATA) {
             //获取传递的处理图片在onResume中显示
             pathImage = data.getStringExtra("pathProcess");
         }
         //拍照
-        if(resultCode==RESULT_OK && requestCode==TAKE_PHOTO) {
+        if (resultCode == RESULT_OK && requestCode == TAKE_PHOTO) {
             Intent intent = new Intent("com.android.camera.action.CROP"); //剪裁
             intent.setDataAndType(imageUri, "image/*");
             intent.putExtra("scale", true);
@@ -285,24 +281,24 @@ public class CompanyShowImgActivity extends BaseActivity {
         //Intent intent = getIntent();
         //pathImage = intent.getStringExtra("pathProcess");
         //适配器动态显示图片
-        if(!TextUtils.isEmpty(pathImage)){
+        if (!TextUtils.isEmpty(pathImage)) {
             picPaths.add(pathImage);
-            Bitmap addbmp=BitmapFactory.decodeFile(pathImage);
+            Bitmap addbmp = BitmapFactory.decodeFile(pathImage);
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("itemImage", addbmp);
             map.put("pathImage", pathImage);
             imageItem.add(map);
             simpleAdapter = new SimpleAdapter(this,
                     imageItem, R.layout.griditem_addpic,
-                    new String[] { "itemImage"}, new int[] { R.id.imageView1});
+                    new String[]{"itemImage"}, new int[]{R.id.imageView1});
             //接口载入图片
             simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
                 @Override
                 public boolean setViewValue(View view, Object data,
                                             String textRepresentation) {
                     // TODO Auto-generated method stub
-                    if(view instanceof ImageView && data instanceof Bitmap){
-                        ImageView i = (ImageView)view;
+                    if (view instanceof ImageView && data instanceof Bitmap) {
+                        ImageView i = (ImageView) view;
                         i.setImageBitmap((Bitmap) data);
                         return true;
                     }
@@ -329,7 +325,7 @@ public class CompanyShowImgActivity extends BaseActivity {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 imageItem.remove(position);
-                picPaths.remove(position-1);
+                picPaths.remove(position - 1);
                 simpleAdapter.notifyDataSetChanged();
             }
         });
@@ -350,12 +346,12 @@ public class CompanyShowImgActivity extends BaseActivity {
         builder.setTitle("添加图片");
         builder.setIcon(R.mipmap.ic_launcher);
         builder.setCancelable(false); //不响应back按钮
-        builder.setItems(new String[] {"本地相册选择","手机相机添加","取消选择图片"},
+        builder.setItems(new String[]{"本地相册选择", "手机相机添加", "取消选择图片"},
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // TODO Auto-generated method stub
-                        switch(which) {
+                        switch (which) {
                             case 0: //本地相册
                                 dialog.dismiss();
                                 Intent intent = new Intent(Intent.ACTION_PICK,
@@ -368,11 +364,11 @@ public class CompanyShowImgActivity extends BaseActivity {
                                 File outputImage = new File(Environment.getExternalStorageDirectory(), "suishoupai_image.jpg");
                                 pathTakePhoto = outputImage.toString();
                                 try {
-                                    if(outputImage.exists()) {
+                                    if (outputImage.exists()) {
                                         outputImage.delete();
                                     }
                                     outputImage.createNewFile();
-                                } catch(Exception e) {
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                                 imageUri = Uri.fromFile(outputImage);
@@ -398,59 +394,63 @@ public class CompanyShowImgActivity extends BaseActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case ConstantUtils.COMPANYSHOWIMG_GET_DATA:
-                    finishUpload --;
-                    Log.d("qiniu add ","--->qiniu"+finishUpload);
-                    if (finishUpload==0){
+                    finishUpload--;
+
+                    if (finishUpload == 0) {
 //                        提交后台
                         uploadServlet();
                     }
                     break;
                 case ConstantUtils.COMPANYSHOWIMGSERVLET_GET_DATA:
-                    finishUpload --;
-                    Log.d("houtai add ","--->houtai"+finishUpload);
-                    if (finishUpload==0){
-                        Toast.makeText(context,"上传成功！",Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
+
+                    Toast.makeText(context, "上传成功！", Toast.LENGTH_SHORT).show();
+                    finish();
                     break;
                 default:
                     break;
             }
         }
     }
+
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, CompanyShowImgActivity.class);
         context.startActivity(intent);
     }
+
     /**
-     *上传图片到后台
+     * 上传图片到后台
      */
     private void uploadServlet() {
         finishUpload = qiniuPicPaths.size();
-        CompanyInfo company = (CompanyInfo) SharePreferencesUtil.readObject(context,ConstantUtils.USER_LOGIN_INFO);
-        for (int i = 0 ; i < qiniuPicPaths.size();i++){
-            OkHttpClientManager manager = OkHttpClientManager.getInstance();
-            Map<String, String> map = new HashMap<>();
-            map.put("type", "addPic");
-            map.put("PictureURL", qiniuPicPaths.get(i));
-            map.put("CompanyId",company.getCompanyId()+"" );
-            String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.COMPANY_PIC_SERVLET, map);
-            manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
-                @Override
-                public void requestFailure(Request request, IOException e) {
-                    Toast.makeText(context,"请求失败！",Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void requestSuccess(String result) throws Exception {
-                    JSONObject object = new JSONObject(result);
-                    String flag = object.getString("error");
-                    if (flag.equals("ok")){
-                        handler.sendEmptyMessage(ConstantUtils.COMPANYSHOWIMGSERVLET_GET_DATA);
-                    }
-                }
-            });
+        CompanyInfo company = (CompanyInfo) SharePreferencesUtil.readObject(context, ConstantUtils.USER_LOGIN_INFO);
+        String picsURL = "";
+        for (int i = 0; i < qiniuPicPaths.size(); i++) {
+            picsURL =picsURL+ qiniuPicPaths.get(i) + ";";
         }
+        picsURL = picsURL.substring(0, picsURL.length() - 1);
+
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "addPic");
+        map.put("PictureURL", picsURL);
+        map.put("CompanyId", company.getCompanyId() + "");
+        Log.d("---PictureURL-->",picsURL);
+        String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.USER_ADDRESS + ConstantUtils.COMPANY_PIC_SERVLET, map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                JSONObject object = new JSONObject(result);
+                String flag = object.getString("error");
+                if (flag.equals("ok")) {
+                    handler.sendEmptyMessage(ConstantUtils.COMPANYSHOWIMGSERVLET_GET_DATA);
+                }
+            }
+        });
     }
 
 }

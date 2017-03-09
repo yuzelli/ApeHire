@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.buiderdream.apehire.R;
 import com.example.buiderdream.apehire.base.BaseActivity;
+import com.example.buiderdream.apehire.bean.JobAndCompany;
 import com.example.buiderdream.apehire.bean.UserCompJob;
 import com.example.buiderdream.apehire.bean.JobInfo;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -117,7 +118,26 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
             case R.id.rl_job:
                 Intent intent = new Intent(context, JobActivity.class);
                 UserCompJob.JobBean jobBean = userCompJob.getJob();
-                JobInfo job = new JobInfo(jobBean.getJobId(),jobBean.getJobName(),jobBean.getJobDetail(),jobBean.getJobType(),jobBean.getJobCity(),jobBean.getJobCharge(),jobBean.getCompanyId(),jobBean.getJobTechnology());
+
+                UserCompJob.CompanyBean companyBean = userCompJob.getCompany();
+                JobAndCompany job = new JobAndCompany();
+                JobAndCompany.CompanyBean comp = new JobAndCompany.CompanyBean();
+                comp.setCompanyHeadImg(companyBean.getCompanyHeadImg());
+                comp.setCompanyAddress(companyBean.getCompanyAddress());
+                comp.setCompanyId(companyBean.getCompanyId());
+                comp.setCompanyIntroduce(companyBean.getCompanyIntroduce());
+                comp.setCompanyName(companyBean.getCompanyName());
+                comp.setCompanyNum(companyBean.getCompanyNum());
+                comp.setCompanyPassword(companyBean.getCompanyPassword());
+                comp.setCompanyScale(companyBean.getCompanyScale());
+                job.setCompany(comp);
+                job.setJobCharge(jobBean.getJobCharge());
+                job.setJobCity(jobBean.getJobCity());
+                job.setJobDetail(jobBean.getJobDetail());
+                job.setJobId(jobBean.getJobId());
+                job.setJobName(jobBean.getJobName());
+                job.setJobTechnology(jobBean.getJobTechnology());
+                job.setJobType(jobBean.getJobType());
                 intent.putExtra("jobInfo",job);
                 intent.putExtra("isSend",false);
                 startActivity(intent);

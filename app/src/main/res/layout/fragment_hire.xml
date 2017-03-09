@@ -28,7 +28,6 @@
             android:padding="10dp"
             android:textSize="22sp"
             android:textColor="@color/black"
-            android:drawableLeft="@drawable/title_job"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>

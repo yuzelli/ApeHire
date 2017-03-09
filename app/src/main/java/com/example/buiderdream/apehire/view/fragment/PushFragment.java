@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import com.example.buiderdream.apehire.utils.DateUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.example.buiderdream.apehire.utils.ViewHolder;
 import com.example.buiderdream.apehire.view.activitys.MainActivity;
+import com.example.buiderdream.apehire.view.activitys.PushMessageActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +79,12 @@ public class PushFragment extends BaseFragment {
             }
         };
         lv_pushMessage.setAdapter(adapter);
+        lv_pushMessage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PushMessageActivity.actionStart(getActivity(),pushMessageList.get(position));
+            }
+        });
     }
 
     @Override
@@ -117,7 +125,7 @@ public class PushFragment extends BaseFragment {
                 .setTicker(ticker)  //设置顶部出现文字
                 .setContentTitle(title) //设置下拉后通知标题
                 .setContentText(text) //设置下拉后出现的内容
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.ic_apehire)
                 .setContentIntent(pi) //设置点击跳转
                 .build();
         notification.flags = Notification.FLAG_NO_CLEAR;

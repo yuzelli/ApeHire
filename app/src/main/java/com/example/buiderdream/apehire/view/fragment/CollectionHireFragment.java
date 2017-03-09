@@ -77,6 +77,12 @@ public class CollectionHireFragment extends BaseFragment{
         String result = ACache.get(context).getAsString(ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE);
         if (result!=null&&!result.equals("")) {
             jobList = GsonUtils.jsonToArrayList(result,JobAndCompanyC.class);
+            for (JobAndCompanyC c  : jobList){
+                if (c.getCompany()==null){
+                    jobList = new ArrayList<>();
+                    break;
+                }
+            }
         }else {
             jobList = new ArrayList<>();
         }

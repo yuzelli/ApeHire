@@ -14,11 +14,12 @@
         android:background="@drawable/titlebar">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:contentDescription="@string/imgContentDescription"
             android:layout_marginStart="10dp"
+            android:scaleType="fitXY"
             android:onClick="backClick"
             android:src="@mipmap/ic_left_arrow" />
 
@@ -29,16 +30,21 @@
             android:text="@string/Job_desc"
             android:textColor="@color/black"
             android:textSize="18sp" />
-
-        <ImageView
+        <TextView
             android:id="@+id/job_like_click"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:text="@string/collection"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
             android:layout_centerVertical="true"
-            android:contentDescription="@string/imgContentDescription"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/job_like_normal" />
+            android:textColor="@color/black"
+            android:background="@drawable/bg_exit_btn"
+            android:layout_alignParentEnd="true" />
+
     </RelativeLayout>
 
     <TextView

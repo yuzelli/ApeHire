@@ -21,15 +21,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\ApeHire\PushSDK\unspecified\jars\libs\com.umeng.message_v3.0.6.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="908324416af1f64aa3cb3145dcdab23c4db1e695">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.umeng.message_v3.0.6_551a40f184d922d2062d6ddc672a807664cf50c6.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.loopeer.android.thirdparty.pulltorefresh\Android-PullToRefresh\2.1.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -48,15 +39,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="4fb4ad52a5c2e98522c2816f446cba2e856fb009">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\instant-run_755393864c46345844988c040d44952ec4b40804.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\51644\.gradle\caches\modules-2\files-2.1\com.qiniu\qiniu-android-sdk\7.3.3\ce507a5826e9d737bad0842fd4a78053c2371343\qiniu-android-sdk-7.3.3.jar"
         jumboMode="true"
         optimize="true"
@@ -72,15 +54,6 @@
         revision="25.0.1"
         sha1="6231c3f3409df7b3172bc5e89f68fbc6beec733e">
         <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\MiPush_SDK_Client_2_2_19_2344bd0b8596f2bf2b70748bf4318e609594fe7c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.1.1_5778c11679746cf830e5a4735948e1d63bd7cf6e.jar" />
     </item>
     <item
         is-multidex="false"
@@ -115,17 +88,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="f93d258eb93a273490c566f612f6ea7d3d138c98">
+        sha1="0399f3688b6db0482095cac26b32bca766d3426c">
         <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_afee8451df15c4908c08b8ca65ca16417c88b838.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.0.1_510cd49d60244c6b6e0e180cd70e8267af6f8ac2.jar" />
     </item>
     <item
         is-multidex="false"
@@ -153,6 +117,114 @@
         revision="25.0.1"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.1.1_fdc6788ef456e8f5754768d3ffa93fc2d79e71a8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\51644\.gradle\caches\modules-2\files-2.1\com.qiniu\happy-dns\0.2.7\d94b7987386a3aabbb5aa0be21589f72931f0489\happy-dns-0.2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d94b7987386a3aabbb5aa0be21589f72931f0489">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\happy-dns-0.2.7_dcc5761081332a5a01aecc5e455577ed96c6a92c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.1_5248051fe913046fe06e5954d378865c78e7d4ca.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\libs\gson.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="323e3e409383238e54f39fe51df921a6d66f4f00">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\gson_a9fdc612651a73f3ed9a3720a221ae9907bb77ef.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.1_de239f64a6da57443f0f12cce7dfca535ac4b1b0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\51644\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.2.0\f7873a2ebde246a45c2a8d6f3247108b4c88a879\okhttp-3.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\okhttp-3.2.0_679b47d413208e15cca87665a055d78493947cc1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.1.1_ccb671c6178cdfba6bbddad9129c9d4fe1126357.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\ApeHire\easeUI_CN\unspecified\jars\libs\org.apache.http.legacy.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="49bc2d83ccb0cfe1dbc853e3ba80db0f950ed96d">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\org.apache.http.legacy_5c9e9d1ebb8d56f2071646dbcdc7ef89d1007c89.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\ApeHire\easeUI_CN\unspecified\jars\libs\BaiduLBS_Android.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f1d3eb83228ace176170b6c5c9fa3b792011581b">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\BaiduLBS_Android_9c7097752f8a9885cf3a7316e5835074e6242633.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\ApeHire\PushSDK\unspecified\jars\libs\com.umeng.message_v3.0.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="908324416af1f64aa3cb3145dcdab23c4db1e695">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.umeng.message_v3.0.6_551a40f184d922d2062d6ddc672a807664cf50c6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="edd59141681c0b3cdf6573d9dfecec435f1e46dd">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\instant-run_755393864c46345844988c040d44952ec4b40804.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.1.1_5778c11679746cf830e5a4735948e1d63bd7cf6e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.0.1_510cd49d60244c6b6e0e180cd70e8267af6f8ac2.jar" />
     </item>
     <item
         is-multidex="false"
@@ -192,15 +264,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\51644\.gradle\caches\modules-2\files-2.1\com.qiniu\happy-dns\0.2.7\d94b7987386a3aabbb5aa0be21589f72931f0489\happy-dns-0.2.7.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="d94b7987386a3aabbb5aa0be21589f72931f0489">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\happy-dns-0.2.7_dcc5761081332a5a01aecc5e455577ed96c6a92c.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="E:\WorkSpace_AS\ApeHire\app\libs\android-async-http-1.4.9.jar"
         jumboMode="true"
         optimize="true"
@@ -210,75 +273,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.1_5248051fe913046fe06e5954d378865c78e7d4ca.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\libs\gson.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="323e3e409383238e54f39fe51df921a6d66f4f00">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\gson_a9fdc612651a73f3ed9a3720a221ae9907bb77ef.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.1_de239f64a6da57443f0f12cce7dfca535ac4b1b0.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="7912610ed96381c25c36d986eba422731b9641b6">
         <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.astuetz-pagerslidingtabstrip-1.0.1_1d12f43c5a82e08827ecacfdcea4fb2c2ccad5f2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\51644\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.2.0\f7873a2ebde246a45c2a8d6f3247108b4c88a879\okhttp-3.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\okhttp-3.2.0_679b47d413208e15cca87665a055d78493947cc1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.1.1_ccb671c6178cdfba6bbddad9129c9d4fe1126357.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\ApeHire\easeUI_CN\unspecified\jars\libs\org.apache.http.legacy.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="49bc2d83ccb0cfe1dbc853e3ba80db0f950ed96d">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\org.apache.http.legacy_5c9e9d1ebb8d56f2071646dbcdc7ef89d1007c89.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\WorkSpace_AS\ApeHire\app\build\intermediates\exploded-aar\ApeHire\easeUI_CN\unspecified\jars\libs\BaiduLBS_Android.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f1d3eb83228ace176170b6c5c9fa3b792011581b">
-        <dex dex="E:\WorkSpace_AS\ApeHire\app\build\intermediates\pre-dexed\debug\BaiduLBS_Android_9c7097752f8a9885cf3a7316e5835074e6242633.jar" />
     </item>
 
 </items>

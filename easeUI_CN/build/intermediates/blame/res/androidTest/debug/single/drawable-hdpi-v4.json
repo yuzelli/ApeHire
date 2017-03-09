@@ -40,12 +40,12 @@
         "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_chatto_voice_playing.png"
     },
     {
-        "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_32.png",
-        "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_32.png"
-    },
-    {
         "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_chat_video_mask_to.9.png",
         "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_chat_video_mask_to.9.png"
+    },
+    {
+        "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_32.png",
+        "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_32.png"
     },
     {
         "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_31.png",

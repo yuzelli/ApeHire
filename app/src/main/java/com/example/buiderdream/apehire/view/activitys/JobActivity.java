@@ -36,7 +36,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
     private ImageView job_company_img;
     private  JobAndCompany jobInfo;//职位详情
     private TextView sendJobReq;//职位投递
-    private ImageView job_like_click;//职位收藏
+    private TextView job_like_click;//职位收藏
     private UserInfo userInfo;
     private  ImageLoader imageLoader;
     private RelativeLayout companyPart;
@@ -103,7 +103,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         job_company_img = (ImageView) findViewById(R.id.jd_company_img);
         sendJobReq = (TextView) findViewById(R.id.sendJobReq);
         sendJobReq.setOnClickListener(this);
-        job_like_click = (ImageView) findViewById(R.id.job_like_click);
+        job_like_click = (TextView) findViewById(R.id.job_like_click);
         job_like_click.setOnClickListener(this);
         companyPart = (RelativeLayout) findViewById(R.id.job_detail_part4);
         companyPart.setOnClickListener(this);
@@ -198,8 +198,6 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(JobActivity.this, "投递职位失败", Toast.LENGTH_SHORT).show();
-                Log.i("投递职位失败",e.getMessage());
-
             }
 
             @Override

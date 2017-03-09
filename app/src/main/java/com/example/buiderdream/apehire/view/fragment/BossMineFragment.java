@@ -77,6 +77,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     private CompanyInfo company;  // 公司信息
     private Context context;
     private ArrayList<CompanyPics> companyPics;
+    private boolean stopBanner = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
             if (company == null) {
                 company = new CompanyInfo();
             }
+
             return bossMineFragmentView;
         }
         return inflater.inflate(R.layout.fragment_boss_mine, null);
@@ -99,7 +101,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView();
+
         String result = ACache.get(context).getAsString(ConstantUtils.BOSS_MINE_FRAGEMENT_ACACHE);
 
         if (result!=null&&!result.equals("")) {
@@ -114,6 +116,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
+        initView();
         updataView();
         getCompanyShowPics();
 
@@ -166,8 +169,16 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         psts_tab.setViewPager(vp_fragment);
     }
 
+
+    @Override
+    public void onStop() {
+        stopBanner = false;
+        super.onStop();
+    }
+
     @Override
     public void onDestroyView() {
+
         ViewGroup parent = (ViewGroup) bossMineFragmentView.getParent();
         if (parent != null) {
             parent.removeView(bossMineFragmentView);
@@ -183,7 +194,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         bannerImageDates = new ArrayList<>();
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.mipmap.ic_loading)
-                .showImageOnFail(R.mipmap.ic_loading)
+                .showImageOnFail(R.mipmap.ic_error)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
@@ -199,7 +210,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         }
         if (bannerImageDates.size() == 0) {
             ImageView img = new ImageView(activity);
-            img.setImageResource(R.drawable.splash0);
+            img.setImageResource(R.drawable.apehire_icon_400);
             img.setScaleType(ImageView.ScaleType.FIT_XY);
             bannerImageDates.add(img);
         }
@@ -234,11 +245,13 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         @Override
         public void run() {
             if (System.currentTimeMillis() - lastTime >= 3000) {
-                currentIndex++;
                 vp_picture.setCurrentItem(currentIndex);
+                currentIndex++;
                 lastTime = System.currentTimeMillis();
             }
-            handler.postDelayed(runnableForBanner, 3000);
+            if (stopBanner){
+                handler.postDelayed(runnableForBanner, 3000);
+            }
         }
     };
 
@@ -277,11 +290,16 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
                 ll_Point.getChildAt(current).setBackgroundResource(
                         R.drawable.point_select);
             } else {
-                ll_Point.getChildAt(i).setBackgroundResource(
-                        R.drawable.point_normal);
+                if(ll_Point.getChildAt(i)!=null){
+                    ll_Point.getChildAt(i).setBackgroundResource(
+                            R.drawable.point_normal);
+                }
+
             }
         }
     }
+
+
 
     /**
      * 获取公司展示图片
@@ -321,6 +339,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
             super.handleMessage(msg);
             switch (msg.what) {
                 case ConstantUtils.COMPANYS_SHOW_PICS_GET_DATA:
+                    stopBanner = true;
                     updataBanner();
                     break;
                 default:
@@ -346,17 +365,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onPageSelected(final int position) {
-        currentIndex = position;
-        lastTime = System.currentTimeMillis();
-        //设置轮播文字改变
-        final int index = position % bannerImageDates.size();
-        bannerImageDates.get(index).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(activity, position + "", Toast.LENGTH_SHORT).show();
 
-            }
-        });
     }
 
     @Override

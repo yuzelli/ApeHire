@@ -9,7 +9,7 @@
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:background="@drawable/titlebar"
-        android:layout_height="50dp">
+        android:layout_height="44dp">
 
         <ImageView
             android:id="@+id/img_back"

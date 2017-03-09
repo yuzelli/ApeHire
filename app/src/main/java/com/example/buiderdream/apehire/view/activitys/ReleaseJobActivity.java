@@ -148,7 +148,7 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
     private void updataView() {
         tv_companyName.setText(company.getCompanyName());
         List<String> citys = new ArrayList<>(Arrays.asList("不限", "北京", "上海", "广州", "深圳", "武汉", "杭州", "成都", "西安"));
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, citys);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item, citys);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_city.setAdapter(adapter);
         spinner_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -164,7 +164,7 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
         });
 
         List<String> jobTypes = new ArrayList<>(Arrays.asList("不限", "软件研发工程师", "java研发工程师", "嵌入式研发工程师", "Unity3D工程师", "Linux工程师"));
-        ArrayAdapter<String> jobTypesAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, jobTypes);
+        ArrayAdapter<String> jobTypesAdapter = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item, jobTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_jobType.setAdapter(jobTypesAdapter);
 
@@ -181,7 +181,7 @@ public class ReleaseJobActivity extends BaseActivity implements View.OnClickList
         });
 
         List<String> jobCharges = new ArrayList<>(Arrays.asList("不限", "3k-5k", "5k-10k", "10k-15k", "15k-20k", "20k-30k", "30k-50k"));
-        ArrayAdapter<String> jobChargeAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, jobCharges);
+        ArrayAdapter<String> jobChargeAdapter = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item, jobCharges);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_jobCharge.setAdapter(jobChargeAdapter);
 
