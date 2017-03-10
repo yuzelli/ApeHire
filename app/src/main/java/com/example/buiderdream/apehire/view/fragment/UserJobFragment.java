@@ -75,7 +75,7 @@ public class UserJobFragment extends BaseFragment {
             handler = new UserJobFragmentHandler();
             context = getActivity();
             userInfo = (UserInfo) SharePreferencesUtil.readObject(context, ConstantUtils.USER_LOGIN_INFO);
-            String result = ACache.get(context).getAsString(ConstantUtils.USER_JOB_FRAGMENT_ACACHE);
+            String result = ACache.get(context).getAsString(userInfo.getUserPhoneNum()+ConstantUtils.USER_JOB_FRAGMENT_ACACHE);
             if (result!=null&&!result.equals("")) {
                 jobInfoList = GsonUtils.jsonToArrayList(result,UserCompJob.class);
             }else {
@@ -227,7 +227,7 @@ public class UserJobFragment extends BaseFragment {
                 if (flag.equals("ok")) {
                     jobInfoList = GsonUtils.jsonToArrayList(object.getString("object"), UserCompJob.class);
                     ACache aCache = ACache.get(context);
-                    aCache.put(ConstantUtils.USER_JOB_FRAGMENT_ACACHE, object.getString("object"));
+                    aCache.put(userInfo.getUserPhoneNum()+ConstantUtils.USER_JOB_FRAGMENT_ACACHE, object.getString("object"));
                     handler.sendEmptyMessage(ConstantUtils.USER_JOB_GET_DATA);
                 }
             }

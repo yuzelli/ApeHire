@@ -75,7 +75,7 @@ public class CollectionTechnologyFragment extends BaseFragment{
         handler = new CollectionTechnologyFragmentHandler();
         context = getActivity();
         userInfo = (UserInfo) SharePreferencesUtil.readObject(context,ConstantUtils.USER_LOGIN_INFO);
-        String result = ACache.get(context).getAsString(ConstantUtils.COLLECTION_ARTICLE_FRAGMENT_ACACHE);
+        String result = ACache.get(context).getAsString(userInfo.getUserPhoneNum()+ConstantUtils.COLLECTION_ARTICLE_FRAGMENT_ACACHE);
         if (result!=null&&!result.equals("")) {
             articleList = GsonUtils.jsonToArrayList(result,CollectionArticle.class);
         }else {
@@ -111,7 +111,7 @@ public class CollectionTechnologyFragment extends BaseFragment{
                 if (flag.equals("ok")) {
                     ACache achace = ACache.get(context);
                     articleList = new ArrayList<CollectionArticle>();
-                    achace.put(ConstantUtils.COLLECTION_ARTICLE_FRAGMENT_ACACHE,object.getString("object"));
+                    achace.put(userInfo.getUserPhoneNum()+ConstantUtils.COLLECTION_ARTICLE_FRAGMENT_ACACHE,object.getString("object"));
                     articleList = GsonUtils.jsonToArrayList(object.getString("object"), CollectionArticle.class);
                     handler.sendEmptyMessage(ConstantUtils.COLLECTION_ARTICLE_GET_DATA);
                 }

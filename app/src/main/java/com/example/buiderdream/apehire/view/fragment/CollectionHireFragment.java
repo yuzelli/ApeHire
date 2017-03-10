@@ -74,7 +74,7 @@ public class CollectionHireFragment extends BaseFragment{
         handler = new CollectionHireFragHandler();
         context = getActivity();
         userInfo = (UserInfo) SharePreferencesUtil.readObject(getActivity(),ConstantUtils.USER_LOGIN_INFO);
-        String result = ACache.get(context).getAsString(ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE);
+        String result = ACache.get(context).getAsString(userInfo.getUserPhoneNum()+ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE);
         if (result!=null&&!result.equals("")) {
             jobList = GsonUtils.jsonToArrayList(result,JobAndCompanyC.class);
             for (JobAndCompanyC c  : jobList){
@@ -115,7 +115,7 @@ public class CollectionHireFragment extends BaseFragment{
                 if (flag.equals("ok")) {
                     jobList = GsonUtils.jsonToArrayList(object.getString("object"),JobAndCompanyC.class);
                     ACache aCache = ACache.get(getActivity());
-                    aCache.put(ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE,object.getString("object"));
+                    aCache.put(userInfo.getUserPhoneNum()+ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE,object.getString("object"));
                     handler.sendEmptyMessage(ConstantUtils.COLLECTION_HIRE_GET_DATA);
                 }else {
                     Toast.makeText(context, "请求数据失败！", Toast.LENGTH_SHORT).show();

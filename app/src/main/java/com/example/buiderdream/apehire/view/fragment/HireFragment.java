@@ -47,15 +47,16 @@ import okhttp3.Request;
 
 public class HireFragment extends BaseFragment implements View.OnClickListener {
     private View hireFragmentView;
-    TextView job_city, job_type, job_charge, cityMark;
-    LinearLayout jobSelectLayout;
-    ListView jobListView;
-    List<JobAndCompany> jobInfolist;
-    CommonAdapter<JobAndCompany> jobInfoAdapter;
-    PopupWindow jobCityWindow, jobTypeWindow, jobChargeWindow;
-    View jobCityView, jobTypeView, jobChargeView;
-    String type_city = "", type_job = "", type_charge = "";
-
+    private TextView job_city, job_type, job_charge, cityMark;
+    private LinearLayout jobSelectLayout;
+    private ListView jobListView;
+    private List<JobAndCompany> jobInfolist;
+    private CommonAdapter<JobAndCompany> jobInfoAdapter;
+    private PopupWindow jobCityWindow, jobTypeWindow, jobChargeWindow;
+    private View jobCityView, jobTypeView, jobChargeView;
+    private String type_city = "", type_job = "", type_charge = "";
+    private final String[] citys = {"不限", "北京", "上海", "广州", "深圳", "武汉", "杭州", "成都", "西安"};
+private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "15k-20k", "20k-30k", "30k-50k"};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (hireFragmentView == null) {
@@ -93,7 +94,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), JobActivity.class);
                 intent.putExtra("jobInfo", jobInfolist.get(i));
-                intent.putExtra("isSend",false);
+                intent.putExtra("isSend", false);
                 startActivity(intent);
 
             }
@@ -115,7 +116,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener {
         jobChargeWindow = new PopupWindow(jobChargeView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         //城市筛选
         GridView cityGridView = (GridView) jobCityView.findViewById(R.id.job_city_grid);
-        String[] citys = {"不限", "北京", "上海", "广州", "深圳", "武汉", "杭州", "成都", "西安"};
+
         final List<String> list = new ArrayList<String>();
         for (String s : citys) {
             list.add(s);
@@ -130,9 +131,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener {
         cityGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                type_city ="";
-                type_job="";
-                type_charge="";
+
                 if (i == 0) {
                     type_city = "";
                 } else {
@@ -168,9 +167,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener {
         type_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                type_city ="";
-                type_job="";
-                type_charge="";
+
                 if (i == 0) {
                     type_job = "";
                 } else {
@@ -200,9 +197,6 @@ public class HireFragment extends BaseFragment implements View.OnClickListener {
         charge_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                type_city ="";
-                type_job="";
-                type_charge="";
                 if (i == 0) {
                     type_charge = "";
                 } else {
@@ -246,7 +240,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener {
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     JSONArray array = object.getJSONArray("object");
-                    Log.d("----->",result);
+                    Log.d("----->", result);
 
                     for (int i = 0; i < array.length(); i++) {
                         JobAndCompany jac = gson.fromJson(array.getJSONObject(i).toString(), JobAndCompany.class);
@@ -286,9 +280,9 @@ public class HireFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void convert(ViewHolder helper, JobAndCompany item) {
                 helper.setText(R.id.job_item_jobName, item.getJobName());
-                helper.setText(R.id.job_item_jobCharge, item.getJobCharge() > 2 ? (item.getJobCharge() > 3 ? (item.getJobCharge() > 4 ? "15K+" : "8K~15K") : "5K~8k") : "5K以下");
+                helper.setText(R.id.job_item_jobCharge, chargeLists[item.getJobCharge()]);
                 helper.setText(R.id.job_item_companyName, item.getCompany().getCompanyName());
-                helper.setText(R.id.job_item_companyAddress, item.getCompany().getCompanyAddress());
+                helper.setText(R.id.job_item_companyAddress, citys[item.getJobCity()]);
                 if (item.getCompany().getCompanyHeadImg() != null || item.getCompany().getCompanyHeadImg() != "")
                     helper.setImageByUrl(R.id.job_item_img, item.getCompany().getCompanyHeadImg());
             }

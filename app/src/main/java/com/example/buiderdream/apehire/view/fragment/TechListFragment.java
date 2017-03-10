@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
@@ -42,6 +43,7 @@ public class TechListFragment extends Fragment {
     private Context context;
     private List<Technology> list;
     private  TeachListFragmentHandler handler;
+    private ProgressBar pb;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -107,6 +109,7 @@ public class TechListFragment extends Fragment {
 
             @Override
             public void requestSuccess(String result) throws Exception {
+                pb.setVisibility(View.GONE);
                 list = GsonUtils.jsonToArrayList(result,Technology.class);
                 handler.sendEmptyMessage(ConstantUtils.TEACHLOGY_GET_DATA);
             }
@@ -116,6 +119,7 @@ public class TechListFragment extends Fragment {
     }
 
     private void initView() {
+        pb = (ProgressBar) techlistFragView.findViewById(R.id.frag_tech_pb);
         lv = (ListView) techlistFragView.findViewById(R.id.frag_list_lv);
     }
 

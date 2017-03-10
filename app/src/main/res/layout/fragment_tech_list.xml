@@ -3,7 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ProgressBar
+        android:id="@+id/frag_tech_pb"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
     <ListView
         android:id="@+id/frag_list_lv"
         android:layout_width="match_parent"
@@ -12,4 +20,6 @@
         android:paddingRight="10dp"
         android:scrollbars="none"
         android:divider="@null"/>
+</RelativeLayout>
+
 </LinearLayout>

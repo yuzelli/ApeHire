@@ -53,7 +53,7 @@ public class ConstantUtils {
 
     //主机地址
 
-   public static final String USER_ADDRESS = "http://130.0.1.231:8080/ApeHire/";
+   public static final String USER_ADDRESS = "http://130.0.1.69:8080/ApeHire/";
 
     //public static final String USER_ADDRESS = "http://118.190.18.189:8080/ApeHire/";
 

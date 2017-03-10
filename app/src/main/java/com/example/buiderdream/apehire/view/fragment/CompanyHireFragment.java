@@ -88,7 +88,7 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
         lv_hire = (ListView) compangyHireFragmentView.findViewById(R.id.lv_hire);
         btn_releaseHire = (Button) compangyHireFragmentView.findViewById(R.id.btn_releaseHire);
         btn_releaseHire.setOnClickListener(this);
-        String result = ACache.get(context).getAsString(ConstantUtils.COMPANY_HIRE_FRAGMENT_ACACHE);
+        String result = ACache.get(context).getAsString(company.getCompanyNum()+ConstantUtils.COMPANY_HIRE_FRAGMENT_ACACHE);
         if (result!=null&&!result.equals("")) {
             jobList = GsonUtils.jsonToArrayList(result,JobAndCompany.class);
         }else {
@@ -218,7 +218,7 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
                 if (flag.equals("ok")) {
                     jobList = GsonUtils.jsonToArrayList(object.getString("object"),JobAndCompany.class);
                     ACache aCache = ACache.get(context);
-                    aCache.put(ConstantUtils.COMPANY_HIRE_FRAGMENT_ACACHE,object.getString("object"));
+                    aCache.put(company.getCompanyNum()+ConstantUtils.COMPANY_HIRE_FRAGMENT_ACACHE,object.getString("object"));
 
                     handler.sendEmptyMessage(ConstantUtils.COMPANYHIRE_FRAGMENT_GET_DATA);
                 }else {

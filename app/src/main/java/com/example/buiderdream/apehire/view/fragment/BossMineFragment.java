@@ -102,7 +102,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String result = ACache.get(context).getAsString(ConstantUtils.BOSS_MINE_FRAGEMENT_ACACHE);
+        String result = ACache.get(context).getAsString(company.getCompanyNum()+ConstantUtils.BOSS_MINE_FRAGEMENT_ACACHE);
 
         if (result!=null&&!result.equals("")) {
             companyPics = GsonUtils.jsonToArrayList(result,CompanyPics.class);
@@ -323,7 +323,7 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     companyPics = GsonUtils.jsonToArrayList(object.getString("object"), CompanyPics.class);
-                    ACache.get(getActivity()).put(ConstantUtils.BOSS_MINE_FRAGEMENT_ACACHE,object.getString("object"));
+                    ACache.get(getActivity()).put(company.getCompanyNum()+ConstantUtils.BOSS_MINE_FRAGEMENT_ACACHE,object.getString("object"));
                     handler.sendEmptyMessage(ConstantUtils.COMPANYS_SHOW_PICS_GET_DATA);
                 } else {
                     Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();

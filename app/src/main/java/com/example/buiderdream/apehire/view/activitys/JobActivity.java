@@ -1,6 +1,7 @@
 package com.example.buiderdream.apehire.view.activitys;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.example.buiderdream.apehire.https.OkHttpClientManager;
 import com.example.buiderdream.apehire.utils.ImageLoader;
 import com.example.buiderdream.apehire.utils.JudgeUtils;
 import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -42,6 +44,8 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
     private RelativeLayout companyPart;
     private boolean userType;   //用户类型
     private boolean isSend;
+    private final String[] citys = {"不限", "北京", "上海", "广州", "深圳", "武汉", "杭州", "成都", "西安"};
+    private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "15k-20k", "20k-30k", "30k-50k"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +81,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         //公司详情赋值
         jd_company_name.setText(jobInfo.getCompany().getCompanyName());
         jd_company_name2.setText(jobInfo.getCompany().getCompanyName());
-        jd_company_address.setText(jobInfo.getCompany().getCompanyAddress());
+        jd_company_address.setText(citys[jobInfo.getJobCity()]);
         jd_company_address2.setText(jobInfo.getCompany().getCompanyAddress());
         jd_company_detail.setText(jobInfo.getCompany().getCompanyIntroduce());
 
@@ -85,8 +89,16 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
             imageLoader.loadImage(jobInfo.getCompany().getCompanyHeadImg(),job_company_img);
         }
         int scale = jobInfo.getCompany().getCompanyScale();
-        jd_company_scale.setText(scale>2?(scale>3?(scale>4?(scale>5?(scale>6?"上市公司 1000人以上":"C轮 100~1000人"):"B轮 20~99人"):"A轮  10~50人"):"天使轮  0~20人"):"未融资  0~20人");
+        jd_company_scale.setText(chargeLists[scale]);
 
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.ic_loading)
+                .showImageOnFail(R.mipmap.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(jobInfo.getCompany().getCompanyHeadImg(), job_company_img, options);
     }
 
     private void initView() {
@@ -148,7 +160,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
                     break;
                 case 2:
                 {
-                    job_like_click.setBackgroundResource(R.drawable.job_like_click);
+
                     job_like_click.setClickable(false);
                 }
                     break;

@@ -74,7 +74,7 @@ public class BossGetResumeFragment extends BaseFragment {
         handler = new BossGetResumeFragmentHandler();
         context = getActivity();
         company = (CompanyInfo) SharePreferencesUtil.readObject(context, ConstantUtils.USER_LOGIN_INFO);
-        String result = ACache.get(context).getAsString(ConstantUtils.BOSS_GET_RESUME_ACACHE);
+        String result = ACache.get(context).getAsString(company.getCompanyNum()+ConstantUtils.BOSS_GET_RESUME_ACACHE);
         if (result != null && !result.equals("")) {
             userInfoList = GsonUtils.jsonToArrayList(result, UserCompJob.class);
         } else {
@@ -201,7 +201,7 @@ public class BossGetResumeFragment extends BaseFragment {
                 if (flag.equals("ok")) {
                     userInfoList = GsonUtils.jsonToArrayList(object.getString("object"), UserCompJob.class);
                     ACache aCache = ACache.get(context);
-                    aCache.put(ConstantUtils.BOSS_GET_RESUME_ACACHE, object.getString("object"));
+                    aCache.put(company.getCompanyNum()+ConstantUtils.BOSS_GET_RESUME_ACACHE, object.getString("object"));
                     handler.sendEmptyMessage(ConstantUtils.BOSS_GET_RESUME_GET_DATA);
                 }
             }
