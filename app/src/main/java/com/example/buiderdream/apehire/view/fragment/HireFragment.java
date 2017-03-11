@@ -159,7 +159,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener,S
                 } else {
                     cityMark.setVisibility(View.GONE);
                 }
-                Toast.makeText(getActivity(), i + "", Toast.LENGTH_SHORT).show();
+
                 if (jobCityWindow.isShowing()) {
                     jobCityWindow.dismiss();
                 }
@@ -189,7 +189,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener,S
                     type_job = i + "";
                 }
                 doSearchJobBy();
-                Toast.makeText(getActivity(), i + "", Toast.LENGTH_SHORT).show();
+
                 if (jobTypeWindow.isShowing()) {
                     jobTypeWindow.dismiss();
                 }
@@ -218,7 +218,7 @@ public class HireFragment extends BaseFragment implements View.OnClickListener,S
                     type_charge = i + "";
                 }
                 doSearchJobBy();
-                Toast.makeText(getActivity(), i + "", Toast.LENGTH_SHORT).show();
+
                 if (jobChargeWindow.isShowing()) {
                     jobChargeWindow.dismiss();
                 }
