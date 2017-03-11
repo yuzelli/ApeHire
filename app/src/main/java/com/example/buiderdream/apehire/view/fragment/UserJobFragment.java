@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
@@ -47,7 +49,7 @@ import okhttp3.Request;
  * 投递的职位
  */
 
-public class UserJobFragment extends BaseFragment {
+public class UserJobFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
     private View userJobFragmentView;
     private ListView lv_jobInfo;
     private CommonAdapter<UserCompJob> adapter;
@@ -55,6 +57,8 @@ public class UserJobFragment extends BaseFragment {
     private UserJobFragmentHandler handler;
     private UserInfo userInfo;
     private Context context;
+    private SwipeRefreshLayout srl_fresh;
+    private ProgressBar pb_loading;
     private final List<String> scaleList = new ArrayList<>(Arrays.asList("0-20", "20-99", "100-499", "500-999", "1000+"));
     private final List<String> jobTypes = new ArrayList<>(Arrays.asList("不限", "软件研发工程师", "java研发工程师", "嵌入式研发工程师", "Unity3D工程师", "Linux工程师"));
     @Override
@@ -90,6 +94,14 @@ public class UserJobFragment extends BaseFragment {
     private void initView() {
         lv_jobInfo = (ListView) userJobFragmentView.findViewById(R.id.lv_jobInfo);
 
+        srl_fresh = (SwipeRefreshLayout) userJobFragmentView.findViewById(R.id.srl_fresh);
+        pb_loading = (ProgressBar) userJobFragmentView.findViewById(R.id.pb_loading);
+        srl_fresh.setColorSchemeColors(  getResources().getColor(android.R.color.holo_red_light),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_blue_bright)
+        );
+        srl_fresh.setOnRefreshListener(this);
     }
     /**
      * 更新listView视图
@@ -107,6 +119,7 @@ public class UserJobFragment extends BaseFragment {
             }
         };
         lv_jobInfo.setAdapter(adapter);
+        lv_jobInfo.setEmptyView(userJobFragmentView.findViewById(R.id.img_emptyView));
         lv_jobInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -190,13 +203,14 @@ public class UserJobFragment extends BaseFragment {
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
-                Log.d("-----请求失败----->","请求失败");
+
                 Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
-                Log.d("-----chenggonh----->",result);
+
                 handler.sendEmptyMessage(ConstantUtils.BOSS_GET_DELECT);
 
             }
@@ -217,11 +231,14 @@ public class UserJobFragment extends BaseFragment {
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
-
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
@@ -241,6 +258,11 @@ public class UserJobFragment extends BaseFragment {
             parent.removeView(userJobFragmentView);
         }
         super.onDestroyView();
+    }
+
+    @Override
+    public void onRefresh() {
+        getUserJobData();
     }
 
     class UserJobFragmentHandler extends Handler {

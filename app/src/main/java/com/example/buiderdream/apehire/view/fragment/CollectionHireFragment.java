@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
@@ -46,7 +48,7 @@ import okhttp3.Request;
  * 收藏的公司
  */
 
-public class CollectionHireFragment extends BaseFragment{
+public class CollectionHireFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
     private View collectionHireFragmentView;
     private ListView lv_hire;
     private List<JobAndCompanyC> jobList;
@@ -54,7 +56,8 @@ public class CollectionHireFragment extends BaseFragment{
     private Context context;
     private UserInfo userInfo;
     private CollectionHireFragHandler handler;
-
+    private SwipeRefreshLayout srl_fresh;
+    private ProgressBar pb_loading;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,6 +65,21 @@ public class CollectionHireFragment extends BaseFragment{
             collectionHireFragmentView = inflater.inflate(R.layout.fragment_coll_hire,container,false);
         }
         if (collectionHireFragmentView!=null){
+            context = getActivity();
+
+            userInfo = (UserInfo) SharePreferencesUtil.readObject(getActivity(),ConstantUtils.USER_LOGIN_INFO);
+            String result = ACache.get(context).getAsString(userInfo.getUserPhoneNum()+ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE);
+            if (result!=null&&!result.equals("")) {
+                jobList = GsonUtils.jsonToArrayList(result,JobAndCompanyC.class);
+                for (JobAndCompanyC c  : jobList){
+                    if (c.getCompany()==null){
+                        jobList = new ArrayList<>();
+                        break;
+                    }
+                }
+            }else {
+                jobList = new ArrayList<>();
+            }
             return collectionHireFragmentView;
         }
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -72,22 +90,10 @@ public class CollectionHireFragment extends BaseFragment{
         super.onViewCreated(view, savedInstanceState);
         jobList = new ArrayList<>();
         handler = new CollectionHireFragHandler();
-        context = getActivity();
-        userInfo = (UserInfo) SharePreferencesUtil.readObject(getActivity(),ConstantUtils.USER_LOGIN_INFO);
-        String result = ACache.get(context).getAsString(userInfo.getUserPhoneNum()+ConstantUtils.COLLECTION_HIRE_FRAGMENT_ACACHE);
-        if (result!=null&&!result.equals("")) {
-            jobList = GsonUtils.jsonToArrayList(result,JobAndCompanyC.class);
-            for (JobAndCompanyC c  : jobList){
-                if (c.getCompany()==null){
-                    jobList = new ArrayList<>();
-                    break;
-                }
-            }
-        }else {
-            jobList = new ArrayList<>();
-        }
+
+
         initView();
-        getUserCollectionHire();
+       getUserCollectionHire();
         updataListView();
     }
 
@@ -106,10 +112,14 @@ public class CollectionHireFragment extends BaseFragment{
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
@@ -126,6 +136,14 @@ public class CollectionHireFragment extends BaseFragment{
 
     private void initView() {
         lv_hire = (ListView) collectionHireFragmentView.findViewById(R.id.lv_hire);
+        srl_fresh = (SwipeRefreshLayout) collectionHireFragmentView.findViewById(R.id.srl_fresh);
+        pb_loading = (ProgressBar) collectionHireFragmentView.findViewById(R.id.pb_loading);
+        srl_fresh.setColorSchemeColors(  getResources().getColor(android.R.color.holo_red_light),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_blue_bright)
+        );
+        srl_fresh.setOnRefreshListener(this);
     }
     /**
      * 更新listView
@@ -146,6 +164,7 @@ public class CollectionHireFragment extends BaseFragment{
             }
         };
         lv_hire.setAdapter(adapter);
+        lv_hire.setEmptyView(collectionHireFragmentView.findViewById(R.id.img_emptyView));
         lv_hire.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -235,6 +254,11 @@ public class CollectionHireFragment extends BaseFragment{
             parent.removeView(collectionHireFragmentView);
         }
         super.onDestroyView();
+    }
+
+    @Override
+    public void onRefresh() {
+        getUserCollectionHire();
     }
 
     class CollectionHireFragHandler extends Handler {

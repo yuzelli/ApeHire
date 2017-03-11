@@ -2,6 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ListView
         android:id="@+id/lv_pushMessage"
         android:layout_width="match_parent"
@@ -14,6 +17,15 @@
         android:scrollbars="none"
         android:divider="@null"/>
 
+        <TextView
+            android:id="@+id/img_emptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="这里空空的"
+            android:textSize="25sp"
+            android:gravity="center"/>
+
+    </FrameLayout>
 
 
 </RelativeLayout>

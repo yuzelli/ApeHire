@@ -3,6 +3,7 @@ package com.example.buiderdream.apehire.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,6 +15,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +47,7 @@ import okhttp3.Request;
  * Created by Administrator on 2016/12/4.
  */
 
-public class HireFragment extends BaseFragment implements View.OnClickListener {
+public class HireFragment extends BaseFragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
     private View hireFragmentView;
     private TextView job_city, job_type, job_charge, cityMark;
     private LinearLayout jobSelectLayout;
@@ -54,9 +56,12 @@ public class HireFragment extends BaseFragment implements View.OnClickListener {
     private CommonAdapter<JobAndCompany> jobInfoAdapter;
     private PopupWindow jobCityWindow, jobTypeWindow, jobChargeWindow;
     private View jobCityView, jobTypeView, jobChargeView;
+    private SwipeRefreshLayout srl_fresh;
+    private ProgressBar pb_loading;
     private String type_city = "", type_job = "", type_charge = "";
     private final String[] citys = {"不限", "北京", "上海", "广州", "深圳", "武汉", "杭州", "成都", "西安"};
-private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "15k-20k", "20k-30k", "30k-50k"};
+    private final String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "15k-20k", "20k-30k", "30k-50k"};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (hireFragmentView == null) {
@@ -85,6 +90,7 @@ private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "
         job_charge = (TextView) hireFragmentView.findViewById(R.id.job_charge);
         cityMark = (TextView) hireFragmentView.findViewById(R.id.cityMark);
         jobListView = (ListView) hireFragmentView.findViewById(R.id.jobListView);
+
         job_city.setOnClickListener(this);
         job_type.setOnClickListener(this);
         job_charge.setOnClickListener(this);
@@ -99,6 +105,15 @@ private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "
 
             }
         });
+
+        srl_fresh = (SwipeRefreshLayout) hireFragmentView.findViewById(R.id.srl_fresh);
+        pb_loading = (ProgressBar) hireFragmentView.findViewById(R.id.pb_loading);
+        srl_fresh.setColorSchemeColors(  getResources().getColor(android.R.color.holo_red_light),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_blue_bright)
+        );
+        srl_fresh.setOnRefreshListener(this);
         //加载职位数据
         initData();
         initPopWindow();
@@ -213,6 +228,7 @@ private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "
 
     //按照筛选结果查找职位
     private void doSearchJobBy() {
+
         jobInfolist = new ArrayList<JobAndCompany>();
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String, String> map = new HashMap<>();
@@ -231,6 +247,8 @@ private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
                 // Log.i("asdasdasdadsas",e.getMessage());
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
             }
 
             @Override
@@ -238,6 +256,8 @@ private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "
                 Gson gson = new Gson();
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
                 if (flag.equals("ok")) {
                     JSONArray array = object.getJSONArray("object");
                     Log.d("----->", result);
@@ -289,6 +309,7 @@ private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "
         };
         jobListView.setAdapter(jobInfoAdapter);
         // jobInfoAdapter.notifyDataSetChanged();
+        jobListView.setEmptyView(hireFragmentView.findViewById(R.id.img_emptyView));
     }
 
     @Override
@@ -359,6 +380,11 @@ private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "
         } else {
             popWindow.dismiss();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        doSearchJobBy();
     }
 }
 

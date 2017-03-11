@@ -23,7 +23,10 @@ import com.example.buiderdream.apehire.utils.SharePreferencesUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import android.os.Handler;
 
@@ -46,6 +49,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
     private boolean isSend;
     private final String[] citys = {"不限", "北京", "上海", "广州", "深圳", "武汉", "杭州", "成都", "西安"};
     private final  String[] chargeLists = {"不限", "3k-5k", "5k-10k", "10k-15k", "15k-20k", "20k-30k", "30k-50k"};
+    private final List<String> scaleList = new ArrayList<>(Arrays.asList("0-20", "20-99", "100-499", "500-999", "1000+"));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +68,16 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         Intent intent = getIntent();
         jobInfo = (JobAndCompany) intent.getSerializableExtra("jobInfo");
         isSend  =  intent.getBooleanExtra("isSend",false);
-        if (isSend){
+        if (!JudgeUtils.getUserType(getApplication())) {
             sendJobReq.setVisibility(View.GONE);
         }else {
-            sendJobReq.setVisibility(View.VISIBLE);
+            if (isSend) {
+                sendJobReq.setVisibility(View.GONE);
+            } else {
+                sendJobReq.setVisibility(View.VISIBLE);
+            }
         }
+
         initData();
     }
 
@@ -77,7 +86,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         jd_title.setText(jobInfo.getJobName());
         jd_detail.setText(jobInfo.getJobDetail());
         jd_technology.setText(jobInfo.getJobTechnology());
-        jd_charge.setText(jobInfo.getJobCharge()>2?(jobInfo.getJobCharge()>3?(jobInfo.getJobCharge()>4?"15K+":"8K~15K"):"5K~8k"):"5K以下");
+        jd_charge.setText(chargeLists[jobInfo.getJobCharge()]);
         //公司详情赋值
         jd_company_name.setText(jobInfo.getCompany().getCompanyName());
         jd_company_name2.setText(jobInfo.getCompany().getCompanyName());
@@ -85,11 +94,8 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         jd_company_address2.setText(jobInfo.getCompany().getCompanyAddress());
         jd_company_detail.setText(jobInfo.getCompany().getCompanyIntroduce());
 
-        if(jobInfo.getCompany().getCompanyHeadImg()!=null||jobInfo.getCompany().getCompanyHeadImg()!=""){
-            imageLoader.loadImage(jobInfo.getCompany().getCompanyHeadImg(),job_company_img);
-        }
         int scale = jobInfo.getCompany().getCompanyScale();
-        jd_company_scale.setText(chargeLists[scale]);
+        jd_company_scale.setText(scaleList.get(scale)+"人");
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.mipmap.ic_loading)

@@ -89,7 +89,7 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         tv_monney.setText(jobCharges.get(userCompJob.getJob().getJobCharge()));
         tv_jobType.setText(jobTypes.get(userCompJob.getJob().getJobType()));
         tv_jobAddress.setText(citys.get(userCompJob.getJob().getJobCity()));
-
+        tv_school.setText(userCompJob.getUserInfo().getUserSchool());
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.mipmap.ic_loading)
                 .showImageOnFail(R.mipmap.ic_error)

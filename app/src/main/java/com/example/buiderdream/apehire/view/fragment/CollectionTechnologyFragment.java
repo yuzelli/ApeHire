@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
@@ -47,8 +49,10 @@ import okhttp3.Request;
  * 收藏的技术
  */
 
-public class CollectionTechnologyFragment extends BaseFragment{
+public class CollectionTechnologyFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     private View collectionTechnologyFragmentView;
+    private SwipeRefreshLayout srl_fresh;
+    private ProgressBar pb_loading;
     private ListView frag_list_lv;
     private CommonAdapter<CollectionArticle> adapter;
     private List<CollectionArticle> articleList;
@@ -64,6 +68,14 @@ public class CollectionTechnologyFragment extends BaseFragment{
             collectionTechnologyFragmentView = inflater.inflate(R.layout.fragment_coll_technology,container,false);
         }
         if (collectionTechnologyFragmentView!=null){
+            context = getActivity();
+            userInfo = (UserInfo) SharePreferencesUtil.readObject(context,ConstantUtils.USER_LOGIN_INFO);
+            String result = ACache.get(context).getAsString(userInfo.getUserPhoneNum()+ConstantUtils.COLLECTION_ARTICLE_FRAGMENT_ACACHE);
+            if (result!=null&&!result.equals("")) {
+                articleList = GsonUtils.jsonToArrayList(result,CollectionArticle.class);
+            }else {
+                articleList = new ArrayList<>();
+            }
             return collectionTechnologyFragmentView;
         }
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -73,24 +85,18 @@ public class CollectionTechnologyFragment extends BaseFragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         handler = new CollectionTechnologyFragmentHandler();
-        context = getActivity();
-        userInfo = (UserInfo) SharePreferencesUtil.readObject(context,ConstantUtils.USER_LOGIN_INFO);
-        String result = ACache.get(context).getAsString(userInfo.getUserPhoneNum()+ConstantUtils.COLLECTION_ARTICLE_FRAGMENT_ACACHE);
-        if (result!=null&&!result.equals("")) {
-            articleList = GsonUtils.jsonToArrayList(result,CollectionArticle.class);
-        }else {
-            articleList = new ArrayList<>();
-        }
+
         initView();
         updataListView();
-        getUserCollArticle();
-        updataListView();
+       // getUserCollArticle();
+
     }
 
     /**
      * 获取数据
      */
     private void getUserCollArticle() {
+
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String, String> map = new HashMap<>();
         map.put("type", "findArtCollByCUserID");
@@ -101,11 +107,14 @@ public class CollectionTechnologyFragment extends BaseFragment{
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
-                Gson gson = new Gson();
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
@@ -136,6 +145,7 @@ public class CollectionTechnologyFragment extends BaseFragment{
             }
         };
         frag_list_lv.setAdapter(adapter);
+        frag_list_lv.setEmptyView(collectionTechnologyFragmentView.findViewById(R.id.img_emptyView));
         frag_list_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -225,6 +235,14 @@ public class CollectionTechnologyFragment extends BaseFragment{
     private void initView() {
         frag_list_lv = (ListView) collectionTechnologyFragmentView.findViewById(R.id.frag_list_lv);
 
+        srl_fresh = (SwipeRefreshLayout) collectionTechnologyFragmentView.findViewById(R.id.srl_fresh);
+        pb_loading = (ProgressBar) collectionTechnologyFragmentView.findViewById(R.id.pb_loading);
+        srl_fresh.setColorSchemeColors(  getResources().getColor(android.R.color.holo_red_light),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_blue_bright)
+        );
+        srl_fresh.setOnRefreshListener(this);
     }
 
     @Override
@@ -234,6 +252,11 @@ public class CollectionTechnologyFragment extends BaseFragment{
             parent.removeView(collectionTechnologyFragmentView);
         }
         super.onDestroyView();
+    }
+
+    @Override
+    public void onRefresh() {
+        getUserCollArticle();
     }
 
     class CollectionTechnologyFragmentHandler extends Handler {

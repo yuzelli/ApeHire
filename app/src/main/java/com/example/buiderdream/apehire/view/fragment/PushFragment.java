@@ -79,6 +79,7 @@ public class PushFragment extends BaseFragment {
             }
         };
         lv_pushMessage.setAdapter(adapter);
+        lv_pushMessage.setEmptyView(pushFragmentView.findViewById(R.id.img_emptyView));
         lv_pushMessage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

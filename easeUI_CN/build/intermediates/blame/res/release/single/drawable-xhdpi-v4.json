@@ -44,12 +44,12 @@
         "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_close_icon.png"
     },
     {
-        "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_open_icon.png",
-        "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_open_icon.png"
-    },
-    {
         "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_send_btn_normal.9.png",
         "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chat_send_btn_normal.9.png"
+    },
+    {
+        "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_open_icon.png",
+        "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_open_icon.png"
     },
     {
         "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_default_expression.png",

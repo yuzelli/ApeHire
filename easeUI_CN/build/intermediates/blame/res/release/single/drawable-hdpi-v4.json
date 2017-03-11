@@ -32,12 +32,12 @@
         "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_mm_listitem_pressed.9.png"
     },
     {
-        "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_dx_checkbox_gray_on.png",
-        "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_dx_checkbox_gray_on.png"
-    },
-    {
         "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_app_panel_video_icon.9.png",
         "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_app_panel_video_icon.9.png"
+    },
+    {
+        "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_dx_checkbox_gray_on.png",
+        "source": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_dx_checkbox_gray_on.png"
     },
     {
         "merged": "E:\\WorkSpace_AS\\ApeHire\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_mm_listitem_disable.9.png",

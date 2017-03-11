@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.buiderdream.apehire.R;
@@ -44,7 +46,7 @@ import okhttp3.Request;
  * Created by 51644 on 2017/2/28.
  */
 
-public class BossGetResumeFragment extends BaseFragment {
+public class BossGetResumeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
     private View bossGetResumeView;
     private ListView lv_userInfo;
     private CommonAdapter<UserCompJob> adapter;
@@ -55,7 +57,8 @@ public class BossGetResumeFragment extends BaseFragment {
     private final List<String> moneyList = new ArrayList<>(Arrays.asList("不限", "3k-5k", "5k-10k", "10k-15k", "15k-20k", "20k-30k", "30k-50k"));
     private final List<String> educationList = new ArrayList<>(Arrays.asList("大专", "本科", "硕士", "博士"));
     private final List<String> jobTypes = new ArrayList<>(Arrays.asList("不限", "软件研发工程师", "java研发工程师", "嵌入式研发工程师", "Unity3D工程师", "Linux工程师"));
-
+    private SwipeRefreshLayout srl_fresh;
+    private ProgressBar pb_loading;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (bossGetResumeView == null) {
@@ -88,7 +91,14 @@ public class BossGetResumeFragment extends BaseFragment {
 
     private void initView() {
         lv_userInfo = (ListView) bossGetResumeView.findViewById(R.id.lv_userInfo);
-
+        srl_fresh = (SwipeRefreshLayout) bossGetResumeView.findViewById(R.id.srl_fresh);
+        pb_loading = (ProgressBar) bossGetResumeView.findViewById(R.id.pb_loading);
+        srl_fresh.setColorSchemeColors(  getResources().getColor(android.R.color.holo_red_light),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_blue_bright)
+        );
+        srl_fresh.setOnRefreshListener(this);
     }
 
     /**
@@ -107,6 +117,7 @@ public class BossGetResumeFragment extends BaseFragment {
             }
         };
         lv_userInfo.setAdapter(adapter);
+        lv_userInfo.setEmptyView(bossGetResumeView.findViewById(R.id.img_emptyView));
         lv_userInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -191,10 +202,14 @@ public class BossGetResumeFragment extends BaseFragment {
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
                 Log.d("-----请求----->",result);
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
@@ -215,6 +230,11 @@ public class BossGetResumeFragment extends BaseFragment {
             parent.removeView(bossGetResumeView);
         }
         super.onDestroyView();
+    }
+
+    @Override
+    public void onRefresh() {
+        getBossGetResumeData();
     }
 
 

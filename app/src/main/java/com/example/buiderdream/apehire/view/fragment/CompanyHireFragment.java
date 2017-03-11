@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -49,7 +51,7 @@ import okhttp3.Request;
  * 公司发布的职位
  */
 
-public class CompanyHireFragment extends BaseFragment implements View.OnClickListener {
+public class CompanyHireFragment extends BaseFragment implements View.OnClickListener ,SwipeRefreshLayout.OnRefreshListener{
     private View compangyHireFragmentView;
     private ListView lv_hire;
     private Button btn_releaseHire;
@@ -58,7 +60,8 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
     private Context context;
     private CompanyInfo company;
     private CompanyHireFragHandler handler;
-
+    private SwipeRefreshLayout srl_fresh;
+    private ProgressBar pb_loading;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -94,6 +97,14 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
         }else {
             jobList = new ArrayList<>();
         }
+        srl_fresh = (SwipeRefreshLayout) compangyHireFragmentView.findViewById(R.id.srl_fresh);
+        pb_loading = (ProgressBar) compangyHireFragmentView.findViewById(R.id.pb_loading);
+        srl_fresh.setColorSchemeColors(  getResources().getColor(android.R.color.holo_red_light),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_blue_bright)
+        );
+        srl_fresh.setOnRefreshListener(this);
     }
 
     @Override
@@ -124,6 +135,7 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
             }
         };
         lv_hire.setAdapter(adapter);
+        lv_hire.setEmptyView(compangyHireFragmentView.findViewById(R.id.img_emptyView));
         lv_hire.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -196,6 +208,7 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
      * 获取发布的职位
      */
     private void getCompanyJob() {
+
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String, String> map = new HashMap<>();
         map.put("type", "selSomeJob");
@@ -209,10 +222,14 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
+                srl_fresh.setRefreshing(false);
+                pb_loading.setVisibility(View.GONE);
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
@@ -248,6 +265,11 @@ public class CompanyHireFragment extends BaseFragment implements View.OnClickLis
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        getCompanyJob();
     }
 
     class CompanyHireFragHandler extends Handler {

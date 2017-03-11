@@ -41,6 +41,7 @@ import com.hyphenate.chat.EMClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.utils.StringMap;
 
 import org.json.JSONObject;
 
@@ -291,13 +292,13 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.rl_companyName:
-                updateUserInfo(3);
+                updateUserInfo(3,company.getCompanyName());
                 break;
             case R.id.rl_address:
-                updateUserInfo(4);
+                updateUserInfo(4,company.getCompanyAddress());
                 break;
             case R.id.rl_describe:
-                updateUserInfo(6);
+                updateUserInfo(6,company.getCompanyIntroduce());
                 break;
             case R.id.rl_CompanyShow:
                 CompanyShowImgActivity.actionStart(context);
@@ -343,9 +344,10 @@ public class BossEditActivity extends BaseActivity implements View.OnClickListen
      *
      * @param i 3：公司名称；4地址； 6公司介绍
      */
-    private void updateUserInfo(int i) {
+    private void updateUserInfo(int i, String content) {
         Intent intent = new Intent(BossEditActivity.this, InputInfoActivity.class);
         intent.putExtra("editType", i);
+        intent.putExtra("content",content);
         startActivityForResult(intent, ConstantUtils.EDIT_USER_INFO_ACTIVITY_CODE);
     }
 

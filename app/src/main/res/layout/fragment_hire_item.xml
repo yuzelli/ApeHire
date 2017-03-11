@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginBottom="10dp"
-          android:background="@color/white">
+        android:background="@color/white">
+
         <ImageView
+            android:id="@+id/job_item_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="@string/imgContentDescription"
-            android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/icon_head_200px"
-            android:id="@+id/job_item_img" />
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/imgContentDescription"
+            android:src="@drawable/icon_head_200px" />
 
         <TextView
             android:id="@+id/job_item_companyAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/order_size"
+            android:layout_alignStart="@+id/job_item_jobName"
             android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/job_item_jobName" />
+            android:textSize="@dimen/order_size" />
 
         <TextView
             android:id="@+id/job_item_companyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/order_size"
             android:layout_alignBottom="@+id/job_item_img"
-            android:layout_alignStart="@+id/job_item_companyAddress" />
+            android:layout_alignStart="@+id/job_item_companyAddress"
+            android:textSize="@dimen/order_size" />
 
         <TextView
+            android:id="@+id/job_item_jobCharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/job_item_jobCharge"
-            android:textColor="@color/hotpink"
-            android:textSize="22sp"
             android:layout_alignBaseline="@+id/job_item_companyAddress"
-            android:layout_marginEnd="10dp"
             android:layout_alignBottom="@+id/job_item_companyAddress"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/hotpink"
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/job_item_jobName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="@dimen/main_size"
-            android:layout_marginStart="20dp"
             android:layout_alignTop="@+id/job_item_img"
-            android:layout_toEndOf="@+id/job_item_img" />
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/job_item_img"
+            android:textColor="@color/black"
+            android:textSize="@dimen/main_size" />
 
     </RelativeLayout>
 </LinearLayout>

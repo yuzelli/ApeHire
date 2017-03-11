@@ -47,14 +47,17 @@ public class InputInfoActivity extends BaseActivity implements View.OnClickListe
     private void updateView() {
         Intent intent = getIntent();
         editType = intent.getIntExtra("editType",-1);
+        String content = intent.getStringExtra("content");
         if (editType!=-1){
             tv_title.setText(editTypeTitle[editType]);
             if(editType>5){
                 et_userLongInput.setVisibility(View.VISIBLE);
+                et_userLongInput.setText(content);
                 et_userInput.setVisibility(View.GONE);
             }else {
                 et_userLongInput.setVisibility(View.GONE);
                 et_userInput.setVisibility(View.VISIBLE);
+                et_userInput.setText(content);
             }
         }
     }

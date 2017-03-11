@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,9 @@ import okhttp3.Request;
  * Created by Admin on 2017/2/24.
  */
 
-public class TechListFragment extends Fragment {
+public class TechListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     private  View techlistFragView;
+    private SwipeRefreshLayout srl_fresh;
     private ListView lv;
     private CommonAdapter<Technology> adapter;
     private  String type;
@@ -86,6 +88,7 @@ public class TechListFragment extends Fragment {
             }
         };
         lv.setAdapter(adapter);
+        lv.setEmptyView(techlistFragView.findViewById(R.id.img_emptyView));
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -99,12 +102,14 @@ public class TechListFragment extends Fragment {
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String, String> map = new HashMap<>();
         map.put("node_name",type);
+
         String url = OkHttpClientManager.attachHttpGetParams(ConstantUtils.V2EX_ARTICLE+ConstantUtils.V2EX_NODE,map);
         manager.getAsync(url,new OkHttpClientManager.DataCallBack(){
 
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(context, "请求失败！", Toast.LENGTH_SHORT).show();
+                srl_fresh.setRefreshing(false);
             }
 
             @Override
@@ -112,6 +117,7 @@ public class TechListFragment extends Fragment {
                 pb.setVisibility(View.GONE);
                 list = GsonUtils.jsonToArrayList(result,Technology.class);
                 handler.sendEmptyMessage(ConstantUtils.TEACHLOGY_GET_DATA);
+                srl_fresh.setRefreshing(false);
             }
         });
 
@@ -121,6 +127,19 @@ public class TechListFragment extends Fragment {
     private void initView() {
         pb = (ProgressBar) techlistFragView.findViewById(R.id.frag_tech_pb);
         lv = (ListView) techlistFragView.findViewById(R.id.frag_list_lv);
+        srl_fresh = (SwipeRefreshLayout) techlistFragView.findViewById(R.id.srl_fresh);
+        srl_fresh.setOnRefreshListener(this);
+        srl_fresh.setColorSchemeColors(  getResources().getColor(android.R.color.holo_red_light),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_blue_bright)
+
+        );
+    }
+
+    @Override
+    public void onRefresh() {
+        addData();
     }
 
     class  TeachListFragmentHandler extends Handler{

@@ -245,8 +245,9 @@ public class BossMineFragment extends BaseFragment implements View.OnClickListen
         @Override
         public void run() {
             if (System.currentTimeMillis() - lastTime >= 3000) {
-                vp_picture.setCurrentItem(currentIndex);
                 currentIndex++;
+                vp_picture.setCurrentItem(currentIndex);
+
                 lastTime = System.currentTimeMillis();
             }
             if (stopBanner){

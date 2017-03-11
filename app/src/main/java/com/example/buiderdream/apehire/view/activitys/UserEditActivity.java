@@ -333,9 +333,10 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
      *
      * @param i 0：真实姓名；1 年龄； 2 毕业学校 ；3 薪资水平 ；4 项目经验  ； 5 我的优势
      */
-    private void updateUserInfo(int i) {
+    private void updateUserInfo(int i,String content) {
         Intent intent = new Intent(UserEditActivity.this, InputInfoActivity.class);
         intent.putExtra("editType", i);
+        intent.putExtra("content",content);
         startActivityForResult(intent, ConstantUtils.EDIT_USER_INFO_ACTIVITY_CODE);
     }
     /**
@@ -376,19 +377,19 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
                 showHeadImgDialog();
                 break;
             case R.id.rl_realName:
-                updateUserInfo(0);
+                updateUserInfo(0,userInfo.getUserTrueName());
                 break;
             case R.id.rl_age:
-                updateUserInfo(1);
+                updateUserInfo(1,userInfo.getUserAge()+"");
                 break;
             case R.id.rl_graduate:
-                updateUserInfo(2);
+                updateUserInfo(2,userInfo.getUserSchool());
                 break;
             case R.id.rl_experience:
-                updateUserInfo(7);
+                updateUserInfo(7,userInfo.getUserExperence());
                 break;
             case R.id.rl_superiority:
-                updateUserInfo(8);
+                updateUserInfo(8,userInfo.getUserAdvantage());
                 break;
             case R.id.btn_upload:
                 if (!NetworkUtils.isNetAvailable(context)) {
@@ -501,7 +502,13 @@ public class UserEditActivity extends BaseActivity implements View.OnClickListen
                         tv_trueName.setText(result);
                         break;
                     case 1:
-                        tv_age.setText(result);
+                        try {
+                            Integer.valueOf(result);
+                            tv_age.setText(result);
+                        }catch (Exception e){
+                            tv_age.setText("");
+                        }
+
                         break;
                     case 2:
                         tv_graduate.setText(result);
