@@ -7,6 +7,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
     private TextView sendJobReq;//职位投递
     private TextView job_like_click;//职位收藏
     private UserInfo userInfo;
-    private  ImageLoader imageLoader;
+    private ProgressBar pb_loading;
     private RelativeLayout companyPart;
     private boolean userType;   //用户类型
     private boolean isSend;
@@ -55,7 +56,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
         initView();
-        imageLoader = ImageLoader.getInstance();
+
         userType =JudgeUtils.getUserType(getApplication());
         if (userType) {
             userInfo = (UserInfo) SharePreferencesUtil.readObject(JobActivity.this, ConstantUtils.USER_LOGIN_INFO);
@@ -119,6 +120,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         jd_company_scale = (TextView) findViewById(R.id.jd_company_scale);
         jd_company_detail = (TextView) findViewById(R.id.jd_company_detail);
         job_company_img = (ImageView) findViewById(R.id.jd_company_img);
+        pb_loading = (ProgressBar) findViewById(R.id.pb_loading);
         sendJobReq = (TextView) findViewById(R.id.sendJobReq);
         sendJobReq.setOnClickListener(this);
         job_like_click = (TextView) findViewById(R.id.job_like_click);
@@ -180,6 +182,7 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         收藏职位
      */
     private void doLikeJobReq() {
+        pb_loading.setVisibility(View.VISIBLE);
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String,String> map = new HashMap<>();
         map.put("type", "addJobColl");
@@ -192,11 +195,14 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(JobActivity.this, "收藏职位失败", Toast.LENGTH_SHORT).show();
                 Log.i("收藏职位失败",e.getMessage());
+                pb_loading.setVisibility(View.GONE);
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
+                Toast.makeText(JobActivity.this, "收藏职位成功", Toast.LENGTH_SHORT).show();
                 handler.sendEmptyMessage(2);
+                pb_loading.setVisibility(View.GONE);
             }
         });
     }
@@ -210,17 +216,20 @@ public class JobActivity extends BaseActivity implements View.OnClickListener{
         map.put("jobId",jobInfo.getJobId()+"");
         map.put("userId",userInfo.getUserId()+"");
         map.put("companyId",jobInfo.getCompany().getCompanyId()+"");
-
+        pb_loading.setVisibility(View.VISIBLE);
         String url = manager.attachHttpGetParams(ConstantUtils.USER_ADDRESS+ConstantUtils.COMPANY_RESUM_SERVLET,map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(JobActivity.this, "投递职位失败", Toast.LENGTH_SHORT).show();
+                pb_loading.setVisibility(View.GONE);
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
+                Toast.makeText(JobActivity.this, "投递职位成功", Toast.LENGTH_SHORT).show();
                 handler.sendEmptyMessage(1);
+                pb_loading.setVisibility(View.GONE);
             }
         });
     }

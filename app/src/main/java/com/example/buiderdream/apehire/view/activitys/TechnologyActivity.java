@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,7 @@ public class TechnologyActivity extends Activity {
 
     private TextView title_tv, content_tv, user_name_tv, time_tv, collection_tv;
     private ImageView iv;
+    private ProgressBar pb_loading;
     private Technology technology;
     private int tec_id, collection_id;
     private TechnologyHandler handler;
@@ -90,6 +92,7 @@ public class TechnologyActivity extends Activity {
 
 
     private void addArticle() {
+        pb_loading.setVisibility(View.GONE);
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String, String> map = new HashMap<>();
         map.put("type", "addArticle");
@@ -105,13 +108,14 @@ public class TechnologyActivity extends Activity {
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
+                pb_loading.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(), "添加文章失败！", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
 
-                Toast.makeText(getApplicationContext(), "已经收藏", Toast.LENGTH_LONG).show();
+
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
@@ -130,12 +134,14 @@ public class TechnologyActivity extends Activity {
         title_tv = (TextView) findViewById(R.id.tech_title_name);
         content_tv = (TextView) findViewById(R.id.tech_content_tv);
         user_name_tv = (TextView) findViewById(R.id.tech_username_tv);
+        pb_loading = (ProgressBar) findViewById(R.id.pb_loading);
         time_tv = (TextView) findViewById(R.id.tech_usertime_tv);
         iv = (ImageView) findViewById(R.id.tech_user_iv);
         collection_tv = (TextView) findViewById(R.id.tech_collection_tv);
     }
 
     public void UserCollectonArti() {
+
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         Map<String, String> map = new HashMap<>();
         map.put("type", "addArtColl");
@@ -146,14 +152,17 @@ public class TechnologyActivity extends Activity {
             @Override
             public void requestFailure(Request request, IOException e) {
                 Toast.makeText(getApplicationContext(), "收藏文章失败！", Toast.LENGTH_SHORT).show();
+                pb_loading.setVisibility(View.GONE);
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
-                Gson gson = new Gson();
+                pb_loading.setVisibility(View.GONE);
                 JSONObject object = new JSONObject(result);
                 String flag = object.getString("error");
+                Toast.makeText(getApplicationContext(), "收藏文章失败！", Toast.LENGTH_SHORT).show();
                 if (flag.equals("ok")) {
+                    Toast.makeText(getApplicationContext(), "已经收藏", Toast.LENGTH_LONG).show();
                     JSONObject object1 = new JSONObject(object.getString("object"));
                     collection_id = object1.getInt("ColletionID");
                     handler.sendEmptyMessage(ConstantUtils.COLLECTION_ARTI_ADD_DATA);

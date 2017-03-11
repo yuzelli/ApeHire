@@ -35,65 +35,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_easeUI_CN_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_easeUI_CN_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_easeUI_CN_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_easeUI_CN_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PushSDK/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/PushSDK/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PushSDK/build/outputs/aar/PushSDK-debug.aar" afterPath="$PROJECT_DIR$/PushSDK/build/outputs/aar/PushSDK-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PushSDK/build/outputs/aar/PushSDK-release.aar" afterPath="$PROJECT_DIR$/PushSDK/build/outputs/aar/PushSDK-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-22.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-22.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_chatfrom_voice_playing.png" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_chatfrom_voice_playing.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/outputs/aar/easeUI_CN-debug.aar" afterPath="$PROJECT_DIR$/easeUI_CN/build/outputs/aar/easeUI_CN-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/outputs/aar/easeUI_CN-release.aar" afterPath="$PROJECT_DIR$/easeUI_CN/build/outputs/aar/easeUI_CN-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PushSDK/PushSDK.iml" afterPath="$PROJECT_DIR$/PushSDK/PushSDK.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PushSDK/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/PushSDK/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PushSDK/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/PushSDK/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PushSDK/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/PushSDK/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/app/BaseApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/app/BaseApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/constants/ConstantUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/constants/ConstantUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/BossEditActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/BossEditActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/CompanyInfoActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/CompanyInfoActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/InputInfoActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/InputInfoActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/JobActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/JobActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/UserActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/UserActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/UserEditActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/UserEditActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/BossGetResumeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/BossGetResumeFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/BossMineFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/BossMineFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CollectionHireFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CollectionHireFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CollectionTechnologyFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CollectionTechnologyFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CompanyHireFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CompanyHireFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/HireFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/HireFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/PushFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/PushFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/TechListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/TechListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/UserJobFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/UserJobFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_job.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_job.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_teachnology.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_teachnology.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_user.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_user.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_bossgetresume.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_bossgetresume.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_coll_hire.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_coll_hire.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_coll_technology.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_coll_technology.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_company_hire.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_company_hire.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_hire.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_hire.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_hire_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_hire_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_push.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_push.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tech_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tech_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_userjob.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_userjob.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/androidTest/debug/single/layout.json" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/androidTest/debug/single/layout.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/release/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/release/single/drawable-hdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/release/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/blame/res/release/single/drawable-xhdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/mergeReleaseResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/mergeReleaseResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/easeUI_CN/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeUI_CN/easeUI_CN.iml" afterPath="$PROJECT_DIR$/easeUI_CN/easeUI_CN.iml" />
     </list>
     <ignored path="ApeHire.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -128,21 +74,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="HireFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/HireFragment.java">
+      <file leaf-file-name="TechnologyActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="67" column="61" selection-start-line="67" selection-start-column="61" selection-end-line="67" selection-end-column="61" />
+            <state relative-caret-position="263">
+              <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_hire.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_hire.xml">
+      <file leaf-file-name="activity_teachnology.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_teachnology.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="107" column="22" selection-start-line="99" selection-start-column="10" selection-end-line="107" selection-end-column="22" />
+            <state relative-caret-position="340">
+              <caret line="160" column="32" selection-start-line="160" selection-start-column="32" selection-end-line="160" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -151,21 +97,57 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompanyHireFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CompanyHireFragment.java">
+      <file leaf-file-name="fragment_hire.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_hire.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="137" column="85" selection-start-line="137" selection-start-column="85" selection-end-line="137" selection-end-column="85" />
+            <state relative-caret-position="179">
+              <caret line="111" column="35" selection-start-line="111" selection-start-column="25" selection-end-line="111" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TechListFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/TechListFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="85" column="10" selection-start-line="85" selection-start-column="10" selection-end-line="85" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_company_hire.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_company_hire.xml">
+      <file leaf-file-name="JobActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/JobActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+            <state relative-caret-position="910">
+              <caret line="231" column="50" selection-start-line="231" selection-start-column="50" selection-end-line="231" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_job.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_job.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="321" column="32" selection-start-line="321" selection-start-column="32" selection-end-line="321" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_tech_list.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tech_list.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -3435,7 +3417,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_push_message.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/PushMessageActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_technology.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/GuideActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
@@ -3446,18 +3427,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/BossMineFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/constants/ConstantUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/app/BaseApplication.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/TechListFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/UserActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/JobActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_hire_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/CompanyInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_user.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_teachnology.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_job.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/InputInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/BossEditActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/UserEditActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tech_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/empty_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/HireFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_hire.xml" />
@@ -3473,6 +3449,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CollectionTechnologyFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_company_hire.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CompanyHireFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tech_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/TechListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/JobActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_job.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_teachnology.xml" />
       </list>
     </option>
   </component>
@@ -3644,6 +3626,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activitys" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -4035,23 +4021,23 @@
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38716814" sideWeight="0.506159" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7212389" sideWeight="0.4967811" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7212389" sideWeight="0.5055991" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7212389" sideWeight="0.4944009" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497309" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38716814" sideWeight="0.493841" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38716814" sideWeight="0.493841" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32772166" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27292818" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31354985" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31354985" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32662192" sideWeight="0.49784714" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38674033" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39005524" sideWeight="0.49784714" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38938054" sideWeight="0.49784714" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497309" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23180291" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -4195,13 +4181,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/JobActivity.java</url>
-          <line>207</line>
+          <line>213</line>
           <properties />
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/JobActivity.java</url>
-          <line>222</line>
+          <line>230</line>
           <properties />
           <option name="timeStamp" value="118" />
         </line-breakpoint>
@@ -4219,19 +4205,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java</url>
-          <line>140</line>
+          <line>146</line>
           <properties />
           <option name="timeStamp" value="125" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java</url>
-          <line>152</line>
-          <properties />
-          <option name="timeStamp" value="126" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java</url>
-          <line>147</line>
+          <line>153</line>
           <properties />
           <option name="timeStamp" value="127" />
         </line-breakpoint>
@@ -4405,14 +4385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/TechListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="129" column="17" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/utils/ImageLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
@@ -4473,24 +4445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="54" column="46" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/JobActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="55" column="40" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/InputInfoActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1440">
@@ -4523,28 +4477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_job.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_teachnology.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="141" column="9" selection-start-line="141" selection-start-column="9" selection-end-line="151" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -4560,17 +4492,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="41" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tech_list.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="26" column="46" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -4712,17 +4633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_hire.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="107" column="22" selection-start-line="99" selection-start-column="10" selection-end-line="107" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_company_hire.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -4736,10 +4646,78 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/CompanyHireFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="137" column="85" selection-start-line="137" selection-start-column="85" selection-end-line="137" selection-end-column="85" />
+        <state relative-caret-position="226">
+          <caret line="135" column="10" selection-start-line="135" selection-start-column="10" selection-end-line="135" selection-end-column="10" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tech_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_hire.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="111" column="35" selection-start-line="111" selection-start-column="25" selection-end-line="111" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/JobActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="910">
+          <caret line="231" column="50" selection-start-line="231" selection-start-column="50" selection-end-line="231" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_job.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="321" column="32" selection-start-line="321" selection-start-column="32" selection-end-line="321" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/fragment/TechListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="85" column="10" selection-start-line="85" selection-start-column="10" selection-end-line="85" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/buiderdream/apehire/view/activitys/TechnologyActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_teachnology.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="160" column="32" selection-start-line="160" selection-start-column="32" selection-end-line="160" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>

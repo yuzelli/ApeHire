@@ -88,7 +88,7 @@ public class CollectionTechnologyFragment extends BaseFragment implements SwipeR
 
         initView();
         updataListView();
-       // getUserCollArticle();
+       getUserCollArticle();
 
     }
 
